@@ -1,7 +1,7 @@
 # TrueChain Wiki
 
-##TRUECHAIN: HIGHLY PERFORMANT DECENTRALIZED PUBLIC LEDGER FIRST DRAFT
-##WORK IN PROGRESS
+## TRUECHAIN: HIGHLY PERFORMANT DECENTRALIZED PUBLIC LEDGER FIRST DRAFT
+## WORK IN PROGRESS
 
 ## docs
 * English wiki: [@Archit](https://github.com/truechain/wiki/blob/master/docs/index.rst)
