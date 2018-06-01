@@ -1,0 +1,21 @@
+工作任务-20180601-2
+==========================================
+
+## 替换PBFT共识算法中的RPC协议为gRPC
+
+* 任务描述：
+目前官方github中的PBFT算法中的通信协议是RPC,需要替换这个通信组建，把通讯协议调整为gRPC,以便于后续各模块交互、不同语言开发的模块间互换。
+
+
+* 任务难度：C级  
+* 参与人员：兼职开发者社区群
+* 工作量预计：一周
+
+
+## [代码仓库](https://github.com/truechain/truechain-consensus-core)
+
+
+## 开发参考文档？
+
+* [白皮书](https://www.truechain.pro/Truechain.pdf) 
+* [黄皮书](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
