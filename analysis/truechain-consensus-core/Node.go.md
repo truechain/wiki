@@ -3,7 +3,7 @@
 ## 1 开发者学习路径
 首先，我想给出一个开发者的学习路径，如果你对区块链有很深的兴趣，那么这样你就知道你如何阶段性的去学习区块链。
 
-![avatar](C:/Users/Administrator/Desktop/tu1.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/tu1.png)
 
   初期，可以阅读一些白皮书，比如以特币的白皮书、以太坊的白皮书来了解一些相关理论。
   中期，通过了解以太坊、以太坊虚拟机和智能合约去了解其运行环境和原理。
@@ -12,17 +12,17 @@
 ## 2 区块链
   什么是区块链，我想在网上一搜就能出来无数条概念性的东西，那些东西我就不提了，我还是从技术层面讲讲它的组成，因为这是最基本的东西。区块链，顾名思义是由区块和链组成，区块又包括了区块头和区块体。其中区块头包含摘要信息，如哈希、梅克尔根、区块时间戳等等；区块体包括交易事物数据。可以通过下面的图片看到其结构。
 
-![avatar](C:/Users/Administrator/Desktop/2.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/2.png)
 
   区块链主要有三种：公链、联盟链、私有链，其中公链通俗的讲法是指公用网络上所有点都可以加入；联盟链是加入的点必须的允许被加入的，一个联盟的；私有链是归个人的，不对外开放的。
   往往人们对区块链的作用有一定的误解，在我看来区块链是提高了信任而不是效率，尤其在金融方面它能够去除中介，直接让两个人进行交易，而不需要中介的干预。而不是提高了效率，比如在大数据的吞吐上等等。
 
-![avatar](C:/Users/Administrator/Desktop/4.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/4.png)
 
 ### 2.1 Mercle Tree——防篡改机制
   区块链很重要的特点是安全性极高，那是为什么呢？单单就从区块链结构中就可以看出这一点，下图是MercleTree的一个示例图。
 
-![avatar](C:/Users/Administrator/Desktop/3.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/3.png)
 
   梅尔根树是一个二叉树，每一笔交易都会产生一个hash值，同时梅尔根树只能增加不能进行删除和修改所以有一定的防篡改性，同时每一个交易数据所产生的hash值是唯一的，如果稍微有一点改动那么区块头就会改变，所以链接就改变了，所以通过这种结构和算法就能实现区块不同的连接不会被篡改。
 
@@ -39,12 +39,12 @@ TrueChain的应用领域也是相当广泛，包括保险、医疗、游戏、�
   智能合约打个比方就是我想要做一个项目，我要雇一个公司来帮我完成这件事情，说先我要做的是我的费用，比如一个以太放进一个合约内，这时候这一个以太我是不能动的，公司也不能动，为了保证公司能够完成这个合同，公司也需要放一份押金，也是一个以太到合约中，这个时候这个合约里面就有两个以太。接下来公司就去完成项目，如果该项目完成的非常好，我可以发OK的信号也合约，然后合约就自动结束了，其中的两个以太就会给公司了。
 我想我刚才的那个例子很好的解释了智能合约，但是智能合约是怎么生成使用的呢。下图所示：
 
-![avatar](C:/Users/Administrator/Desktop/6.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/6.png)
 
   最后生成的合约地址可由其他应用程序调用。智能合约TrueChain在共享机制落地应用的关键一步。
   在智能合约当中我还要涉及一下以太坊的知识，因为初链提出了在以太坊之上建立一个新的虚拟机的想法。说白了以太坊就是一个区块链，是在原基础上发展了一些新的技术和新的思想。以太坊是一个去中心的平台上面可以运行进行编好的应用程序，这些应用程序不会宕机、不会受到审查、不会受到第三方干预。其中以太坊虚拟机（EVM）最重要的概念就是账户、交易和费用。
 
-![avatar](C:/Users/Administrator/Desktop/5.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/5.png)
 
 
 ## 5 说明
