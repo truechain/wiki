@@ -1,0 +1,18 @@
+工作任务-20180608
+==========================================
+
+## 学习以太坊的加密算法。掌握公私钥的基础应用
+
+* 任务描述：
+根据以太坊ETH的椭圆曲线加密签名算法（ecdsa），用私钥签名`hello world`字符串，然后用对应的公钥解密验证。  
+参考代码：https://github.com/ethereum/go-ethereum/tree/master/crypto/secp256k1 
+
+* 开发语言：go
+* 任务难度：C级  
+* 参与人员：加入兼职群，并通过评级的全部人员。
+* 工作量预计：1周 
+
+## 开发参考文档？
+
+* [白皮书](https://www.truechain.pro/Truechain.pdf) 
+* [黄皮书](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
