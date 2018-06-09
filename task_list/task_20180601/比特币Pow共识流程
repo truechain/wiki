@@ -1,0 +1,233 @@
+比特币采用Pow共识机制，即不断调整Nonce值，对区块头做双重SHA256哈希运算，使得结果满足给定数量前导0的哈希值的过程。其中前导0的个数
+，取决于挖矿难度，前导0的个数越多，挖矿难度越大。具体流程如下：
+首先，生成铸币交易，并与其它所有准备打包进区块的交易组成交易列表，生成Merkle根哈希值；
+其次，将Merkle根哈希值，与区块头其它字段组成区块头，80字节长度的区块头作为Pow算法的输入；
+再次，不断变更区块头的随机数Nonce，对变更后的区块头做SHA256哈希运算，与当前难度的目标值做对比，如果小于目标难度，即Pow完成； 最后，Pow完成的区块向全网广播，其它节点将验证其是否符合规则，如果验证有效，其它节点将接收此区块，并附加在已有区块链之后；
+之后，将进入下一轮挖矿。注：红色为代码注释
+
+1，generateBlocks 测试网络出块函数
+
+在bitcoin/src/rpc/mining.cpp文件中，generateBlocks函数为测试网络中的挖矿函数，我们研究它了解比特币的出块功能。摘录如下：
+//nGenerate 生成块的个数
+//nMaxTries 更新Nonce尝试Pow计算的次数
+UniValue generateBlocks(std::shared_ptr<CReserveScript> coinbaseScript, int nGenerate, uint64_t nMaxTries, bool keepScript)
+{
+static const int nInnerLoopCount = 0x10000; int nHeightEnd = 0;
+int nHeight = 0;
+{ // Don't keep cs_main locked LOCK(cs_main);
+nHeight = chainActive.Height();//当前块高
+nHeightEnd = nHeight+nGenerate;//generateBlocks结束时的块高
+}
+unsigned int nExtraNonce = 0; UniValue blockHashes(UniValue::VARR); while (nHeight < nHeightEnd)
+{
+//创建新块，生成铸币交易，并与其它所有准备打包进区块的交易组成交易列表，添加区块头
+std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateNewBlock(coinbaseScript->reserveScript)); if (!pblocktemplate.get())
+throw JSONRPCError(RPC_INTERNAL_ERROR, "Couldn't create new block"); CBlock *pblock = &pblocktemplate->block;
+{
+LOCK(cs_main);
+//增加计数并生成Merkle根哈希值
+IncrementExtraNonce(pblock, chainActive.Tip(), nExtraNonce);
+}
+//检查块的工作量是否合法
+//不断变更区块头中的随机数nNonce，对变更后的区块头做双重SHA256哈希运算，与当前难度的目标值做比对，如果小于目标难度，即Pow完成
+//uint64_t nMaxTries = 1000000; 即重试100万次
+while (nMaxTries > 0 && pblock->nNonce < nInnerLoopCount && !CheckProofOfWork(pblock->GetHash(), pblock->nBits, Params().GetConsensus())) {
+++pblock->nNonce;
+--nMaxTries;
+}
+if (nMaxTries == 0) { break;
+}
+if (pblock->nNonce == nInnerLoopCount) { continue;
+}
+std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(*pblock);
+
+//处理新块
+if (!ProcessNewBlock(Params(), shared_pblock, true, nullptr))
+throw JSONRPCError(RPC_INTERNAL_ERROR, "ProcessNewBlock, block not accepted");
+++nHeight;
+blockHashes.push_back(pblock->GetHash().GetHex());
+
+//mark script as important because it was used at least for one coinbase output if the script came from the wallet if (keepScript)
+{
+coinbaseScript->KeepScript();
+}
+}
+return blockHashes;
+}
+
+2，CreateNewBlock 创建新块
+
+在bitcoin/src/miner.cpp文件中，CreateNewBlock函数创建新块，摘录如下：
+std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fMineWitnessTx)
+{
+int64_t nTimeStart = GetTimeMicros();
+//生成铸币交易，并与其它所有准备打包进区块的交易组成交易列表resetBlock();
+pblocktemplate.reset(new CBlockTemplate());//新建块模板CBlockTemplate实例
+
+if(!pblocktemplate.get()) return nullptr;
+pblock = &pblocktemplate->block; // pointer for convenience
+
+// Add dummy coinbase tx as first transaction pblock→vtx.emplace_back(); //新建空的coinbase交易信息pblocktemplate->vTxFees.push_back(-1); // updated at end pblocktemplate->vTxSigOpsCost.push_back(-1); // updated at end
+LOCK2(cs_main, mempool.cs);
+CBlockIndex* pindexPrev = chainActive.Tip(); assert(pindexPrev != nullptr);
+nHeight = pindexPrev->nHeight + 1;//计算块高
+pblock->nVersion = ComputeBlockVersion(pindexPrev, chainparams.GetConsensus());//块版本
+// -regtest only: allow overriding block.nVersion with
+// -blockversion=N to test forking scenarios if (chainparams.MineBlocksOnDemand())
+pblock->nVersion = gArgs.GetArg("-blockversion", pblock→nVersion);
+pblock->nTime = GetAdjustedTime();//获取区块时间
+const int64_t nMedianTimePast = pindexPrev->GetMedianTimePast();
+nLockTimeCutoff = (STANDARD_LOCKTIME_VERIFY_FLAGS & LOCKTIME_MEDIAN_TIME_PAST)
+? nMedianTimePast
+: pblock->GetBlockTime();
+// Decide whether to include witness transactions
+// This is only needed in case the witness softfork activation is reverted
+// (which would require a very deep reorganization) or when
+// -promiscuousmempoolflags is used.
+// TODO: replace this with a call to main to assess validity of a mempool
+// transaction (which in most cases can be a no-op).
+fIncludeWitness = IsWitnessEnabled(pindexPrev, chainparams.GetConsensus()) && fMineWitnessTx;
+
+int nPackagesSelected = 0; int nDescendantsUpdated = 0;
+addPackageTxs(nPackagesSelected, nDescendantsUpdated);//添加交易
+int64_t nTime1 = GetTimeMicros();
+
+nLastBlockTx = nBlockTx; nLastBlockWeight = nBlockWeight;
+
+// Create coinbase transaction.
+CMutableTransaction coinbaseTx;//创建coinbase transaction coinbaseTx.vin.resize(1); coinbaseTx.vin[0].prevout.SetNull(); coinbaseTx.vout.resize(1); coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
+coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());//设置挖矿奖励和手续费coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0;
+pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));//第一笔交易即为矿工获得奖励和手续费的特殊交易pblocktemplate->vchCoinbaseCommitment = GenerateCoinbaseCommitment(*pblock, pindexPrev, chainparams.GetConsensus()); pblocktemplate->vTxFees[0] = -nFees;
+LogPrintf("CreateNewBlock(): block weight: u txs: u fees: ld sigops d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
+// Fill in header
+
+pblock->hashPrevBlock = pindexPrev→GetBlockHash(); //添加上一个区块的hash值UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);//更新区块时间戳
+pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus());//获取挖矿难度，pindexPrev 当前区块的父区块，pblock 当前区块，主要使用了区块的时间戳，chainparams.GetConsensus 当前的链参数。
+pblock->nNonce = 0;
+pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
+CValidationState state;
+if (!TestBlockValidity(state, chainparams, *pblock, pindexPrev, false, false)) {//测试区块有效性
+throw std::runtime_error(strprintf(" s: TestBlockValidity failed: s", func , FormatStateMessage(state)));
+}
+int64_t nTime2 = GetTimeMicros();
+
+LogPrint(BCLog::BENCH, "CreateNewBlock() packages: .2fms (d packages, d updated descendants), validity: .2fms (total      .2fms)\n", 0.001 * (nTime1 - nTimeStart), nPackagesSelected, nDescendantsUpdated, 0.001 * (nTime2 - nTime1), 0.001 * (nTime2 - nTimeStart));
+return std::move(pblocktemplate);
+}
+最终区块时间戳设置为std::max(pindexPrev->GetMedianTimePast()+1, GetAdjustedTime());
+其中pindexPrev→GetMedianTimePast()是将前面的11个区块按时间戳排序后取中间的那个区块对应的时间戳；
+而GetAdjustedTime()为GetTime() + GetTimeOffset()。GetTime()为当前时间，GetTimeOffset为网络延迟时间。
+
+3，ContextualCheckBlockHeader 上下文校验区块头
+
+CreateNewBlock创建新区块函数，最终会调用TestBlockValidity校验block有效性。TestBlockValidity调用ContextualCheckBlockHeader校验区块头。摘录如下：
+
+static bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& state, const CChainParams& params, const CBlockIndex* pindexPrev, int64_t nAdjustedTime)
+{
+assert(pindexPrev != nullptr);
+const int nHeight = pindexPrev->nHeight + 1;
+// Check proof of work
+const Consensus::Params& consensusParams = params.GetConsensus();
+if (block.nBits != GetNextWorkRequired(pindexPrev, &block, consensusParams))
+return state.DoS(100, false, REJECT_INVALID, "bad-diffbits", false, "incorrect proof of work");
+
+// Check against checkpoints if (fCheckpointsEnabled) {
+// Don't accept any forks from the main chain prior to last checkpoint.
+// GetLastCheckpoint finds the last checkpoint in MapCheckpoints that's in our
+// MapBlockIndex.
+CBlockIndex* pcheckpoint = Checkpoints::GetLastCheckpoint(params.Checkpoints()); if (pcheckpoint && nHeight < pcheckpoint->nHeight)
+return state.DoS(100, error(" s: forked chain older than last checkpoint (height d)", func , nHeight), REJECT_CHECKPOINT, "bad-fork-prior-to-checkpoint");
+}
+// Check timestamp against prev
+if (block.GetBlockTime() <= pindexPrev→GetMedianTimePast())//区块时间戳须大于前面11个区块按时间戳排序后中间区块的时间戳return state.Invalid(false, REJECT_INVALID, "time-too-old", "block's timestamp is too early");
+
+// Check timestamp
+if (block.GetBlockTime() > nAdjustedTime + MAX_FUTURE_BLOCK_TIME)//区块时间戳须小于或等于当前时间+网络延迟时间+MAX_FUTURE_BLOCK
+_TIME(2 * 60 * 60，2小时);
+return state.Invalid(false, REJECT_INVALID, "time-too-new", "block timestamp too far in the future");
+// Reject outdated version blocks when 95 (75 on testnet) of the network has upgraded:
+// check for version 2, 3 and 4 upgrades
+if((block.nVersion < 2 && nHeight >= consensusParams.BIP34Height) || (block.nVersion < 3 && nHeight >= consensusParams.BIP66Height) || (block.nVersion < 4 && nHeight >= consensusParams.BIP65Height))
+return state.Invalid(false, REJECT_OBSOLETE, strprintf("bad-version(0x08x)", block.nVersion), strprintf("rejected nVersion=0x08x block", block.nVersion));
+return true;
+}
+
+4，验证区块
+
+Pow完成的区块会被广播到全网，其它节点接收到该区块后会调用CheckBlock验证，代码位于bitcoin/src/validation.cpp，摘录如下：
+
+bool CheckBlock(const CBlock& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW, bool fCheckMerkleRoot)
+{
+// These are checks that are independent of context.
+
+if (block.fChecked) return true;
+// Check that the header is valid (particularly PoW). This is mostly
+// redundant with the call in AcceptBlockHeader.
+//Check Pow
+if (!CheckBlockHeader(block, state, consensusParams, fCheckPOW))//工作量证明return false;
+// Check the merkle root.
+if (fCheckMerkleRoot) {//验证MerkleRoot bool mutated;
+uint256 hashMerkleRoot2 = BlockMerkleRoot(block, &mutated); if (block.hashMerkleRoot != hashMerkleRoot2)
+return state.DoS(100, false, REJECT_INVALID, "bad-txnmrklroot", true, "hashMerkleRoot mismatch");
+// Check for merkle tree malleability (CVE-2012-2459): repeating sequences
+// of transactions in a block without affecting the merkle root of a block,
+// while still invalidating it. if (mutated)
+return state.DoS(100, false, REJECT_INVALID, "bad-txns-duplicate", true, "duplicate transaction");
+}
+// All potential-corruption validation must be done before we do any
+// transaction validation, as otherwise we may mark the header as invalid
+// because we receive the wrong transactions for it.
+// Note that witness malleability is checked in ContextualCheckBlock, so no
+// checks that use witness data may be performed here.
+// Size limits
+if (block.vtx.empty() || block.vtx.size() * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT || ::GetSerializeSize(block, SER_NETWORK, PROTOCOL_VERSION | SERIALIZE_TRANSACTION_NO_WITNESS) * WITNESS_SCALE_FACTOR > MAX_BLOCK_WEIGHT)
+return state.DoS(100, false, REJECT_INVALID, "bad-blk-length", false, "size limits failed");
+
+// First transaction must be coinbase, the rest must not be if (block.vtx.empty() || !block.vtx[0]->IsCoinBase())
+return state.DoS(100, false, REJECT_INVALID, "bad-cb-missing", false, "first tx is not coinbase"); for (unsigned int i = 1; i < block.vtx.size(); i++)
+if (block.vtx[i]->IsCoinBase())
+return state.DoS(100, false, REJECT_INVALID, "bad-cb-multiple", false, "more than one coinbase");
+// Check transactions
+for (const auto& tx : block.vtx)
+if (!CheckTransaction(*tx, state, false))
+return state.Invalid(false, state.GetRejectCode(), state.GetRejectReason(),
+strprintf("Transaction check failed (tx hash s) s", tx->GetHash().ToString(), state.GetDebugMessage())); unsigned int nSigOps = 0;
+
+for (const auto& tx : block.vtx)
+{
+nSigOps += GetLegacySigOpCount(*tx);
+}
+if (nSigOps * WITNESS_SCALE_FACTOR > MAX_BLOCK_SIGOPS_COST)
+return state.DoS(100, false, REJECT_INVALID, "bad-blk-sigops", false, "out-of-bounds SigOpCount");
+
+if (fCheckPOW && fCheckMerkleRoot) block.fChecked = true;
+return true;
+}
+
+5，比特币挖矿难度计算(使每个块生成时间约为10分钟)
+
+每创建2016个块后将计算新的难度，此后的2016个块使用新的难度。计算步骤如下：                                                   1，找到前2016个块的第一个块，计算生成这2016个块花费的时间。即最后一个块的时间和第一个块的时间差。时间差不小于3.5天，不大于56天。
+2，计算前2016个块的难度总和，即单个块的难度*总时间。
+3，计算新的难度，即2016个块的难度总和/14天的秒数，得到每秒的难度值。
+4， 新 的 难 度 要 求 不 低 于 参 数 定 义 的 最 小 难 度 。 CalculateNextWorkRequired函数位于bitcoin/src/pow.cpp文件中，摘录如下：
+//nFirstBlockTime 即前2016个块的第一个块的时间戳
+unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
+{
+if (params.fPowNoRetargeting) return pindexLast->nBits;
+// Limit adjustment step
+int64_t nActualTimespan = pindexLast->GetBlockTime() - nFirstBlockTime;//计算生成这2016个块花费的时间if (nActualTimespan < params.nPowTargetTimespan/4)//不小于3.5天
+nActualTimespan = params.nPowTargetTimespan/4;
+if (nActualTimespan > params.nPowTargetTimespan*4)//不大于56天nActualTimespan = params.nPowTargetTimespan*4;
+// Retarget
+const arith_uint256 bnPowLimit = UintToArith256(params.powLimit); arith_uint256 bnNew;
+bnNew.SetCompact(pindexLast->nBits);
+bnNew *= nActualTimespan;//计算前2016个块的难度总和，即单个块的难度*总时间
+bnNew /= params.nPowTargetTimespan;//计算新的难度，即2016个块的难度总和/14天的秒数
+
+if (bnNew > bnPowLimit)//bnNew越小，难度越大；bnNew越大，难度越小；要求新的难度，难度不低于参数定义的最小难度bnNew = bnPowLimit;
+return bnNew.GetCompact();
+}
+
+6，总结
+
+比特币的共识机制是POW，通过算力竞赛选择出块的节点。出块时，区块时间戳设置为当前时间加上网络延迟时间，并且要求大于之前的11个区块按时间戳排序后的中间的那个区块的时间戳。出块后其它节点验证Pow、MerkleRoot和交易。每隔2016个区块，系统会调整挖矿难度，使得每个块的生产时间约为10分钟。
