@@ -312,8 +312,8 @@
   <p style="text-align=right">(Q2)4、5、6月</p>
   <p style="text-align=right">(Q3)7、8、9月</p>
   <p style="text-align=right">(Q4)10、11、12月</p>
-  ###核心共识：<br>
-  ####在PBFT链funcs：<br>
+  ### 核心共识：<br>
+  #### 在PBFT链funcs：<br>
   <P>阶段一：</p><br>
   *更新: 进一步细分*<br>
   
@@ -389,15 +389,15 @@
 <p>阶段二：</p><br>
 1.时间戳验证（初链黄皮书图一）<br>
 2.create_shard() and speculative_transaction()（初链黄皮书图二）POW链中的funcs<br>
-####POW链中的funcs<br>
+#### POW链中的funcs<br>
 <p>阶段1：fPOW（果实链）</P>
 *re_elect()  - POW挖掘功能，使用[Theta,LRU,stake_in/out]( snailchain内部块的数量)，基于以下之一：<br>
 -由于腐败导致视图更改<br>
 -物理时间戳限制引发的第K天触发<br>
 -节点应该是DailyBFT委员会的过期Tstamp时间间隔会员<br>
 - update_snailchain()从N个PBFT节点接收done（_，_）散列，并由每个节点执行，然后将链上的节点写入到snailchain总账中。<br>
-###钱包工程<br>
-####模拟<br>
+### 钱包工程<br>
+#### 模拟<br>
 <p>确定以下内容</p>
 1.	分片大小的上下限<br>
 2.	Lambda安全参数边界<br>
@@ -406,8 +406,8 @@
 1.	检查一致性和活性<br>
 2.	检查安全性<br>
 3.	腐败检查<br>
-###智能合约重新设计/可靠性<br>
-###TVM / WASM<br>
+### 智能合约重新设计/可靠性<br>
+### TVM / WASM<br>
 <P>文档</p><br>
 <P>附录</p><br>
 <P>符号</p><br>
