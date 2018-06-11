@@ -13,6 +13,9 @@
 * 工作量预计：-- 
 * 本项任务仅发放C级奖励，但有重大理论性突破的，可以发放额外奖金。官方保留解释权。
 
+* 文件格式：文件格式为markdown格式（文件后缀名为md）,或者文件格式为wiki格式（文件后缀名为rst）
+* pull request 文件到 https://github.com/truechain/wiki/tree/master/task_list/task_20180601/  文件夹下。
+
 
 ## 开发参考文档？
 
