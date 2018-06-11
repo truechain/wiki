@@ -1,0 +1,158 @@
+\begin{thebibliography}{10}
+
+\bibitem{brickmul}
+Container-native storage for the openshift masses.
+\newblock {\em URL
+  https://redhatstorage.redhat.com/2017/10/05/container-native-storage-for-the-openshift-masses/}.
+
+\bibitem{cncfscaleout}
+Deploying 2048 openshift nodes on the cncf cluster.
+\newblock {\em URL
+  https://blog.openshift.com/deploying-2048-openshift-nodes-cncf-cluster/}.
+
+\bibitem{gridwhitepaper}
+Gridcoin whitepaper: The computation power of a blockchain driving science and
+  data analysis.
+\newblock {\em URL https://www.gridcoin.us/assets/img/whitepaper.pdf}.
+
+\bibitem{k8scale}
+Increase maximum pods per node: github/kubernetes/kubernetes\#23349.
+\newblock {\em URL https://github.com/kubernetes/kubernetes/issues/23349}.
+
+\bibitem{kubelimit}
+Kubernetes: Building large clusters.
+\newblock {\em URL https://kubernetes.io/docs/admin/cluster-large/}.
+
+\bibitem{kubecommgoals}
+Kubernetes scaling and performance goals.
+\newblock {\em URL
+  https://github.com/kubernetes/community/blob/master/sig-scalability/goals.md}.
+
+\bibitem{ocpclusterlimit}
+Red hat openshift container platform's cluster limits.
+\newblock {\em URL
+  https://access.redhat.com/documentation/en-us/openshift\_container\_platform/3.9/html/scaling\_and\_performance\_guide/}.
+
+\bibitem{boincproject}
+D.~P. Anderson.
+\newblock Boinc: A system for public-resource computing and storage.
+\newblock {\em URL https://boinc.berkeley.edu/grid\_paper\_04.pdf}.
+
+\bibitem{fabricpaper}
+E.~Androulaki, A.~Barger, and V.~e.~a. Bortnikov.
+\newblock Hyperledger fabric: A distributed operating system for permissioned
+  blockchains.
+\newblock {\em URL https://arxiv.org/pdf/1801.10228v1.pdf}, 2018.
+
+\bibitem{cernvm}
+J.~Blomer, L.~Franco, A.~Harutyunian, P.~Mato, Y.~Yao, C.~Aguado~Sanchez, and
+  P.~Buncic.
+\newblock Cernvm – a virtual software appliance for lhc applications.
+\newblock {\em URL
+  http://iopscience.iop.org/article/10.1088/1742-6596/219/4/042003/pdf}, 2017.
+
+\bibitem{buterinethereum}
+V.~Buterin.
+\newblock Ethereum white paper, 2014.
+\newblock {\em URL https://github.com/ethereum/wiki/wiki/White-Paper}.
+
+\bibitem{canetti2001universally}
+R.~Canetti.
+\newblock Universally composable security: A new paradigm for cryptographic
+  protocols.
+\newblock In {\em Foundations of Computer Science, 2001. Proceedings. 42nd IEEE
+  Symposium on}, pages 136--145. IEEE, 2001.
+
+\bibitem{castro1999practical}
+M.~Castro, B.~Liskov, et~al.
+\newblock Practical byzantine fault tolerance.
+\newblock In {\em OSDI}, volume~99, pages 173--186, 1999.
+
+\bibitem{eyal2013self}
+E.~G. Eyal, Ittay;~Sirer.
+\newblock Majority is not enough: Bitcoin mining is vulnerable.
+\newblock In {\em eprint arXiv:1311.0243}.
+
+\bibitem{gilad2017algorand}
+Y.~Gilad, R.~Hemo, S.~Micali, G.~Vlachos, and N.~Zeldovich.
+\newblock Algorand: Scaling byzantine agreements for cryptocurrencies.
+\newblock In {\em Proceedings of the 26th Symposium on Operating Systems
+  Principles}, pages 51--68. ACM, 2017.
+
+\bibitem{kevmjello}
+E.~Hildenbrandt, M.~Saxena, and X.~e.~a. Zhu.
+\newblock Kevm: A complete semantics of the ethereum virtual machine.
+\newblock {\em URL https://www.ideals.illinois.edu/handle/2142/97207}, 2017.
+
+\bibitem{lhcathome}
+D.~e.~a. Lombraña~González.
+\newblock Lhc\@home: a volunteer computing system for massive numerical
+  simulations of beam dynamics and high energy physics events.
+\newblock {\em URL http://inspirehep.net/record/1125350/}.
+
+\bibitem{mahmoud2014maat}
+H.~A. Mahmoud, V.~Arora, F.~Nawab, D.~Agrawal, and A.~El~Abbadi.
+\newblock Maat: Effective and scalable coordination of distributed transactions
+  in the cloud.
+\newblock {\em Proceedings of the VLDB Endowment}, 7(5):329--340, 2014.
+
+\bibitem{micali1999verifiable}
+S.~Micali, M.~Rabin, and S.~Vadhan.
+\newblock Verifiable random functions.
+\newblock In {\em Foundations of Computer Science, 1999. 40th Annual Symposium
+  on}, pages 120--130. IEEE, 1999.
+
+\bibitem{nakamoto2008bitcoin}
+S.~Nakamoto.
+\newblock Bitcoin: A peer-to-peer electronic cash system.
+\newblock {\em URL http://bitcoin.org/bitcoin.pdf}, 2008.
+
+\bibitem{naya2015stub}
+S.~M. A. S.~E. Nayak, Kartik;~Kumar.
+\newblock Stubborn mining: Generalizing selfish mining and combining with an
+  eclipse attack.
+\newblock In {\em IACR Cryptology ePrint Archive}.
+
+\bibitem{pass2017fruit}
+R.~Pass and E.~Shi.
+\newblock Fruitchains: A fair blockchain.
+\newblock In {\em IACR Cryptology ePrint Archive}, volume 2016:916, 2016.
+
+\bibitem{pass2017hybrid}
+R.~Pass and E.~Shi.
+\newblock Hybrid consensus: Efficient consensus in the permissionless model.
+\newblock In {\em LIPIcs-Leibniz International Proceedings in Informatics},
+  volume~91. Schloss Dagstuhl-Leibniz-Zentrum fuer Informatik, 2017.
+
+\bibitem{pass2017sleepy}
+R.~Pass and E.~Shi.
+\newblock The sleepy model of consensus.
+\newblock In {\em International Conference on the Theory and Application of
+  Cryptology and Information Security}, pages 380--409. Springer, 2017.
+
+\bibitem{pass2017thunderella}
+R.~Pass and E.~Shi.
+\newblock Thunderella: blockchains with optimistic instant confirmation, 2017.
+
+\bibitem{ritz2018uncle}
+F.~Ritz and A.~Zugenmaier.
+\newblock The impact of uncle rewards on selfish mining in ethereum.
+\newblock In {\em http://ieee-sb2018.cs.ucl.ac.uk/presentations/5-Ritz.pdf}.
+
+\bibitem{golemwhitepaper}
+T.~G. team.
+\newblock The golem project: The golem project.
+\newblock {\em URL https://golem.network/doc/Golemwhitepaper.pdf}, 2016.
+
+\bibitem{gavinethereum}
+G.~Wood.
+\newblock Ethereum: A secure decentralized generalized transaction ledger.
+\newblock {\em URL https://ethereum.github.io/yellowpaper/paper.pdf}, 2018.
+
+\bibitem{yu2016tictoc}
+X.~Yu, A.~Pavlo, D.~Sanchez, and S.~Devadas.
+\newblock Tictoc: Time traveling optimistic concurrency control.
+\newblock In {\em Proceedings of the 2016 International Conference on
+  Management of Data}, pages 1629--1642. ACM, 2016.
+
+\end{thebibliography}

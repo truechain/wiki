@@ -1,0 +1,293 @@
+\section{Consensus}
+Our consensus design is largely based on Hybrid Consensus by Pass and Shi~\cite{pass2017hybrid}, with several modifications
+and improvements in order to tailor for the application scenarios that we focus on. In this section we will assume the readers
+are familiar with every details of Hybrid Consensus protocol.
+
+\subsection{Design Overview}
+
+In this subsection we will present an overview of our consensus protocol. In this protocol, we use the same abstract symbols and definitions
+in~\cite{pass2017hybrid}. In the following part of this section, we will explain our modifications and further constructions on top of Hybrid Consensus.
+
+Our adversary model follows the assumptions in~\cite{pass2017hybrid} where adversaries are allowed to mildly adaptively corrupt any node, while corruptions
+do not take effect immediately. In the next version of Yellow Paper we will formally explain our modifications in
+Universal Composabililty model~\cite{canetti2001universally}.
+
+Note that all the pseudocodes in this Yellow Paper are simplified for the sake of easy explanations. They are not optimized for engineering.
+
+\subsection{Recap of Hybrid Consensus Protocol}
+
+% Figure 1
+\subsubsection{Daily offchain consensus protocol}
+
+In DailyBFT, committee members run an offchain BFT instance to decide a daily log, whereas non-members count signatures from committee members.
+It extends security to committee non-members and late-spawning nodes. It carries with it, a termination agreement which requires that all honest
+nodes agree on the same final log upon termination. In DailyBFT, committee members output signed daily log hashes to be later be consumed by the
+Hybrid Consensus protocol. These signed daily log hashes satisfy completeness and unforgeability.
+
+On keygen, add public key to list of keys. On receiving a $\mathsf{comm}$ signal, a conditional election of the node as committee member happens.
+The environment opens up the committee selectively.
+
+Here's how the subprotocol works for when the \textbf{node is a BFT member}:-
+A BFT virtual node is then forked. BFT virtual node here, denoted by $\mathsf{BFT_pk}$, then starts receiving the TXs (transactions).
+The log completion is checked and stopped if only if the $\mathsf{stop}$ signal has been signed off by atleast a third of the initial
+$\mathsf{comm}$ distinct public keys. During this, a continuous "Until $\mathsf{done}$" check happens and once completion of gossip
+happens at each step, all the $\mathsf{stop}$ log entries are removed
+
+Here's how the subprotocol works for when the \textbf{node is not a BFT member}:-
+On receival of a transaction, the message is added to $\mathsf{history}$ and signed by a third of the initial
+$\mathsf{comm}$ distinct public keys
+
+The signing algorithm tags each message for the inner BFT instance
+with the prefix “0”, and each message for the outer DailyBFT with the prefix “1” to avoid namespace collision.
+
+% Figure 3
+\subsubsection{The mempool subprotocol}
+
+Initializes $\mathsf{TXs}$ with 0 and keeps a track of incoming transactions with a Union set. On receiving a $\mathsf{propose}$ call, it adds the
+transaction to log and communciates with gossip protocol. It also supports $\mathsf{query}$ method to return confirmed transactions. By keeping
+track of transactions in a set, it purges the ones already confirmed.
+
+% Figure 4
+\subsubsection{Main Hybrid Consensus protocol}
+
+A newly spawned node with an implicit message routing that carries with it $\mathsf{history}$ of the transcripts sent and received.
+This interacts with the following components - Mempools, Snailchain, Preprocess, Daily Offchain Consensus, and on chain validation.
+
+\subsection{Variant Day Length and Hybrid Committee Election}
+\label{sec:election}
+In \cite{pass2017hybrid}, instances of $\mathsf{BFT}$ committees are switched every a fixed period of time (with the $\mathsf{snailchain}$ as a logical clock).
+And new committee is formed simply by the miners of the latest $csize$ number of blocks inside $\mathsf{snailchain}$. In our consensus design, we want to exploit
+the intuition that, if the committee behaves well, we don't have to force them to switch, and therefore the overhead of switching committee could be prevented in
+some situtations. On the other hand, this will raise difficulty for new nodes to get elected as a committee member if the previous committee keeps good records.
+Therefore we still keep the design of forcibly switching the committee every fixed amount of time, but with a much lower frequency, (for example, the committee
+will be switched every $K$ days). On the other hand, we incoporate the idea of authenticated complaints from Thunderella~\cite{pass2017thunderella} where the
+slowchain can be used as the evidence of mishavioring of $\mathsf{BFT}$ committee. That is, whenever a committee misbehavior is detected from the
+$\mathsf{snailchain}$, the next day starting point (not necessarily the $K$-th day) will trigger a forced switch.
+
+More over, we will replace the committee election criterion. In Hybrid Consensus, committee members are chosen from the miners of the most recent
+$\mathsf{snailchain}$ blocks. We decide to select committee members based on a hybrid criterion by stakes and randomness. To be more specific, we allow
+full nodes to propose special $\mathsf{stake\_in}$ and $\mathsf{stake\_out}$ transactions to temporarily freeze their token assets. And whenever a committee
+switch happens, we will elect $\theta \cdot \mathsf{csize}$ accounts based on their frozen stakes where $\theta \in [0,1]$ is a manual parameter.
+And following the design of~\cite{gilad2017algorand}, we choose the rest $(1-\theta)\cdot \mathsf{csize}$ nodes based on the result of
+VRF~\cite{micali1999verifiable} where the seed is determined by the seed used in previous committee selection, as well as the proposed randomness
+from recent $\mathsf{csize}$ blocks. Different from Algorand~\cite{gilad2017algorand}, here we don't count stake weights for this part of selection.
+
+Notice that the nodes that is chosen by random functions will have a high probability of not being online. For this reason, given the estimated online
+rate $r_{on}$, since we don't want the offline nodes to take the Byzantine quota, we need to make sure $r_{on}\cdot \theta < \frac{f}{\mathsf{csize}}$.
+Usually we take $\theta = \frac{f}{2 r_{on} \mathsf{csize}}$. Another potential design alternative is that we can allow offline nodes by design~\cite{pass2017sleepy}.
+
+Note that a party in charge of overwhelming computation resources will be likely to manipulate the input of VRF, but that already goes beyond our security assumption.
+
+\subsection{Application Specific Design}
+
+In our consensus design, we keep aware of application specific requirbements and tailor for them under the conditions that the consisttency, liveness
+and security properties are not compromised.
+
+\subsubsection{Physical Timing Restriction}
+
+Conventional consensus design by default allows miners / committee members / leaders to re-order transactions within a small timing window.
+This raises a problem for some decentralized applications such as commercial exchanges where the trading fairness requires the timing order between
+transactions to be carefully preserved, or otherwise malicious (or, even normal rational) participants will have the incentive to re-order transactions,
+or even insert its own transactions, to gain extra profits. And this incentive will be magnified under high throughputs.
+
+And what's even worse, such malicious re-ordering is impossible to distinguish because naturally network latency will cause re-ordering and such latencies
+can only be observed by the receiver itself and therefore it has the final evidence of numbers regarding network latency.
+
+To support decentralized advertisement exchanges, we try to reduce such problems by incoporating one more restriction called sticky timestamp.
+More specifically, with a heuristic parameter $T_\Delta$, when proposing transactions, we require the client to put a physical timestamp $T_p$ inside
+the metadata of the transactio, and this physical timestamp is signed together with the other parts of the transaction. Later when validators inside
+$\mathsf{BFT}$ verify the transaction, it will do the following extra checks as shown in Algorithm~\ref{alg:timestamp}.
+% before evaluating and verify the transaction (a.k.a., semantic checks).
+
+\begin{figure*}
+\begin{algorithm}[H]
+\KwData{Input Transaction $\mathsf{TX}$}
+\KwResult{A Boolean value that indicates whether the verification is passed}
+$\mathsf{current\_time} \gets \mathsf{Time.Now()}$\;
+\If{$|current\_time-\mathsf{TX.T_p}|>T_\Delta$}{
+	return $\mathsf{false}$\; \tcp{if the time skew is too large, reject $\mathsf TX$.}
+}
+var $\mathsf{txn\_history=}$ new static dictionary of lists\;
+\eIf{$\mathsf{txn\_history[TX.from]} == NULL$}{
+	$\mathsf{txn\_history[TX.from]} == [TX]$\;
+}{
+	\eIf{$\mathsf{txn\_history[TX.from][-1].T_p}-\mathsf{TX.T_p} > 0$}{
+		return $\mathsf{false}$\; \tcp{To make sure the transactions from the same node preserve timing order.}
+	}{
+		$\mathsf{txn\_history[TX.from].append(TX)}$\;
+		return $\mathsf{true}$\;
+	}
+}
+\caption{Extra Verification Regarding Physcal Timestamp}
+\label{alg:timestamp}
+\end{algorithm}
+\caption{Pseudo-Code for Extra Verification}
+\end{figure*}
+
+At the stage of materializing logs inside $\mathsf{BFT}$, the leader will sort the transaction batch according to its physical timestamps and break ties
+(though very unlikely) with the sequence number. Actually this step is not necessary because we can enforce the order later in the evaluation and verification.
+But for simplicity, we put it here.
+
+This set of modications give us several extra properties:
+
+\begin{enumerate}
+\item The order of transactions from any node $N_i$ is internally preserved according to their physical timestamps. Thus the sequence order of these transactions
+is strictly enforced. This will get rid of the possibility of some malicious re-ordering that involves two transcations from the same node.
+\item The order within a batch of transactions output by the $\mathsf{BFT}$ committee is strictly ordered by timestamps.
+\item Nodes cannot manipulate fake physical timestamps because of the timing window restriction.
+\end{enumerate}
+
+One obvious disadvantage of this modificaion will be the reduction in terms of throughput due to aborting transactions when the parameter $T_\Delta$ is inappropriate
+for the varying network latency. Another disadvantage is that, the $\mathsf{BFT}$ committee members are still allowed to lie about their local time and reject certain
+transactions. However, committee members can reject certain transactions anyway. But honest nodes could potentially reject ignorant transactions because of their
+unsynchronzied clocks. This issue can be reduced by adding restrictions on the eligibilities of the $\mathsf{BFT}$ committee. Later we will see that to get into
+the committee, the nodes should present evidence of synchronized clocks.
+
+\subsection{Computation and Data Sharding, and Speculative Transaction Execution}
+In this subsection we introduce our sharding scheme.
+
+%\subsubsection{High Level Idea}
+An important modification over the original Hybrid Consensus is that we add computation and data sharding support for it. And even more, first of its kind,
+we design a speculative transaction processing system over shards. The idea is clear. In Hybrid Consensus, the $\mathsf{DailyBFT}$ instances are indexed into
+a determininstic sequence $\mathsf{DailyBFT[1\dots R]}$. We allow multiple sequences of $\mathsf{DailyBFT}$ instances to exist at the same time. To be precise,
+we denote the $t$-th $\mathsf{DailyBFT}$ sequence by shard $S_t$. For simplicity, we fix the number of shards as $C$. Each $\mathsf{DailyBFT}$ is a normal shard.
+Besides $C$ normal shards, we have a primary shard $S_p$ composed of $\mathsf{csize}$ nodes. The job of the primary shard is to finalize the ordering of the
+output of normal shards as well as implementing the coordinator in distributed transaction processing systems. And the normal shards instead of directly connects
+with Hybrid Consensus component, it submit logs to the primary shards and then primary shards talks to Hybrid Consensus.
+
+We don't allow any two shards (either normal or primary) to share common nodes, which can be enforced in the committee selection procedure. The election of
+multiple shards is similar to the election procedure described in Section~\ref{sec:election}.
+
+We partition the state data (in terms of account range) uniformly into $C$ shards. This will make sure that every query to the corresponding shard will return
+a consistent state. Since we are going to include meta data for each data unit, we split data into units of data sectors and assign each data sector with an
+address. We have a mapping from data position to data sector address. For simplicity, from now on, we only discuss at the level of data sectors. Each
+data sector $\mathsf{DS[addr]}$ has metadata of $\mathsf{rts, wts, readers, writers}$.
+
+We assume the partition principle is public and given the address $\mathsf{addr}$ we can get its host shard by calling the function $\mathsf{host(addr)}$.
+
+Notice that if we treat every normal shard (when the number of adversaries is not large) as a distributed processing unit, we can incorporate the design of
+logical timestamps \cite{yu2016tictoc} in distributed transaction processing systems \cite{mahmoud2014maat}, which will empower the processing of transactions.
+Here we utilized a simplified version of MaaT where we don't do auto-adjustment of other transaction's timestamps.
+
+For normal shards, it acts exactly as described in $\mathsf{DailyBFT}$ except the following changes to make it compatible for parallel speculative execution.
+
+\begin{figure*}
+\begin{algorithm}[H]
+\textbf{On BecomeShard:}\\
+\myin Initialize all the state data sectors: $\mathsf{lastReaderTS = -1, lastWriterTS = -1, readers=[], writers=[]}$
+
+\textbf{With transaction $\mathsf{TX}$ on shard $S_i$:\\
+On Initialization:}\\
+\hspace{0.1in} $\mathsf{TX.lowerBound = 0}$\;
+\hspace{0.1in} $\mathsf{TX.upperBound = +\infty}$\;
+\hspace{0.1in} $\mathsf{TX.state = RUNNING}$\;
+\hspace{0.1in} $\mathsf{TX.before = []}$\;
+\hspace{0.1in} $\mathsf{TX.after = []}$\;
+\hspace{0.1in} $\mathsf{TX.ID = rand}$\;
+%\hspace{0.1in} $\mathsf{TX.id = a random}$\;
+
+\textbf{On Read Address($\mathsf{addr}$):}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	Send $\mathsf{readRemote(addr)}$ to itself\;
+}{
+	Broadcast $\mathsf{readRemote(addr, TX.id)}$ to $\mathsf{host(addr)}$\;
+	%Broadcast $\mathsf{readRemote(addr)}$ to $\mathsf{host(addr)}$\;
+	Async wait for $2f+1$ valid signed replies within timeout $T_o$\;
+	Abort $\mathsf{TX}$ when the timeout ticks\;
+}
+Let $\mathsf{val, wts, IDs}$ be the majority reply\;
+$\mathsf{TX.before.append(IDs)}$\;
+$\mathsf{TX.lowerBound= max(TX.lowerBound, wts)}$\;
+return $\mathsf{val}$\;
+
+\textbf{On Write Address($\mathsf{addr}$):}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	Send $\mathsf{writeRemote(addr)}$ to itself\;
+}{
+	Broadcast $\mathsf{writeRemote(addr, TX.id)}$ to $\mathsf{host(addr)}$\;
+	%Broadcast $\mathsf{writeRemote(addr)}$ to $\mathsf{host(addr)}$\;
+	Async wait for $2f+1$ valid signed replies within timeout $T_o$\;
+	Abort $\mathsf{TX}$ when the timeout ticks.
+}
+Let $\mathsf{rts, IDs}$ be the majority reply\;
+$\mathsf{TX.after.append(IDs)}$
+$\mathsf{TX.lowerBound= max(TX.lowerBound, rts)}$\;
+return\;
+
+\textbf{On Finish Execution:}
+\For{every $\mathsf{TX'} in TX.before$}{
+	TX.lowerBound = max(TX.lowerBound, TX'.upperBound)\;
+}
+\For{every $\mathsf{TX'} in TX.after$}{
+	TX.upperBound = min(TX.upperBound, TX'.lowerBound)\;
+}
+\If{TX.lowerBound > TX.upperBound}{
+	Abort TX\;
+}
+Broadcast $Precommit(TX.ID, \lfloor \frac{TX.lowerBound + TX.upperBound}{2}\rfloor)$ to all the previous remote shards  which $TX$ has accessed\;
+\tcp{If TX.upperBound = $\infty$, we can set an arbitrary number larger than $TX.lowerBound$.}
+
+\textbf{On receive $\mathsf{readRemote(addr, ID)}$:}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	$\mathsf{DS[addr].readers.append(ID)}$\;
+	return $\mathsf{DS[addr].value, DS[addr].wts, DS[addr].writers}$\;
+}{
+	Ignore
+}
+
+\textbf{On receive $\mathsf{writeRemote(addr, ID)}$:}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	$\mathsf{DS[addr].writers.append(ID)}$\;
+	Write to a local copy\;
+	return $\mathsf{DS[addr].rts, DS[addr].readers}$\;
+}{
+	Ignore
+}
+
+\caption{Sharding and Speculative Transaction Processing}
+\label{alg:shard}
+\end{algorithm}
+\caption{Pseudo-Code for Sharding and Speculative Transaction Processing}
+\end{figure*}
+
+\begin{figure*}
+\begin{algorithm}[H]
+\textbf{On receive $\mathsf{Precommit(ID, cts)}$:}\\
+Look up TX by ID\;
+\If{Found and $\mathsf{cts}$ not in $\mathsf{[TX.lowerBound, TX.upperBound]}$}{
+	Broadcast $Abort(ID)$ to the sender's shard.\;
+}
+TX.lowerBound = TX.upperBound = cts\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ reads, set $DS[addr].rts = max(DS[addr].rts, cts)$\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ writes, set $DS[addr].wts = max(DS[addr].wts, cts)$\;
+Broadcast $Commit(ID, batchCounter)$ to the sender's shard.\;
+\tcp{batchCounter is a number which increases by 1 whenever the shard submit a batch of log to the primary shard.}
+
+\textbf{On receive $2f+1$ $\mathsf{Commit(ID, batchCounter)}$ from each remote shards which $TX$ has accessed:}\\
+TX.lowerBound = TX.upperBound = cts\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ reads, set $DS[addr].rts = max(DS[addr].rts, cts)$\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ writes, set $DS[addr].wts = max(DS[addr].wts, cts)$\;
+Mark $TX$ committed\;
+Let $TX.metadata = [ShardID, batchCounter]$\;
+%Let $TX.shards$ be the set of all the indices of remote shards it has accessed.
+
+\textbf{On output log}\\
+Sort $TX$'s based on their $cts$. Break ties by physical timestamp.
+
+\caption{Sharding and Speculative Transaction Processing (cont.)}
+\end{algorithm}
+\end{figure*}
+
+For the primary shard, it collects output from all the normal shards. Notice that, the data dependency of transactions can be easily inferred by their metadata.
+And a fact is that, if a transaction visits multiple remote shards, it will leave traces in all the shards involved. When a normal shard submit logs to the primary
+shard, it will also write to the snailchain.
+
+When the primary shard receives (or fetch from the snailchain) a batch of txns from a shard, it will check if it has received from all the shards transactions
+within this batch. If after certain timeout it has not received transactions from a particular batch, it means that batch has failed. In this case, a whole committee
+switch will be triggered at the next day starting point. After receiving all the shards' logs, the primary shard sort the transactions based on their commit
+timestamps (if some transaction has earlier batch number, it will be considered as the first key in the sorting, however, if its physical timestamp violates
+the timestamps from many shards, we decide that batch as invalid and all the transactions inside that batch are aborted). After sorting the primary shards
+filters all the transactions and keep a longest non-decreasing sequence in terms of physical timestamps. Out the log to the Hybrid Consensus component as that
+day's log.
+
+There are still many optimisation spaces. One certain con is that the confirmation time in this design is not instant.

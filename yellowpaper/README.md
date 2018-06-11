@@ -1,3 +1,2 @@
-# TrueChain yellowpaper
-
- 
+# yellow-paper
+TrueChain Consensus Yellow Paper

@@ -1,0 +1,17 @@
+\section{Background}
+
+The core strength of this proposal lies in the recognition of the theorems proposed in the Hybrid protocol\cite{pass2017hybrid}
+by Rafael and Elaine. We benefit from the fact that there is a lot of design space for further optimizations in that paper.
+The use of DailyBFT as committee members allows for the rotating committee feature which provides for better fairness for
+the consensus validating peers.
+
+The POW nodes could benefit from incentivization infrastructure while they're also a part of the slower snailchain, helping
+deploy smart contracts and validations but mostly catching up with the fast chain time to time.
+
+\subsection{Related Works}
+
+Hybrid Consensus follows a design paradigm where BFT and PoW are combined together so that it enjoys nice properties
+from both of the world. In general, Hybrid Consensus will utilize BFT protocols, which by default works in a permissioned
+setting where all the identities are known before the protocol starts, as a fast path dealing with large amount of incoming
+transactions, and PoW protocols with $\mathsf{stake\_in}$ / $\mathsf{stake\_out}$ (with random selection) acting as the barebone of the protocol which
+supports BFT to deal with dynamic membership and committee switching in the permissionless setting.

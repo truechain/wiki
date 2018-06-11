@@ -1,0 +1,70 @@
+\section{Smart Contracts in Virtual Machines}
+
+\subsection{Design Rationale}
+
+Of all the reasons to have an Ethereum Virtual Machine (EVM)~\cite{gavinethereum}, one of aims is to meter the usage with a transaction fee
+in a Proof of Work model. Since ours is a hybrid model, we'll take the liberty of exploring this design space a little bit further. Let us
+consider the possibility of a hybrid cloud ecosystem.
+
+A basic problem people have faced is the kind of crude mathematical notations followed in the Ethereum yellowpaper~\cite{gavinethereum}.
+We therefore hope to follow something like KEVM jellopaper~\cite{kevmjello} to list out the EVM and TVM (described in~\ref{sec:tvm}) specifications.
+And in future, we hope to maintain our own specifications Truechain's github account (https://github.com/truechain). 
+
+\subsubsection{What about containers instead of VMs?}
+
+One of the blockchain frameworks out there that come as close to this idea as possible, is Hyperledger's Fabric framework~\cite{fabricpaper}.
+If one sets out to convert Fabric's permissioned nature into permissionless, one of the foremost challenges
+would be to solve the chaincode issue. What this means is while it's possible to keep a chaincode/smart contract in a single container,
+that is not a scalable model for a public chain. Having such a model for public chain means having to run several thousand containers,
+per se, several thousand smart contracts on a single node (because each node maintains a copy).
+% \linebreak
+
+\smallskip
+There have been attempts from the community on being able to run a certain mainimum containers per node. The limit currently is 100 pods
+per node, per se, approxumately 250 containers per node, as illustrated in Kubernetes container orchestration platform~\cite{kubelimit}
+and Red Hat's Openshift Container Platform 3.9's Cluster Limits~\cite{ocpclusterlimit}. Even with latest storage techniques like
+brick multiplexing~\cite{brickmul}, the max possible value (say $\mathsf{MAX\_CONTR}$) of containers could not possibly reach
+(at least right now) 1000. This issue could further be looked up in the discussions on kubernetes issues
+github page~\cite{k8scale} around workload-specific limits that usually determine the maximum pods per node.
+People who wish to scale containers usually prefer horizontal scaling rather than a vertical scaleup~\cite{cncfscaleout, kubecommgoals},
+as the latter significantly increases complexity of design decisions. And there's no one-size-fits-them-all rule for a cluster scale
+configuration as that entirely depends on the workload, which being more in our case due to its decentralized nature, isn't very
+convincing for taking a step towards scaling this. At this point, it becomes more of an innovation problem than a simple technical
+specification search. Ethereum currently has $\mathsf{ > 1000 }$ smart contracts deployed. Therefore this would be nothing but a crude
+attempt at optimizing the container ecosystem's design space.
+
+Now let's expand a bit on the container scenario. Given the above crisis, a possible solution is to use container in a
+serverless architecture. But consider a scenario where $\mathsf{> 2000}$ contracts are online and the concurrent requests,
+i.e., invocation calls to chaincode (a moving window) at a time exceed $\mathsf{MAX\_CONTR}$ value, we then face the same
+problem all over again. Therefore, it's only advisable to add a throttling rate limit on the max concurrent requests.
+This severly limits the Transactions Per Second from the consensus, by design. Engineering should not be a bottleneck to what could
+be achievable alternatively. Therefore, we choose to stick to EVM design, although a bit modified for our purpose.
+
+\subsection{Truechain Virtual Machine (TVM)}
+\label{sec:tvm}
+
+A typical example in this space would be that of the Ethereum Virtual Machine (EVM) ~\cite{gavinethereum}, which tries to follow
+total determinism, is completely optimized and is as simple as it gets, to make incentivization simple step to calculate.
+It also supports various features like off-stack storage of memory, contract delegation and inter-invocation value storage.
+
+We would reuse the EVM specifications for the snailchain, but add a new specification for TVM in the next version of this yellowpaper,
+after careful consideration of the design rationale similar to EVM, deriving the stack based architecture utilizing the Keccak-256
+hashing technique and the Elliptic-curve cryptography (ECC) approach.
+
+The Truechain infrastructure will utilize a combination of EVM and another EVM-like bytecode execution platform for launching smart contracts.
+We choose to use one VM for POW and another for PBFT, embedded within each full node, so they could manage invocation calls on per-need basis.
+
+The TVM backs the DailyBFT powered chains, which interact with the following components:
+\begin{itemize}
+  \item re-using some of the concepts from tendermint, like the ABCI (Application BlockChain Interface) which offers
+  an abstraction level as means to enable a consensus engine running in one process to manage an application state running in another.
+  \item A different consensus engine pertaining to dailyBFT chians,
+  \item A permissioned Ethereum virtual machine
+  \item An RPC gateway, which guarantees (in a partially asynchronous network) transaction finality
+\end{itemize}
+
+% The TVM deals with the following state sets:
+\#TODO - formally define transition states of TVM, smart contracts deployment strategy
+and a way to deploy permissioned VM onto a permissionless chain.
+
+\#TODO - define parameter to switch between the POW and the full node (POW and PBFT).
