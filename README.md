@@ -2,7 +2,7 @@
 
 ## TRUECHAIN: HIGHLY PERFORMANT DECENTRALIZED PUBLIC LEDGER FIRST DRAFT
 ## WORK IN PROGRESS
-![avatar](https://github.com/truechain/wiki/blob/master/architecture.jpg)
+![avatar](https://github.com/truechain/wiki/blob/master/img/architecture.jpg)
 
 ## docs
 * English wiki: [@Archit](https://github.com/truechain/wiki/blob/master/docs-en/index.rst)
