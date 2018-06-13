@@ -3,8 +3,9 @@
 
 ## 提升公链的tps，给出可行方案
 
-* 任务描述：
+* 任务描述::
 BTC开启了区块链1.0时代，ETH将我们带入了区块链2.0，由于两者都没有很快的tps，很多的商业应用没有享受到区块链的优势，关于提升公链的tps，提出一些可行方案，并做详细说明。
+
 文字和图片量超1000字，为原创文章。
 对于某些算法说明，要给出伪代码或者对应的流程图、架构图。
 不能仅仅是网上各种资讯文章的摘抄。
@@ -22,4 +23,4 @@ BTC开启了区块链1.0时代，ETH将我们带入了区块链2.0，由于两�
 ## 开发参考文档？
 
 * [白皮书](https://www.truechain.pro/Truechain.pdf) 
-* [黄皮书](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
+* [黄皮书](https://github.com/truechain/wiki/blob/master/yellowpaper/paper.pdf)
