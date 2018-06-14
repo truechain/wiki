@@ -1,0 +1,17 @@
+{
+  "name": "0610",
+  "version": "1.0.0",
+  "description": "0610",
+  "main": "transaction.js",
+  "dependencies": {
+    "co": "^4.6.0",
+    "ethereumjs-tx": "^1.3.4",
+    "web3": "^1.0.0-beta.34"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "devin小洋人",
+  "license": "ISC"
+}
