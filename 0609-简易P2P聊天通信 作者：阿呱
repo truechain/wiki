@@ -1,5 +1,14 @@
-// golang p2p udp server
+使用说明
+监听端口：8080
+本地节点端口： 在一台电脑上，可以多开，现在默认是8777
+程序启动后，通过命令行操作
+help 可以查看命令
+list 查看当前在线节点数
+send <ID>  <Mess> 发送信息
 
+
+----------------------------------------------------------------------------------------------------
+// Golang p2p udp server
 package main
 
 import (
@@ -46,7 +55,7 @@ func main() {
 	userlist = make([]*net.UDPAddr, 0, 10)
 
 	// 服务器地址
-	serverAddr, err = net.ResolveUDPAddr("udp4", ":8081")
+	serverAddr, err = net.ResolveUDPAddr("udp4", ":8080")
 	//log.Println(err)
 
 	// 创建监听
@@ -133,8 +142,15 @@ func ping() {
 		time.Sleep(5 * time.Second)
 	}
 }
------------------------------------------------------------------------------------------------
-// client
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+// 用户
 package main
 
 import (
@@ -185,7 +201,7 @@ func main() {
 	userlist = make([]*net.UDPAddr, 0, 10)
 
 	// 服务器地址
-	serverAddr, err = net.ResolveUDPAddr("udp4", ":8081")
+	serverAddr, err = net.ResolveUDPAddr("udp4", ":8080")
 	log.Println("serverAddr", err)
 
 	port := 8777
