@@ -1,22 +1,34 @@
-# trueChain 里程碑
-###### 翻译者：金燕琪
-## 主要内容：
-<p>因此，我们正在制定一种混合共识机制，它的运行主要遵循以下几点：</p>
-1. 已被许可的BFT是在基于POW共识机制的网络中的几个节点上运行的。<br>
-2. BFT委员会是一个轮值委员会，能够有效地防止腐败现象的发生。<br>
-3. BFT委员会负责交易验证，而POW节点只负责根据我们得出和重新定义在以太坊黄皮书中提到的一些规则来选择或者选举委员会成员！<br>
-4. 据猜测，新许可的虚拟机（VM）灵感是源自以太坊虚拟机（EVM）。但是它又有不同于EVM的区块状态和事物执行流程。<br>
-5. 当前，POW链中的无许可以太坊虚拟机和新的许可虚拟机共存（这种虚拟机被称为初链虚拟机-TVM）。<br>
-6. 根据当前的讨论，初链虚拟机（TVM）将成为验证任何交易的一种方式，而EVM需要重新工作，不是为了共识而采取行动，而是轻量级钱包交易的BFT选举。<br>
-7. 这种激励模式，需要重新开展工作，使其基于TVM，也就是我们仍然以某种方式奖励POW链中的矿工。<br>
-8. 我们最终会支持分享BFT委员会的节点，提高可扩展性。<br>
-9. 补偿基础结构，如果节点规格不一致性（比如在节点池中不同的CPU /内存/网络带宽等）最终都会将成为共识的一部分，加快交易。<br>
-10. 因此，智能合约的执行只会发生在TVM（BFT节点），我们确实认为在混合设置中应该从POW节点支持部署，从而引发关于状态复制的问题。<br>
+# trueChain RoadMap
+###### edit by happyfromtbq
+## Main components：
+<p>So we're developing a hybrid consensus that works on the following notions:</p>
+1. A permissioned BFT that runs on a few nodes in the permissionless POW based network.<br>
+2. The BFT committee is a rotating one, preventing corruption in a timely manner<br>
+3. The BFT committee is responsible for transaction validation, and the POW nodes are only responsible
+for choosing/electing the committee members according to some rules we've derived and re-defined, as
+mentioned in the yellow paper!<br>
+4. The new permissioned VM, we've surmised, could be inspired from the EVM, but with different block
+states and transaction execution flows<br>
+5. The contemporary permissionless EVM in the POW chain co-exists with this new permissioned VM
+(which we call Truechain Virtual Machine - TVM)<br>
+6. The TVM would be the one, as per current discussions, to validate any transaction, while EVM would
+need to be re-worked to not really mine for consensus, but for election of BFT and maybe lightweight
+wallet transactions (the part we'd be happy to discuss with you in design)<br>
+7. The incentivation model needs to be re-worked such that it is based off of TVM, and also, that we
+somehow still reward the miners in POW chain.<br>
+8. We would eventually support sharding for the BFT committee nodes, for scalability.<br>
+9. A compensation infrastructure, which accounts node spec non-uniformity (as in different
+CPU/memory/network bandwidth in the node pool), would eventually be a part of the consensus, thus
+speeding up transactions.<br>
+10. The smart contracts execution would thus only happen in TVM (BFT node) and we do think the
+deployment should be supported from POW nodes, thus raising a question about state replication in a
+hybrid setting.<br>
 
-**注意：我们可能需要改变稳固性以及以太坊目前的轻钱包，这正是我们把它作为框架的选择。<br>**
+**Notes：We might need changes in solidity as well as the current Mist wallet in Ethereum, which is what we
+chose as our framework.<br>**
 
-### 时间计划：<br>
-#### TODO:在时间计划中添加规范或者伪代码的细节<br>
+### Timeline：<br>
+#### TODO:add details for specs/pseudo code specifics in timeline<br>
 
 <table border=0 cellpadding=0 cellspacing=0 width=635 style='border-collapse:
  collapse;table-layout:fixed;width:477pt'>
@@ -26,11 +38,11 @@
  <col width=137 style='mso-width-source:userset;mso-width-alt:4384;width:103pt'>
  <col width=286 style='mso-width-source:userset;mso-width-alt:9152;width:215pt'>
  <tr height=38 style='height:28.5pt'>
-  <td height=38 width=50 style='height:28.5pt;width:38pt'>章节</td>
-  <td class=xl69 width=47 style='width:35pt'>时间(起点)</td>
-  <td width=115 style='width:86pt'>阶段</td>
-  <td width=137 style='width:103pt'>详细</td>
-  <td width=286 style='width:215pt'>备注</td>
+  <td height=38 width=50 style='height:28.5pt;width:38pt'>Quarter</td>
+  <td class=xl69 width=47 style='width:35pt'>Date (onwards or exact)</td>
+  <td width=115 style='width:86pt'>Phases</td>
+  <td width=137 style='width:103pt'>Details</td>
+  <td width=286 style='width:215pt'>Remark</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'>Q1/18</td>
@@ -42,7 +54,7 @@
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'>Q1/18</td>
   <td></td>
-  <td>白皮书发布</td>
+  <td>Whitepaper release</td>
   <td></td>
   <td class=xl65><a href="https://www.truechain.pro/EnTruechain.pdf"
   target="_parent">https://www.truechain.pro/EnTruechain.pdf</a></td>
@@ -50,63 +62,62 @@
  <tr height=38 style='height:28.5pt'>
   <td height=38 style='height:28.5pt'>Q2/18</td>
   <td></td>
-  <td>黄皮书第一草案</td>
-  <td class=xl69 width=137 style='width:103pt'>混合共识文档收录在 arXiv上</td>
+  <td>Yellow Paper - First Draft </td>
+  <td class=xl69 width=137 style='width:103pt'>Hybrid consensus on arXiv</td>
   <td class=xl65><a href="https://arxiv.org/abs/1805.01457" target="_parent">https://arxiv.org/abs/1805.01457</a></td>
  </tr>
  <tr height=55 style='mso-height-source:userset;height:41.25pt'>
   <td rowspan=41 height=1581 style='height:1185.75pt'></td>
   <td colspan=2 style='mso-ignore:colspan'></td>
-  <td class=xl67>基本的TVM</td>
-  <td class=xl66>EVM (POW) +TVM(BFT)==&gt;PBFT+POW在单个节点上</td>
+  <td class=xl67>BasicTVM</td>
+  <td class=xl66>EVM (POW) +TVM(BFT)==&gt;PBFT+POW on single node</td>
  </tr>
  <tr height=59 style='mso-height-source:userset;height:44.25pt'>
   <td height=59 colspan=2 style='height:44.25pt;mso-ignore:colspan'></td>
-  <td class=xl67>激励计划</td>
-  <td class=xl70 width=286 style='width:215pt'>为新的虚拟机组合制定激励计划，考虑一个不同的Txn费用模型</td>
+  <td class=xl67>Incentivization scheme </td>
+  <td class=xl70 width=286 style='width:215pt'>Develop an incentivisation scheme considering a different Txn fee model for the new hybrid virtual machines combination.</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td>黄皮书TIP-1</td>
+  <td>Yellow Paper TIP - 1</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
   <td height=23 colspan=2 style='height:17.25pt;mso-ignore:colspan'></td>
-  <td class=xl68>更新arXiv上的论文</td>
+  <td class=xl68>Update arXiv paper</td>
   <td></td>
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
   <td height=23 colspan=2 style='height:17.25pt;mso-ignore:colspan'></td>
-  <td class=xl68 colspan=2 style='mso-ignore:colspan'>混合共识伪代码发布</td>
+  <td class=xl68 colspan=2 style='mso-ignore:colspan'>hybrid consensus pseudo code release</td>
  </tr>
  <tr height=76 style='height:57.0pt'>
   <td height=76 colspan=2 style='height:57.0pt;mso-ignore:colspan'></td>
   <td class=xl70 width=137 style='width:103pt'><br>
-    去耦和耦合/重新排列以太坊来适应共识</td>
+    decoupling and coupling/rearrange ethereum to fit the consensus</td>
   <td></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=2 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=137 style='width:103pt'>调整以太坊Gas的经济模式</td>
+  <td class=xl69 width=137 style='width:103pt'>adjust ethereum GAS token economy model </td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td>代码</td>
-  <td colspan=2 style='mso-ignore:colspan'>实施混合共识代码库</td>
+  <td>Coding</td>
+  <td colspan=2 style='mso-ignore:colspan'>Implement hybrid consensus codebase </td>
  </tr>
  <tr height=63 style='mso-height-source:userset;height:47.25pt'>
   <td height=63 style='height:47.25pt'></td>
-  <td class=xl69 width=115 style='width:86pt'>根据时间的重要性和依赖，重新排序，很快又进一步细分</td>
+  <td class=xl69 width=115 style='width:86pt'>(to be reordered,shortly and broken down further according to chronological importance and dependencies)</td>
   <td></td>
-  <td class=xl69 width=286 style='width:215pt'>初始化节点：<span
-  style='mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>1. forkVirtualNodeBFT()<br>
+  <td class=xl69 width=286 style='width:215pt'>Node init：<br>
+    1. forkVirtualNodeBFT()<br>
     2. SpawnBFTnode()</td>
  </tr>
  <tr height=133 style='height:99.75pt'>
   <td height=133 colspan=3 style='height:99.75pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>验证：<br>
+  <td class=xl69 width=286 style='width:215pt'>Validation:<br>
     1. onChainValidation()<br>
     a. validateFromPOW()<br>
     b. FetchTxnHistory()<br>
@@ -116,27 +127,27 @@
  </tr>
  <tr height=57 style='height:42.75pt'>
   <td height=57 colspan=3 style='height:42.75pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>对于视图更改和节点损坏的检测/更改<br>
+  <td class=xl69 width=286 style='width:215pt'>For view change and node corruption detection/complaing:<br>
     1. ViewChange()<br>
     2. complainToSnailChain()</td>
  </tr>
  <tr height=76 style='height:57.0pt'>
   <td height=76 colspan=3 style='height:57.0pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>特征：<br>
+  <td class=xl69 width=286 style='width:215pt'>For signatures:<br>
     1. keygen()<br>
     2. SignLog()<br>
     3. Keccak256/ECDSA wrappers</td>
  </tr>
  <tr height=76 style='height:57.0pt'>
   <td height=76 colspan=3 style='height:57.0pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>日志：<br>
+  <td class=xl69 width=286 style='width:215pt'>Logging:<br>
     1. dailyLogOutput()<br>
     2. CreateLOG()<br>
     3. createTxTuple()</td>
  </tr>
  <tr height=133 style='height:99.75pt'>
   <td height=133 colspan=3 style='height:99.75pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>交易池:<br>
+  <td class=xl69 width=286 style='width:215pt'>Transaction pool:<br>
     1. mempoolSubprotocol()<br>
     a. propose()<br>
     b. query()<br>
@@ -146,13 +157,13 @@
  </tr>
  <tr height=57 style='height:42.75pt'>
   <td height=57 colspan=3 style='height:42.75pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>选择和 VRF:<br>
+  <td class=xl69 width=286 style='width:215pt'>Election and VRF:<br>
     1. SeedSelectorVRF()<br>
     2. proposeStakeTransactions()</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=3 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>快照：</td>
+  <td class=xl69 width=286 style='width:215pt'>Snapshots:</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=3 style='height:14.25pt;mso-ignore:colspan'></td>
@@ -160,145 +171,147 @@
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=3 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>通信：<br>
+  <td class=xl69 width=286 style='width:215pt'>Communication:<br>
     1. gossipTxn()</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=3 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>分享和补偿基础措施</td>
+  <td class=xl69 width=286 style='width:215pt'>Sharding and Compensation infrastructure:</td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=3 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=286 style='width:215pt'>基本的测试：集成测试、功能测试、单元测试</td>
+  <td class=xl69 width=286 style='width:215pt'>Raincheck for basic tests - Integration,functional and unit</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>工程重构优化</td>
+  <td>Geth re-engineering</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>基础设施监控/建设</td>
+  <td>Infra monitoring/devops</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>安全审查</td>
+  <td>Security review</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>服务器安全强化</td>
+  <td>Server security hardening</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>轻量级钱包再造</td>
+  <td>Mist / Wallet re-engineering</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>前端</td>
+  <td>frontend</td>
   <td></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=2 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=137 style='width:103pt'>发布设计文档，用于智能合约执行</td>
-  <td class=xl68>公开在github /其他地方</td>
+  <td class=xl69 width=137 style='width:103pt'>Release design documents for smart contract execution
+</td>
+  <td class=xl68>publicly on github/elsewhere</td>
  </tr>
  <tr height=28 style='mso-height-source:userset;height:21.0pt'>
   <td height=28 colspan=2 style='height:21.0pt;mso-ignore:colspan'></td>
   <td class=xl69 width=137 style='width:103pt'><br>
-    定制化Dapps</td>
+    Custom Dapps</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td colspan=2 style='mso-ignore:colspan'>实验版本-r1-v0.?</td>
+  <td colspan=2 style='mso-ignore:colspan'>Experimental release - r1 - v0.? </td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td colspan=2 style='mso-ignore:colspan'>共识算法的开发者文档</td>
+  <td colspan=2 style='mso-ignore:colspan'>Developer Documentation for consensus</td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=4 style='height:14.25pt;mso-ignore:colspan'></td>
  </tr>
  <tr height=57 style='height:42.75pt'>
   <td height=57 style='height:42.75pt'></td>
-  <td class=xl69 width=115 style='width:86pt'>规模实验：建立在公有云、私有云、混合云</td>
+  <td class=xl69 width=115 style='width:86pt'>SCALE LAB: Setup public/private/hybrid cloud infra</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=2 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=137 style='width:103pt'>在全球各地区，建立内部规模实验室</td>
+  <td class=xl69 width=137 style='width:103pt'>Establish internal scale lab across global regions</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td>仿真和测试</td>
+  <td>Simulation and Testing</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>实验准备</td>
+  <td>Testbed preparation</td>
   <td></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=2 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=137 style='width:103pt'>模拟基本服务器负荷/成本</td>
+  <td class=xl69 width=137 style='width:103pt'>simulation basic for server load/cost</td>
   <td></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=2 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=137 style='width:103pt'>调整，修复bug，性能改进</td>
+  <td class=xl69 width=137 style='width:103pt'>Adjustments, bug smashes and performance improvements
+</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td colspan=2 style='mso-ignore:colspan'>实验版本-r2-v0.?</td>
+  <td colspan=2 style='mso-ignore:colspan'>Experimental release-r2-v0.?</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 colspan=2 style='height:14.25pt;mso-ignore:colspan'></td>
-  <td>测试网</td>
+  <td>TESTNET</td>
   <td></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 colspan=2 style='height:28.5pt;mso-ignore:colspan'></td>
-  <td class=xl69 width=137 style='width:103pt'>调整，修复bug，性能改进</td>
+  <td class=xl69 width=137 style='width:103pt'>Adjustments, bug smashes and performance improvements</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td colspan=2 style='mso-ignore:colspan'>实验版本-r3-v0.?</td>
+  <td colspan=2 style='mso-ignore:colspan'>Experimental release-r3-v0.?</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'>Q3/18</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
-  <td>在以太坊Dapps dev</td>
+  <td>Dapps dev on ethereum</td>
   <td></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td rowspan=4 height=152 style='height:114.0pt'></td>
   <td colspan=2 style='mso-ignore:colspan'></td>
-  <td>主要网络</td>
+  <td>Main Net</td>
   <td></td>
  </tr>
  <tr height=76 style='height:57.0pt'>
   <td height=76 style='height:57.0pt'></td>
-  <td class=xl69 width=115 style='width:86pt'>功能增强需求(RFES)和初链改进方案(TIPs)</td>
+  <td class=xl69 width=115 style='width:86pt'>Requests for Feature Enhancements (RFEs) and TIPs (Truechain Improvement Proposals)</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=19 style='height:14.25pt'>
   <td height=19 style='height:14.25pt'></td>
-  <td>X86 平台</td>
+  <td>X86 considerations</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
  </tr>
  <tr height=38 style='height:28.5pt'>
   <td height=38 style='height:28.5pt'></td>
-  <td class=xl69 width=115 style='width:86pt'>一些未来的发展规划</td>
+  <td class=xl69 width=115 style='width:86pt'>And other future plans..</td>
   <td colspan=2 style='mso-ignore:colspan'></td>
  </tr>
  <![if supportMisalignedColumns]>
@@ -311,10 +324,10 @@
  </tr>
  <![endif]>
 </table>
-  <p style="text-align=right">(Q1)1、2、3月</p>
-  <p style="text-align=right">(Q2)4、5、6月</p>
-  <p style="text-align=right">(Q3)7、8、9月</p>
-  <p style="text-align=right">(Q4)10、11、12月</p>
+  <p style="text-align=right">January, February and March (Q1)</p>
+  <p style="text-align=right">April, May and June (Q2)</p>
+  <p style="text-align=right">July, August and September (Q3)</p>
+  <p style="text-align=right">October, November and December (Q4)</p>
   
   ### 核心共识：<br>
   #### 在PBFT链funcs：<br>
