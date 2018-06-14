@@ -3,3 +3,5 @@ make.bat
 */conf.py
 build/
 
+/.project
+/.gitignore

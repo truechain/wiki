@@ -1,0 +1,26 @@
+\section{Introduction}
+
+With the surging popularity of cryptocurrencies, blockchain technology has caught attention from both industry and academia.
+One can think blockchain as a shared computing environment involving peers to join and quit freely, with the premis for a commonly
+agreed consensus protocol. The decentralized nature of blockchain, together with transaction transparency, autonomy, immutability,
+are critical to crypocurrencies, drawing the baseline for such systems. However top earlier-designed cryptocurrencies,
+such as Bitcoin\cite{nakamoto2008bitcoin} and Ethereum\cite{buterinethereum}, have been widely recognized unscalable in terms
+of transaction rate and are not economically viable as they require severe energy consumptions and computation power.
+
+With the demand of apps and platforms using public blockchain growing in real world, a viable protocol that enables higher
+transaction rate is a main focus on new systems. For example, consider a generic public chain that could host CPU intensive
+peer to peer gaming applications with a very large userbase. In such a chain, if it also hosts ICOs as well as digital advertisement
+applications, we currently expect a huge delay in transaction confirmation times.
+
+There are other models like delegated mechanism of Proof of Stake and Permissioned Byzantine Fault Tolerant protocols.
+The BFT protocol ensures safety as long as only one third of the actors in the system are intentionally/unintentionally malacious adversaries,
+at a time. This is a really good mechanism, however a BFT chain alone has a problem with scalability and pseudo-decentralization.
+The Proof of Stake protocol with a small number of validators could although facilitate high throughput, but the system in itself is
+highly dependent on a few stakeholders to make the decisions on inclusion and exclusion of delegates. Moreover, there is no transparency
+without Merkel trees and this type of system could always suffer from nothing-at-stake paradox.
+
+In this paper, we propose TrueChain, a hybrid protocol\cite{pass2017hybrid} of PBFT\cite{castro1999practical} and POW consensus.
+The POW consensus ensures incentivization and committee selection while the PBFT layer acts as a highly performant consensus
+with capabilities like instant finality with high throughput, transaction validation, rotating committee for fair trade economy
+and a compensation infrastructure to deal with non-uniform infrastructure. The nature of hybrid protocol allows it to tolerate
+corruptions at a maximum of about one third of peer nodes.

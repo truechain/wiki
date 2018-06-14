@@ -1,0 +1,24 @@
+\subsection{Compensation Infrastructure}
+
+In this section we will present a concept of composation infrastructure in order to balance the workload of $\mathsf{BFT}$
+committee members and non-member full nodes.
+
+Treating all shards as equivalent of each other in terms of network and CPU bandwidth could produce skewed results,
+with inconsistent TPS, or worse, sometimes cross timeout limits, while ordering of transaction takes place from the
+Primary shard. To tackle this, we propose a compensation infrastructure, that works along the lines of Berkeley Open
+Infrastructure for Network Computing. There has been a previous attempt in this area from Gridcoin~\cite{gridwhitepaper}
+and Golem network~\cite{golemwhitepaper}.
+
+Gridcoin's distributed processing model relies pre-approved frameworks to the like of Berkeley Open Infrastructure
+for Network Computing (BOINC)~\cite{boincproject}, an opensource distributed volunteer computing infrastructure,
+heavily utilized within cernVM\cite{cernvm} in turn, harnessed by the LHC@Home project~\cite{lhcathome}
+A framework like this has to tackle non-uniform wealth distribution over time. On the other hand, Golem is another great
+ongoing project with concrete incentivization scheme, which would be used as an inspiration for compensation infrastructure's
+incentivization methodology. However a keeping in mind, a widely known problem is that a blockchain powered volunteer computing
+based rewarding model could easily fall prey to interest inflation if the design lacks a decent incentive distribution scheme over time.
+So to speak, an increasing gap between initial stake holders minting interest due to beginner's luck (algorithmic luck) and the contributors
+joining late, could thence be found fighting for rewards from smaller compensation pools that further condense.
+
+Depending on the kinds of transactions and whether we'd need decentralized storage for some of the smart contracts, we propose the use of
+a hybrid infrastructure that utilizes BOINC and IPFS/Swarm, along side of EVM and TVM. This would make use of Linux Containers to deal with
+isolation of resources and we hope to expand on this section in the next version of this yellowpaper.

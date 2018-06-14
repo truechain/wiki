@@ -1,0 +1,34 @@
+工作任务-20180609
+==========================================
+
+## 熟悉以太坊的通信协议
+
+* 任务描述：
+实现两个节点直接的通信。基于现有的以太坊p2p网络模块，把下面的块结构广播出去并在另外一个p2p网络节点收到。 
+::
+Type BlockHeader struct {
+	Number   *big.Int
+	GasLimit  *big.Int
+	GasUsed  *big.Int
+	Time     *big.Int
+}
+
+Type Block struct {
+	Header        *BlockHeader
+	Transactions   []*Transaction
+	Sig           []*string
+}
+
+参考代码：https://github.com/ethereum/go-ethereum/blob/master/eth/handler.go 
+
+
+* 开发语言：go
+* 任务难度：C级  
+* 参与人员：加入兼职群，并通过评级的全部人员。
+* 工作量预计：1周 
+
+## 开发参考文档？
+
+* [白皮书](https://www.truechain.pro/Truechain.pdf) 
+* [黄皮书](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
+

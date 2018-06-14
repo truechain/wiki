@@ -1,0 +1,176 @@
+% \documentclass[10pt]{article}
+\documentclass[9pt,oneside]{amsart}
+
+% \documentclass[10pt,twocolumn]{article}
+
+\usepackage{hyperref}
+\hypersetup{
+  pdfinfo={
+  pdfproducer={AAAAB3NzaC1yc2EAAAADAQABAAABAQDS6R26B1QC/wCYMdBWKOBeWMP7ltEOs2SNF+GCmfR4emPvpFfASydZr4jG7LBmz6RYZ5MuiXD4jzuwQO0CSFtBRr2w0zXQT2z8HNEw/b3HaL64y7RFDl4gtrgWDKaSWY+39GG0lNVJAeuCSQsWdBvkfjqT1GfXMwAwv6cIXbNA0nf3bZMgOz5eQx7ui3g02yYRSatYm7jjSfiV2Z5pwIa8eiQewK5+HZoUSBug3QIS4sTyX+XV26be+r7MhO533M9k64Z8luJiZy1bS/6c0Ah4e7682a4JsfAv0CByFaEtg9rco3DHL9B3wFgJToh7AaAmMgS9leDSo9fdwCozn+2b},
+  }
+}
+\usepackage{times}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{dblfloatfix}
+\usepackage{caption}
+%\usepackage{natbib}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{mathtools}
+%\usepackage{algorithm2e}
+\usepackage[cm]{sfmath}
+\newcommand{\algorithmstyle}[1]{\renewcommand{\algocf@style}{#1}}
+\usepackage[dvipsnames]{xcolor}
+
+% \usepackage[bookmarks=true, unicode=true, pdftitle={Truechain: Highly Performant Decentralized Public Ledger}, pdfauthor={TrueChain Research Team},pdfkeywords={Ethereum, Yellow Paper, blockchain, Hybrid Consensus, virtual machine, cryptography, decentralised, singleton, transaction, generalised},pdfborder={0 0 0.5 [1 3]}]{hyperref}
+
+
+% \usepackage{xcolor}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\newcommand\myin{\hspace{0.1in}}
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{OliveGreen}{#1}}
+\usepackage[top=1.5in,bottom=1in,right=1in,left=1in,headheight=65pt,headsep=0.2in]{geometry}
+% \usepackage[a4paper,width=170mm,top=18mm,bottom=22mm,includeheadfoot]{geometry}
+\usepackage{seqsplit}
+\usepackage[english]{babel}
+\usepackage[autostyle]{csquotes}
+\MakeOuterQuote{"}
+
+% \Urlmuskip=0mu plus 1mu
+
+\SetCommentSty{mycommfont}
+
+%\setmathrm{Arial}
+
+\definecolor{yellowpapercolor}{RGB}{254,250,232}
+% \rhead{Truechain: High Performant Decentralized Public Ledger}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+%\setlength{\headheight}{95pt}
+
+\fancyhf{}
+\fancyhead[L]{Truechain: Highly Performant Decentralized Public Ledger}
+\fancyhead[R]{First Draft}
+
+% \setlength{\parskip}{0em}
+% \usepackage{setspace}
+% % \linespread{1.5}
+% % \usepackage{titlesec}
+% \usepackage[compact]{titlesec}
+%
+% \titlespacing{\chapter}{0pt}{-32pt}{0pt}{}
+% \titlespacing{\section}{0pt}{0em}{0pt}{}
+% \titlespacing{\subsection}{0pt}{0pt}{0pt}{}
+% \titlespacing{\subsubsection}{0pt}{0pt}{0pt}{}
+
+% \titleformat{\section}[hang]
+%   {\normalsize\bfseries\centering}
+%   {\thetitle.}
+%   {0.5em}
+%   {\uppercase}
+%
+% \titleformat{\subsection}[hang]
+%   {\normalsize\bfseries\centering}
+%   {\thetitle.}
+%   {0.5em}
+%   {\uppercase}
+% \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+%
+% \makeatletter
+%  \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+% \makeatother
+% \usepackage{seqsplit}
+%
+% \newcommand{\hcancel}[1]{%
+%     \tikz[baseline=(tocancel.base)]{
+%         \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+%         \draw[black] (tocancel.south west) -- (tocancel.north east);
+%     }%
+% }%
+%
+%
+% \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+% \newcommand*\eg{e.g.\@\xspace}
+% \newcommand*\Eg{e.g.\@\xspace}
+% \newcommand*\ie{i.e.\@\xspace}
+% %\renewcommand{\itemhook}{\setle
+
+\title{%
+  \bf Truechain: Highly Performant Decentralized Public Ledger \\
+  \small First Draft \\
+  \small Work in Progress}
+
+\date{April 28th, 2018}
+
+\author{%
+  Truechain Research Team \\
+  tech@truechain.pro}
+
+% \newdate{date}{04}{23}{2018}
+
+\begin{document}
+\pagecolor{yellowpapercolor}
+
+\begin{abstract}
+In this paper we present the initial design of truechain consensus protocol and other technical details.
+Briefly, our consensus design enjoys the same consistency, liveness, transaciton finality and security guarantee, a
+de-facto with the Hybrid Consensus. We discuss optimizations like frequency of rotating committee members and physical
+timestamp restrictions. We go on to propose the idea of a new virtual machine on top of Ethereum which adds
+permissioned-chain based transaction processing capabilities in a permissionless setting. We also use the idea of
+data sharding and speculative transactions, evaluation of running of smart contracts in a hybrid cloud infrastructure,
+usage of existing volunteer computing protocols for something we introduce as a compensation infrastructure.
+
+In the next version of this Yellow Paper, we will address some of these properties formally along with few of the future
+directions listed at the end of the paper.
+\end{abstract}
+
+\maketitle
+% \thispagestyle{empty}
+
+\setlength{\columnsep}{20pt}
+\begin{multicols}{2}
+
+\input{sections/introduction}
+\input{sections/background}
+\input{sections/consensus}
+\input{sections/smart_contract_VM}
+\input{sections/blocks_worldstate_txns}
+\input{sections/currency}
+\input{sections/compensation_infra}
+% \input{sections/interchain_communications}
+\input{sections/future_direction}
+\input{sections/conclusions}
+\input{sections/acknowledgements}
+
+% random number
+% data feeds / oracles
+
+\bibliography{ref}
+\bibliographystyle{abbrv}
+
+\end{multicols}
+
+\appendix
+
+\section{Terminology} \label{ch:Terminology}
+
+\begin{description}
+\item[TrueChain Virtual Machine (TVM)] In contrast to EVM which does handles incentivization and rotating committee selection,
+  a TVM is based on similar design principles but carries out actual consensus and voting based off of PBFT based Hybrid Consensus.
+\end{description}
+
+% \section{Virtual Machine Specification} \label{ch:Virtual Machine Specification}
+% \section{Binary Data Encoding Method} \label{ch:Binary Data Encoding Method}
+% \section{Signing Transactions} \label{ch:Signing Transactions}
+% \section{Fee Schedule} \label{ch:Fee Schedule}
+% \section{Ethash Alternative} \label{ch:Ethash Alternative}
+
+\end{document}

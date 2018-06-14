@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: paper.aux
+The style file: abbrv.bst
+Database file #1: ref.bib
+I was expecting a `,' or a `}'---line 107 of file ref.bib
+ :  
+ :  year = {2018}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 113 of file ref.bib
+ :  
+ :  year = {2013}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 119 of file ref.bib
+ :  
+ :  volume = {796}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in kubelimit
+Warning--to sort, need author or key in ocpclusterlimit
+Warning--to sort, need author or key in brickmul
+Warning--to sort, need author or key in k8scale
+Warning--to sort, need author or key in cncfscaleout
+Warning--to sort, need author or key in kubecommgoals
+Too many commas in name 1 of "Nayak, Kartik; Kumar,Srijan; Miller,Andrew; Shi,Elaine" for entry naya2015stub
+while executing---line 1049 of file abbrv.bst
+Too many commas in name 1 of "Nayak, Kartik; Kumar,Srijan; Miller,Andrew; Shi,Elaine" for entry naya2015stub
+while executing---line 1049 of file abbrv.bst
+Warning--to sort, need author or key in gridwhitepaper
+Warning--empty author in brickmul
+Warning--empty year in brickmul
+Warning--empty author in cncfscaleout
+Warning--empty year in cncfscaleout
+Warning--empty author in gridwhitepaper
+Warning--empty year in gridwhitepaper
+Warning--empty author in k8scale
+Warning--empty year in k8scale
+Warning--empty author in kubelimit
+Warning--empty year in kubelimit
+Warning--empty author in kubecommgoals
+Warning--empty year in kubecommgoals
+Warning--empty author in ocpclusterlimit
+Warning--empty year in ocpclusterlimit
+Warning--empty year in boincproject
+Warning--empty year in buterinethereum
+Warning--empty year in eyal2013self
+Warning--empty year in lhcathome
+Too many commas in name 1 of "Nayak, Kartik; Kumar,Srijan; Miller,Andrew; Shi,Elaine" for entry naya2015stub
+while executing---line 1090 of file abbrv.bst
+Too many commas in name 1 of "Nayak, Kartik; Kumar,Srijan; Miller,Andrew; Shi,Elaine" for entry naya2015stub
+while executing---line 1090 of file abbrv.bst
+Warning--empty year in naya2015stub
+Warning--empty year in ritz2018uncle
+(There were 7 error messages)

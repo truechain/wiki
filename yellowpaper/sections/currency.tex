@@ -1,0 +1,108 @@
+\section{Changes to the Ethereum Blockchain Paradigm}
+
+\subsection{Fruitchain as snailchain}
+
+The greatest challenge that POW based consensus faces today are efficiency and scalability. Slow execution and confirmation time make it unfit to develop complex applications, and excessive energy consumption make it environmentally unfriendly. The protocol we propose use a hybrid of PBFT and PoW as core consensus. Unlike Ethereum, where transactions and smart contracts are executed by every node on the network, a rotating BFT committee will handle the bulk of heavy lifting while PoW (the snailchain) will only be used to select the committee members. Observe that in the limiting case, where we take committee rotating frequency to one block and $\mathrm{csize} = 1$, we recover the traditional PoW consensus. 
+
+A functioning BFT committee require 2/3 of its members to be honest\cite{castro1999practical}. Hence, for some $\epsilon > 0$, we require the chain quality $Q > 2/3 + \epsilon$. A naive implementation using a Nakamoto chain as the snailchain will be vulnerable to obvious selfish mining attack strategies. If a selfish miner controlled more than 25\% of the blockchain's hash power, she could control more than 33\% of block production\cite{naya2015stub}\cite{eyal2013self}. The probability of being elected to the BFT committee, according to the procedure described in \cite{pass2017hybrid}, is equal to one's block production fraction. Hence, the selfish miner is likely to control over 1/3 of the BFT committee, and thus the BFT protocol is compromised. 
+
+The worst case scenario is possible through a strategy illustrated in \cite{ritz2018uncle}. If a selfish miner controls 40\% of the hash power in a Ethereum-type blockchain, she can control 70\% of block production through optimized selfish mining. According to the committee election procedure in \cite{pass2017hybrid}, she will have control over 70\% of the BFT committee. The BFT committee is not only compromised, the selfish miner will have the dictatorial dominance to declare any honest committee member as 'dishonest' at her will. 
+
+We choose the fruitchain\cite{pass2017fruit} as our underlying snailchain for hybrid consensus. The fruitchain is more resistant to selfish mining, as stated by the fairness theorem in \cite{pass2017fruit}. However, the BFT committee is still vulnerable should an attacker directly control over 33\% of the blockchain's hash power. Hence, we will take further deviations from \cite{pass2017hybrid} and \cite{pass2017fruit} to alleviate the issues. We also remark that given the current market share of mining pools, it's not at all inconceivable for a party to command significant proportion of hash power in a blockchain. 
+
+There are two undesirable extremes that we need to find a balance in, 
+\begin{itemize}
+	\item Randomly select BFT members via VRF\cite{micali1999verifiable}. This is vulnerable against a Sybil attack.
+	\newline
+	\item Any selection procedure where probability of being selected is proportional to hash power. The BFT committee is vulnerable against mining pools who are rich in hash power. 
+\end{itemize} 
+
+
+Our proposed solution are as follows. When an honest BFT node's chain reaches $\lambda$ in length, it will publish the unique miner IDs of every fruit in the chain as candidates (or, every miner ID who mined more than $\nu$ fruits). The new BFT committee is randomly selected from the candidates though application of VRF.  
+
+The obvious Sybil attack is not possible under this scheme, as you require a minimal level of PoW to become a candidate. Neither it will be easy for a large mining pool to achieve compromise the BFT committee. A fruit will be orders of magnitude easier to mine than a block. 
+
+
+\subsection{Incentive Design}
+
+Inheriting the variable definitions from \cite{pass2017fruit} (p.14 - 16), the fruitchain consist of a blockchain with each block containing its own set of fruits. Transactions executed by the BFT will be initially packaged as a record $\mathrm{m}$ to be mined as a fruit. Fruits more recent than a recency parameter $R$ will be packaged into a block when the next block is mined. 
+
+The miner will run only one mining algorithm that produces hash values $h$ from a random oracle. A fruit is mined when $[h]_{-\kappa} < D_{p_f}$, and a block is mined when $[h]_{\kappa} < D_{p}$, where $D_{p_f}$ and $D_p$ are the mining difficulty parameter of the fruit and block respectively. The tuple $(R, D_p, D_{p_f})$ determines mining process. 
+
+In order to discourage the deployment of ASICs, we will make the recency parameter $\kappa = \kappa (t)$ time-dependent. VRF will generate and broadcast a new $\kappa (t)$ (to fall within the valid range) using VRF once every 3 months. Details of this process will be included in a future version of the yellow paper. 
+
+
+More specifically, the mining algorithm goes as follows. A fruit is a tuple $f = (h_{-1}; h'; \eta ; \mathrm{digest}; m; h)$, where each entry means
+
+\begin{itemize}
+	\item $h_{-1}$ is only useful for fruit verification.
+	
+	\item $h'$ points to a block that contains the fruit.
+	
+	\item $\eta$ is the random nonce. 
+	
+	\item $\mathrm{digest}$ is a value used to check the fruit's validity. 
+	
+	\item $\mathrm{m}$ is the record contained in the fruit.
+	
+	\item $h$ is the hash value of the fruit.	
+\end{itemize}
+
+A block is a tuple $\mathrm{b} = ((h_{-1}; h'; \eta; \mathrm{digest}; \mathrm{m}; h), F)$, where 
+\begin{itemize}
+	\item $h_{-1}$ points to the previous block's reference.
+	
+	\item $h'$ is only useful for block verification. 
+	
+	\item $\eta$ is the random nonce. 
+	
+	\item $\mathrm{digest} = \mathrm{d}(F)$, where $\mathrm{d}$ is a collision resistant hash function, and $F$ is the fruit-set to be included in the block. 
+	
+	\item $\mathrm{m}$ is the record contained in the fruit.
+	
+	\item $h$ is the hash value of the fruit.	
+\end{itemize}
+
+The blockchain $chain$ will grow as follows. We initialize by setting the genesis block as,
+$$
+chain[0] = (0;0;0;0;\perp ;H(0;0;0;0;\perp ),\emptyset )
+$$
+and $F = \emptyset$. Every time step, upon receiving input $\mathrm{m}$ from the environment, 
+\begin{itemize}
+	\item Let $F'$ be all fruits $f \in F$ that are recent w.r.t. ￥$chain$ and not already in $chain$.
+	
+	\item Let $h'$ be the reference of $chain[pos]$ where $pos = \max ( 1, |chain| - \kappa ) $. 
+	
+	\item Let $h_{-1}$ be the reference of $chain[|chain| - 1]$. 
+	
+	\item Pick random nonce $\eta \in \{ 0,1 \}^\kappa$ and let $h:=H(h_{-1}; h';\eta ; d(F'); \mathrm{m})$. 
+	
+	\item If $[h]_{-\kappa} < D_{p_f}$ (we mined a fruit), then 
+	\begin{itemize}
+	\item $fruit:=(h_{-1}; h';\eta ; d(F'); \mathrm{m};h)$
+	
+	\item $F := F \cup \{ fruit \}$
+	
+	\item broadcast
+	\end{itemize}
+
+	\item If $[h]_{\kappa} < D_{p}$ (we mined a block), then 
+\begin{itemize}	
+	\item $chain := chain || ((h_{-1}; h';\eta ; d(F'); \mathrm{m}; h), F')$
+	
+	\item broadcast
+\end{itemize}
+
+	\item $\mathrm{digest} = \mathrm{d}(F)$, where $\mathrm{d}$ is a collision resistant hash function, and $F$ is the fruit-set to be included in the block. 
+	
+	\item $\mathrm{m}$ is the record contained in the fruit.
+	
+	\item $h$ is the hash value of the fruit.	
+\end{itemize}
+
+\subsection{Incentive Design}
+
+There are in total 30 million $\mathrm{TRUE}$ coins, of which 24 million are minable.
+
+Typically, a fruit will be released once every second, and a block once every 10 minutes. 
+

@@ -58,4 +58,3 @@ processNewView
 
 
 executeInOrder在执行时，首先将 队列 nd.waiting中已经存在的命令执行完，然后将该消息放入队列中.
-

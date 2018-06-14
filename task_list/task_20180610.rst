@@ -1,0 +1,18 @@
+工作任务-20180610
+==========================================
+
+## 熟悉以太坊的交易流程
+
+* 任务描述：
+在以太坊区块链上发送一笔交易，查询交易成功后的事件返回。 
+
+
+* 开发语言：go 或者 nodeJS
+* 任务难度：C级  
+* 参与人员：加入兼职群，并通过评级的全部人员。
+* 工作量预计：1周 
+
+## 开发参考文档？
+
+* [白皮书](https://www.truechain.pro/Truechain.pdf) 
+* [黄皮书](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
