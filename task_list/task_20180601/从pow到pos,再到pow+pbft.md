@@ -43,9 +43,9 @@
 &emsp;&emsp;BFT-based PoS的问题：因为没有最长链的概念，完全根据当前的状态推断下一个状态是否可靠。之前的long range attack会变成另外一个问题，当一个节点offline一段时间或者第一次加入网络时会无法知道该加入哪个chain,为了解决这样的问题，引入了weak subjective，通过第三方来check选择主链，只需check一次；
 
 
-##pow+pbft
+## pow+pbft
 
-###pbft简介
+### pbft简介
 &emsp;&emsp;1982有几个学者提出了拜占庭将军问题，用将军打仗的比喻，来解释这个共识的问题。[《The Byzantine Generals Problem》](https://people.eecs.berkeley.edu/~luca/cs174/byzantine.pdf)
 &emsp;&emsp;1999年有一篇文章[《Practical Byzantine Fault Tolerance》](http://pmg.csail.mit.edu/papers/osdi99.pdf)讲了实用的拜占庭容错的方法。但是此时，PBFT的应用也仅仅在局部高速的系统上有所实践，没有太多的应用场景。
 
@@ -53,7 +53,7 @@
 
 ###### 问题：  
 &emsp;&emsp;1、懒节点，当一个委员会运行良好时，将不会频繁的进行委员会成员选举和切换，非委员会成员将会失去在线的动力；
-&emsp;&emsp;2、算力过于集中，通过POW容易造成自力集中，是否会产生51%攻击类的问题；
+&emsp;&emsp;2、算力过于集中，通过POW容易造成自力集中，是否会产生51%攻击类的问题；  
 &emsp;&emsp;3、电力资源浪费；
 
 
