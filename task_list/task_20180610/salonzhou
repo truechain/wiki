@@ -1,0 +1,12 @@
+1、Entry into the project directory
+cd lession2
+
+2、Using the truffle framework to compile and deploy
+$ truffle compile
+$ truffle migrate --reset
+
+3、Interaction with contracts
+$ truffle console
+HelloWorld.deloyed().then(instance => contract = instance)
+contract.set(234,432)
+contract.get()
