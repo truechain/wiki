@@ -712,15 +712,15 @@ BFT的腐败模型。我们的BFT构建块必须在“有点静态”的腐败�
 
 - BFT虚拟节点和选择性开放委员会。DailyBFT节点通过键盘查询将新鲜的公钥输出到其环境中。 然后当它接收到一个start（comm）命令时，如果comm包含一个或多个自己的公钥，则该节点被选为委员会成员。在这种情况下，节点将为属于自己的通信中的每个公钥分配一个BFT虚拟节点。 在这里，委员会由环境通过start（comm）命令选择性地打开，稍后我们的证明需要利用BFT的强大安全性。
 
-![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan1.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan1.jpg)
 
 图1：每日offchain线共识协议。 由于每个签名密钥都被重新用于内部BFT协议和外部DailyBFT协议，因此我们假设签名算法为内部BFT实例标记每个消息的前缀为“0”，每个消息为外部的DailyBFT，前缀为“1”来避免命名空间冲突。
 
-![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan2.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan2.jpg)
 
 图2：混合共识协议的模块化组合。
 
-![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan3.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan3.jpg)
 
 图3:mempool子协议跟踪事务，并在查询时，提出一组未完成的事务。为了简单起见，这里没有说明的一个明显的实用优化是，mempool可以清除已经在LOG中确认的事务。
 
@@ -738,7 +738,7 @@ BFT的腐败模型。我们的BFT构建块必须在“有点静态”的腐败�
 
 - 它使用snail链作为一种有效的方式来管理DailyBFT实例的生成和终止。在诚实节点之间提供弱同步的全局时钟;
 
-![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan4.png)
+![avatar](https://github.com/truechain/wiki/blob/master/analysis/truechain-consensus-core/img/fan4.jpg)
 
 图4：主混合共识协议。一个新产生的，诚实的节点开始运行这个协议。我们假设历史是所有发送和接收的历史成绩单的集合。我们假设到子协议实例的消息路由是隐含的：每当任何子策略[sid]实例被分支时，历史[subprot [sid]]和与子策略[sid]有关的协议消息将自动路由到子策略[sid]实例。
 
