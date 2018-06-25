@@ -8,4 +8,4 @@
 
 * [白皮书](https://www.truechain.pro/Truechain.pdf) 
 * [黄皮书V1](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaperV1.md)
-~~* [黄皮书](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)~~
+*     [黄皮书V0](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
