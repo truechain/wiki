@@ -329,37 +329,36 @@ chose as our framework.<br>**
   <p style="text-align=right">July, August and September (Q3)</p>
   <p style="text-align=right">October, November and December (Q4)</p>
   
-  ### 核心共识：<br>
-  #### 在PBFT链funcs：<br>
+  ### Core consensus：<br>
+  #### On PBFT chain funcs：<br>
   
-  <P>阶段一：</p><br>
+  <P>Phase 1：</p><br>
   
-  *更新: 进一步细分*<br>
+  *TODO: break this down further*<br>
   
 <table border=0 cellpadding=0 cellspacing=0 width=598 style='border-collapse:
  collapse;table-layout:fixed;width:448pt'>
  <col width=139 style='mso-width-source:userset;mso-width-alt:4448;width:104pt'>
  <col width=459 style='mso-width-source:userset;mso-width-alt:14688;width:344pt'>
  <tr height=20 style='height:15.0pt'>
-  <td height=20 class=xl65 width=139 style='height:15.0pt;width:104pt'>方法</td>
-  <td class=xl66 width=459 style='width:344pt'>功能</td>
+  <td height=20 class=xl65 width=139 style='height:15.0pt;width:104pt'>Method</td>
+  <td class=xl66 width=459 style='width:344pt'>Functionality</td>
  </tr>
  <tr height=62 style='mso-height-source:userset;height:46.5pt'>
   <td height=62 class=xl67 width=139 style='height:46.5pt;width:104pt'>dailyLogOutput()</td>
-  <td class=xl68 width=459 style='width:344pt'>将日志输出到done（_，_）然后发送到非成员节点</td>
+  <td class=xl68 width=459 style='width:344pt'>outputs the log to a done(_,_) to be then sent over to non-member nodes</td>
  </tr>
  <tr height=61 style='mso-height-source:userset;height:45.75pt'>
   <td height=61 class=xl67 width=139 style='height:45.75pt;width:104pt'>CreateLOG()</td>
-  <td class=xl68 width=459 style='width:344pt'>根据所有其他节点的日志为每日日志创建元组，跟踪签名日志由非委员会成员负责</td>
+  <td class=xl68 width=459 style='width:344pt'>creates the tuple for daily log, based on logs of all other nodes,the tracking of signed logs is taken care of by non-members of committee</td>
  </tr>
  <tr height=71 style='mso-height-source:userset;height:53.25pt'>
   <td height=71 class=xl67 width=139 style='height:53.25pt;width:104pt'>mempoolSubprotocol()</td>
-  <td class=xl68 width=459 style='width:344pt'>使用Union集合来跟踪传入交易,支持查询方法返回确认的交易.</td>
+  <td class=xl68 width=459 style='width:344pt'>keeps a track of incoming transactions with a Union set.supports query method to return confirmed transactions.</td>
  </tr>
  <tr height=62 style='mso-height-source:userset;height:46.5pt'>
   <td height=62 class=xl67 width=139 style='height:46.5pt;width:104pt'>DailyOffchainProtocol()</td>
-  <td class=xl68 width=459 style='width:344pt'>进行有条件的选举委员会成员,<font class="font5">
-  </font><font class="font6">基于节点是否是BFT成员。</font></td>
+  <td class=xl68 width=459 style='width:344pt'>conducts conditional election of a committee member,based on whether node is a BFT member or not.</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl67 width=139 style='height:15.0pt;width:104pt'>keygen()</td>
@@ -370,20 +369,21 @@ chose as our framework.<br>**
   <td class=xl68 width=459 style='width:344pt'>　</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
-  <td height=20 class=xl67 width=139 style='height:15.0pt;width:104pt'>　</td>
-  <td class=xl68 width=459 style='width:344pt'>一个历史日志</td>
+  <td height=20 class=xl67 width=139 style='height:15.0pt;width:104pt'>SpawnBFTnode()</td>
+  <td class=xl68 width=459 style='width:344pt'>takes following inputs from POW chain:<br>
+- a historical log</td>
  </tr>
  <tr height=35 style='height:26.25pt'>
   <td height=35 class=xl67 width=139 style='height:26.25pt;width:104pt'>complainToSnailChain()</td>
-  <td class=xl68 width=459 style='width:344pt'>触发器<font class="font7">re_elect()</font></td>
+  <td class=xl68 width=459 style='width:344pt'>Triggers re_elect()</td>
  </tr>
  <tr height=57 style='mso-height-source:userset;height:42.75pt'>
   <td height=57 class=xl67 width=139 style='height:42.75pt;width:104pt'>ViewChange()</td>
-  <td class=xl68 width=459 style='width:344pt'>触发viewchange，并反过来，触发complainToSnailChain（）</td>
+  <td class=xl68 width=459 style='width:344pt'>triggers a viewchange and in turn, complainToSnailChain()</td>
  </tr>
  <tr height=52 style='mso-height-source:userset;height:39.0pt'>
   <td height=52 class=xl67 width=139 style='height:39.0pt;width:104pt'>createTxTuple()</td>
-  <td class=xl68 width=459 style='width:344pt'>（R，l，tx）R - 当前日期，l是随机数（当天txn的序列）</td>
+  <td class=xl68 width=459 style='width:344pt'>（R，l，tx）R - current day, l is the nonce (sequence of txn in that day)</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl67 width=139 style='height:15.0pt;width:104pt'>SeedSelectorVRF()</td>
@@ -391,11 +391,11 @@ chose as our framework.<br>**
  </tr>
  <tr height=54 style='mso-height-source:userset;height:40.5pt'>
   <td height=54 class=xl67 width=139 style='height:40.5pt;width:104pt'>gossipTx()</td>
-  <td class=xl68 width=459 style='width:344pt'>正直的委员会成员然后将签名的元组闲聊到网络上</td>
+  <td class=xl68 width=459 style='width:344pt'>honest committee member then gossips the signed tuple to the networ</td>
  </tr>
  <tr height=40 style='mso-height-source:userset;height:30.0pt'>
   <td height=40 class=xl67 width=139 style='height:30.0pt;width:104pt'>createSnapShot()</td>
-  <td class=xl68 width=459 style='width:344pt'>创建一个世界状态快照</td>
+  <td class=xl68 width=459 style='width:344pt'>creates a world state snapshot</td>
  </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
@@ -405,65 +405,67 @@ chose as our framework.<br>**
  <![endif]>
 </table>
 
-<p>阶段二：</p><br>
-1.时间戳验证（初链黄皮书图一）<br>
-2.create_shard() and speculative_transaction()（初链黄皮书图二）POW链中的funcs<br>
+<p>Phase 2：</p><br>
+1.Timestamp verification (figure 1 in truechain yellow paper)<br>
+2.create_shard() and speculative_transaction() (figure 2 in truechain yellow paper)<br>
 
-#### POW链中的funcs<br>
+#### On POW chain funcs<br>
 
-<p>阶段1：fPOW（果实链）</P>
-*re_elect()  - POW挖掘功能，使用[Theta,LRU,stake_in/out]( snailchain内部块的数量)，基于以下之一：<br>
--由于腐败导致视图更改<br>
--物理时间戳限制引发的第K天触发<br>
--节点应该是DailyBFT委员会的过期Tstamp时间间隔会员<br>
-- update_snailchain()从N个PBFT节点接收done（_，_）散列，并由每个节点执行，然后将链上的节点写入到snailchain总账中。<br>
+<p>Phase 1：fPOW（fruitchain）</P>
+* re_elect()  - POWmining function, that elects new committee members using [Theta, LRU,stake_in/out] (csize number of blocks inside snailchain) based off of one of the following:：<br>
+-A view change due to corruption<br>
+-A Kth day trigger from physical timestamp restriction<br>
+-An expired Tstamp interval for which the node should be a DailyBFT committee member<br>
+* update_snailchain() receives the done(_,_) hash from N PBFT nodes and is executed by each node on the chain to be then written on the snailchain ledger<br>
 
-### 钱包工程<br>
-#### 模拟<br>
+### Wallet engineering<br>
+* 
+### Simulation<br>
 
-<p>确定以下内容</p>
-1.	分片大小的上下限<br>
-2.	Lambda安全参数边界<br>
-3.	Theta手动参数<br>
-<p>测试系列</p>
-1.	检查一致性和活性<br>
-2.	检查安全性<br>
-3.	腐败检查<br>
+<p>Determine the following:</p>
+1.	upper/lower bounds on shard sizes<br>
+2.	Lambda security parameter bounds<br>
+3.	Theta manual parameter<br>
 
-### 智能合约重新设计/可靠性<br>
+### 测试系列
+1.	Checks for Consistency & Liveness<br>
+2.	Checks for security<br>
+3.	Test suit for corruption<br>
+
+### Smart Contract re-engineering/solidity<br>
 ### TVM / WASM<br>
 
-<P>文档</p><br>
-<P>附录</p><br>
-<P>符号</p><br>
+<P>Documentation</p><br>
+<P>Appendix</p><br>
+<P>Notation</p><br>
 <table border=0 cellpadding=0 cellspacing=0 width=604 style='border-collapse:
  collapse;table-layout:fixed;width:453pt'>
  <col width=96 style='mso-width-source:userset;mso-width-alt:3072;width:72pt'>
  <col width=508 style='mso-width-source:userset;mso-width-alt:16256;width:381pt'>
  <tr height=20 style='height:15.0pt'>
-  <td height=20 class=xl65 width=96 style='height:15.0pt;width:72pt'>变量</td>
-  <td class=xl66 width=508 style='width:381pt'>意义</td>
+  <td height=20 class=xl65 width=96 style='height:15.0pt;width:72pt'>Variable</td>
+  <td class=xl66 width=508 style='width:381pt'>Meaning</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl69 width=96 style='height:15.0pt;width:72pt'>tx</td>
-  <td class=xl68 width=508 style='width:381pt'>交易</td>
+  <td class=xl68 width=508 style='width:381pt'>a transaction</td>
  </tr>
  <tr height=37 style='mso-height-source:userset;height:27.75pt'>
   <td height=37 class=xl69 width=96 style='height:27.75pt;width:72pt'>l</td>
-  <td class=xl68 width=508 style='width:381pt'>每个BFT实例内的事务的序列号</td>
+  <td class=xl68 width=508 style='width:381pt'>sequence number of a transaction within each BFT instance</td>
  </tr>
  <tr height=57 style='mso-height-source:userset;height:42.75pt'>
   <td height=57 class=xl69 width=96 style='height:42.75pt;width:72pt'>LOG</td>
-  <td class=xl68 width=508 style='width:381pt'>每个节点输出的完全有序的日志，LOG总是按顺序填充</td>
+  <td class=xl68 width=508 style='width:381pt'>the totally ordered log each node outputs, LOG is always populated in order</td>
  </tr>
  <tr height=48 style='mso-height-source:userset;height:36.0pt'>
   <td height=48 class=xl69 width=96 style='height:36.0pt;width:72pt'>log</td>
-  <td class=xl68 width=508 style='width:381pt'>一个BFT实例的日志，称为日志</td>
+  <td class=xl68 width=508 style='width:381pt'>log of one BFT instance, referred to as daily log</td>
  </tr>
  <tr height=55 style='mso-height-source:userset;height:41.25pt'>
   <td height=55 class=xl70 width=96 style='height:41.25pt;width:72pt'>log[l :
   l′]</td>
-  <td class=xl68 width=508 style='width:381pt'>在日志中编号为l到l'的交易</td>
+  <td class=xl68 width=508 style='width:381pt'>transactions numbered l to l′ in log</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>log[: l]</td>
@@ -471,30 +473,27 @@ chose as our framework.<br>**
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>λ</td>
-  <td class=xl68 width=508 style='width:381pt'>安全参数</td>
+  <td class=xl68 width=508 style='width:381pt'>security parameter</td>
  </tr>
  <tr height=34 style='mso-height-source:userset;height:25.5pt'>
   <td height=34 class=xl70 width=96 style='height:25.5pt;width:72pt'>α</td>
-  <td class=xl68 width=508 style='width:381pt'>对方的哈希片段</td>
+  <td class=xl68 width=508 style='width:381pt'>adversary’s fraction of hashpower</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>δ</td>
-  <td class=xl68 width=508 style='width:381pt'>网络最大实际时延</td>
+  <td class=xl68 width=508 style='width:381pt'>network’s maximum actual delay</td>
  </tr>
  <tr height=49 style='mso-height-source:userset;height:36.75pt'>
   <td height=49 class=xl70 width=96 style='height:36.75pt;width:72pt'>Δ</td>
-  <td class=xl68 width=508 style='width:381pt'>网络延迟的上界（通常松散）</td>
+  <td class=xl68 width=508 style='width:381pt'>a-priori upper bound of the network’s delay (typically loose)</td>
  </tr>
  <tr height=21 style='height:15.75pt'>
   <td height=21 class=xl70 width=96 style='height:15.75pt;width:72pt'>csize</td>
-  <td class=xl68 width=508 style='width:381pt'>委员会大小，我们的协议集Csisie: =<font
-  class="font9">λ</font></td>
+  <td class=xl68 width=508 style='width:381pt'>committee size, our protocol sets csize := λ</td>
  </tr>
  <tr height=21 style='height:15.75pt'>
   <td height=21 class=xl70 width=96 style='height:15.75pt;width:72pt'>th</td>
-  <td class=xl72 width=508 style='width:381pt'>th := <font class="font10">&#8968;</font><font
-  class="font9">csize/3</font><font class="font10">&#8969;</font><font class="font9">,</font><font
-  class="font6">一个阈值</font></td>
+  <td class=xl72 width=508 style='width:381pt'>th := ⌈csize/3⌉, a threshold</td>
  </tr>
  <tr height=35 style='height:26.25pt'>
   <td height=35 class=xl70 width=96 style='height:26.25pt;width:72pt'>lower(R),
@@ -504,25 +503,25 @@ chose as our framework.<br>**
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>chain</td>
-  <td class=xl68 width=508 style='width:381pt'>底层SnayLink协议中的节点局部链</td>
+  <td class=xl68 width=508 style='width:381pt'>a node’s local chain in the underlying snailchain protocol</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>chain[:
   &#8722;λ]</td>
-  <td class=xl68 width=508 style='width:381pt'>除了节点的局部链的最后一个块</td>
+  <td class=xl68 width=508 style='width:381pt'>all but the last λ blocks of a node’s local chain</td>
  </tr>
  <tr height=90 style='mso-height-source:userset;height:67.5pt'>
   <td height=90 class=xl70 width=96 style='height:67.5pt;width:72pt'>MinersOf(chain[s
   : t])</td>
-  <td class=xl68 width=508 style='width:381pt'>在链[s:t]中挖掘每个块的公共密钥。可能有几个公钥属于同一个节点</td>
+  <td class=xl68 width=508 style='width:381pt'>the public keys that mined each block in chain[s : t]. It is ossible that several public keys belong to the same node.</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>{msg}pk&#8722;1</td>
-  <td class=xl68 width=508 style='width:381pt'>签名消息MSG，其验证密钥是PK</td>
+  <td class=xl68 width=508 style='width:381pt'>a signed message msg, whose verification key is pk</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl70 width=96 style='height:15.0pt;width:72pt'>Tbft</td>
-  <td class=xl68 width=508 style='width:381pt'>基础BFT方案的活性参数</td>
+  <td class=xl68 width=508 style='width:381pt'>liveness parameter of the underlying BFT scheme</td>
  </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>

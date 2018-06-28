@@ -1,0 +1,862 @@
+\documentclass[9pt,oneside]{amsart}
+
+% \documentclass[10pt,twocolumn]{article}
+
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\hypersetup{
+  pdfinfo={
+  pdfproducer={AAAAB3NzaC1yc2EAAAADAQABAAABAQDS6R26B1QC/wCYMdBWKOBeWMP7ltEOs2SNF+GCmfR4emPvpFfASydZr4jG7LBmz6RYZ5MuiXD4jzuwQO0CSFtBRr2w0zXQT2z8HNEw/b3HaL64y7RFDl4gtrgWDKaSWY+39GG0lNVJAeuCSQsWdBvkfjqT1GfXMwAwv6cIXbNA0nf3bZMgOz5eQx7ui3g02yYRSatYm7jjSfiV2Z5pwIa8eiQewK5+HZoUSBug3QIS4sTyX+XV26be+r7MhO533M9k64Z8luJiZy1bS/6c0Ah4e7682a4JsfAv0CByFaEtg9rco3DHL9B3wFgJToh7AaAmMgS9leDSo9fdwCozn+2b},
+  }
+}
+
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+
+\usepackage{times}
+\usepackage{fullpage}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{fancyhdr}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{verbatim}
+\usepackage{dblfloatfix}
+\usepackage{caption}
+% \usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{pdflscape}
+\usepackage{mathtools}
+%\usepackage{algorithm2e}
+\usepackage[cm]{sfmath}
+\newcommand{\algorithmstyle}[1]{\renewcommand{\algocf@style}{#1}}
+\usepackage[dvipsnames]{xcolor}
+
+% \usepackage[bookmarks=true, unicode=true, pdftitle={Truechain: Highly Performant Decentralized Public Ledger}, pdfauthor={TrueChain Research Team},pdfkeywords={Ethereum, Yellow Paper, blockchain, Hybrid Consensus, virtual machine, cryptography, decentralised, singleton, transaction, generalised},pdfborder={0 0 0.5 [1 3]}]{hyperref}
+
+
+% \usepackage{xcolor}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\newcommand\myin{\hspace{0.1in}}
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{OliveGreen}{#1}}
+\usepackage[top=1.5in,bottom=1in,right=1in,left=1in,headheight=65pt,headsep=0.2in]{geometry}
+% \usepackage[a4paper,width=170mm,top=18mm,bottom=22mm,includeheadfoot]{geometry}
+\usepackage{seqsplit}
+\usepackage[english]{babel}
+\usepackage[autostyle]{csquotes}
+\MakeOuterQuote{"}
+
+% \Urlmuskip=0mu plus 1mu
+
+\SetCommentSty{mycommfont}
+
+%\setmathrm{Arial}
+
+\definecolor{yellowpapercolor}{RGB}{254,250,232}
+% \rhead{Truechain: High Performant Decentralized Public Ledger}
+\pagestyle{fancy}
+
+\renewcommand{\headrulewidth}{0pt}
+%\setlength{\headheight}{95pt}
+
+\fancyhf{}
+\fancyhead[L]{Truechain: Highly Performant Decentralized Public Ledger}
+\fancyhead[R]{First Draft}
+
+% \setlength{\parskip}{0em}
+% \usepackage{setspace}
+% % \linespread{1.5}
+% % \usepackage{titlesec}
+% \usepackage[compact]{titlesec}
+%
+% \titlespacing{\chapter}{0pt}{-32pt}{0pt}{}
+% \titlespacing{\section}{0pt}{0em}{0pt}{}
+% \titlespacing{\subsection}{0pt}{0pt}{0pt}{}
+% \titlespacing{\subsubsection}{0pt}{0pt}{0pt}{}
+
+% \titleformat{\section}[hang]
+%   {\normalsize\bfseries\centering}
+%   {\thetitle.}
+%   {0.5em}
+%   {\uppercase}
+%
+% \titleformat{\subsection}[hang]
+%   {\normalsize\bfseries\centering}
+%   {\thetitle.}
+%   {0.5em}
+%   {\uppercase}
+% \PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+%
+% \makeatletter
+%  \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+% \makeatother
+% \usepackage{seqsplit}
+%
+% \newcommand{\hcancel}[1]{%
+%     \tikz[baseline=(tocancel.base)]{
+%         \node[inner sep=0pt,outer sep=0pt] (tocancel) {#1};
+%         \draw[black] (tocancel.south west) -- (tocancel.north east);
+%     }%
+% }%
+%
+%
+% \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+% \newcommand*\eg{e.g.\@\xspace}
+% \newcommand*\Eg{e.g.\@\xspace}
+% \newcommand*\ie{i.e.\@\xspace}
+% %\renewcommand{\itemhook}{\setle
+
+\title{%
+  \bf Truechain: Highly Performant Decentralized Public Ledger \\
+  \small First Draft \\
+  \small Work in Progress}
+
+\date{April 28th, 2018}
+
+% \author{
+% \begin{tabular}{*{3}{>{\centering}p{.5\textwidth}}}
+%   Xia, Yu\\ & Sharma, Archit & Zhang, Jiannan
+%  \url{jasper@truechain.pro} & \url{archit@pm.me} & \url{eric@truechain.pro}
+% \end{tabular}
+%  }
+
+ \author{%
+ Archit Sharma\textsuperscript{1}, Jasper L\textsuperscript{2}, Eric Zhang\textsuperscript{3}, Han Zhang\textsuperscript{4}\\[1ex]
+ \newline
+ 1 archit@pm.me\\
+ 2 jasper@truechain.pro\\
+ 3 eric@truechain.pro\\
+ 4 han.zhang2@gmail.com\\
+ }
+
+% \author{
+% \begin{tabular}{*{3}{>{\centering}p{.5\textwidth}}}
+%   Xia, Yu\\ & Sharma, Archit & Zhang, Jiannan
+%  \url{jasper@truechain.pro} & \url{archit@pm.me} & \url{eric@truechain.pro}
+% \end{tabular}
+%  }
+
+% \author{%
+%   Xia, Yu\\
+%   \texttt{jasper@truechain.pro}
+%   \and
+%   Sharma, Archit\\
+%  \texttt{archit@pm.me}
+%  \and
+%  Zhang, Jiannan\\
+%  \texttt{eric@truechain.pro}
+%  }
+
+\begin{document}
+ %
+ % \begingroup
+ % \centering
+ % {\LARGE Truechain: Highly Performant Decentralized Public Ledger \\[1.5em]
+ % \small First Draft \\
+ % \small Work in Progress \\
+ % \large Xia, Yu\Mark{1}, Sharma, Archit\Mark{2}, Zhang, Jiannan\Mark{1}\\[1em]
+ % \begin{tabular}{*{3}{>{\centering}p{.25\textwidth}}}
+ % % \Mark{1}Department1 & \Mark{2}Department2 & \Mark{3}Department3 \tabularnewline
+ % % School1 & School2 & School3 \tabularnewline
+ % \url{asper@truechain.pro} & \url{archit@pm.me} & \url{eric@truechain.pro}
+ % \end{tabular}\par
+ % \endgroup
+
+% \newdate{date}{04}{23}{2018}
+
+\pagecolor{yellowpapercolor}
+
+\begin{abstract}
+In this paper we present the initial design of truechain consensus protocol and other technical details.
+Briefly, our consensus design enjoys the same consistency, liveness, transaction finality and security guarantee, a
+de-facto with the Hybrid Consensus. We discuss optimizations like frequency of rotating committee members and physical
+timestamp restrictions. We go on to propose the idea of a new virtual machine on top of Ethereum which adds
+permissioned-chain based transaction processing capabilities in a permissionless setting. We also use the idea of
+data sharding and speculative transactions, evaluation of running of smart contracts in a hybrid cloud infrastructure and
+usage of existing volunteer computing protocols for something we introduce as a compensation infrastructure.
+
+In the next version of this Yellow Paper, we will address some of these properties formally along with few of the future
+directions listed at the end of the paper.
+\end{abstract}
+
+\maketitle
+% \thispagestyle{empty}
+
+\setlength{\columnsep}{20pt}
+\begin{multicols}{2}
+
+\section{Introduction}
+
+With the surging popularity of cryptocurrencies, blockchain technology has caught attention from both industry and academia.
+One can think blockchain as a shared computing environment involving peers to join and quit freely, with the premis for a commonly
+agreed consensus protocol. The decentralized nature of blockchain, together with transaction transparency, autonomy, immutability,
+are critical to crypocurrencies, drawing the baseline for such systems. However top earlier-designed cryptocurrencies,
+such as Bitcoin\cite{nakamoto2008bitcoin} and Ethereum\cite{buterinethereum}, have been widely recognised unscalable in terms
+of transaction rate and are not economically viable as they require severe energy consumptions and computation power.
+
+With the demand of apps and platforms using public blockchain growing in real world, a viable protocol that enables higher
+transaction rates is a main focus on new systems. For example, consider a generic public chain that could host computationally intensive
+peer to peer gaming applications with a very large user base. In such a chain, if it also hosts smart contracts for Initial Coin
+Offerings in addition to a Digital Advertisement applications, we could easily expect a huge delay in transaction confirmation times.
+
+There are other models like delegated mechanism of Proof of Stake and Permissioned Byzantine Fault Tolerant (BFT) protocols.
+The BFT protocol ensures safety as long as only one third of the actors in the system are intentionally/unintentionally malacious adversaries,
+at a time. This is a really good mechanism, however a BFT chain alone has a problem with scalability and pseudo-decentralization.
+The Proof of Stake protocol with a small number of validators could although facilitate high throughput, but the system in itself is
+highly dependent on a few stakeholders to make the decisions on inclusion and exclusion of delegates. Moreover, there is no transparency
+without Merkel trees and this type of system could always suffer from nothing-at-stake paradox.
+
+In this Paper, we propose TrueChain, a Hybrid Protocol\cite{pass2017hybrid} which incorporates a modified form of PBFT (Practical Byzantine
+Fault Tolerance)\cite{castro1999practical} and POW (Proof of Work) consensus. The POW consensus ensures incentivization and committee selection while the PBFT layer acts as a highly performant consensus
+with capabilities like instant finality with high throughput, transaction validation, rotating committee for fair trade economy
+and a compensation infrastructure to deal with non-uniform infrastructure. The nature of hybrid protocol allows it to tolerate
+corruptions at a maximum of about one third of peer nodes.
+
+\section{Background}
+
+The core strength of this proposal lies in the recognition of the theorems proposed in the Hybrid Protocol\cite{pass2017hybrid}
+by Pass and Shi. We benefit from the fact that there is a lot of design space for further optimizations in that paper.
+The use of DailyBFT as committee members allows for the rotating committee feature which provides for better fairness for
+the consensus validating peers.
+
+The POW nodes could benefit from incentivization infrastructure while they are also a part of the slower snailchain, helping
+deploy smart contracts.
+
+\subsection{Related Works}
+
+Hybrid Consensus follows a design paradigm where BFT and PoW are combined together so that it enjoys best of both worlds. In general,
+Hybrid Consensus will utilize BFT protocols, which by default works in a permissioned setting where all the identities are known a priori,
+as a fast path dealing with large amount of incoming transactions. While PoW protocols choose the BFT committee based on a combination of
+csize (number of blocks mined) and of $\mathsf{stake\_in}$ / $\mathsf{stake\_out}$. This provides the barebone necessary to deal with
+dynamic membership and committee switching in the permissionless setting.
+
+\section{Consensus}
+Our consensus design is largely based on Hybrid Consensus by Pass and Shi~\cite{pass2017hybrid}, with several modifications
+and improvements in order to tailor for the application scenarios that we focus on. In this section we will assume the readers
+are familiar with every detail of Hybrid Consensus protocol.
+
+\subsection{Design Overview}
+
+In this subsection we will present an overview of our consensus protocol. In this protocol, we use the same abstract symbols and definitions
+in~\cite{pass2017hybrid}. In the following part of this section, we will explain our modifications and further constructions on top of Hybrid Consensus.
+
+Our adversary model follows the assumptions in~\cite{pass2017hybrid} where adversaries are allowed to mildly adaptively corrupt any node, while corruptions
+do not take effect immediately. In the next version of Yellow Paper we will formally explain our modifications in
+Universal Composabililty model~\cite{canetti2001universally}.
+
+Note that all the pseudocodes in this Yellow Paper are simplified for the sake of easy explanations. They are not optimized for engineering.
+
+\subsection{Recap of Hybrid Consensus Protocol}
+
+In this subsection, we recall major components and definitions from the Hybrid Consensus protocol.
+
+\subsubsection{Fruitchains as opposed to Nakamoto chain}
+
+We follow the adoption of Fruitchain instead of Nakamoto (traditional chain) for the slowchain (snailchain), so as to defend against $1/3 - \varepsilon$ corruption (in hashpower)
+for a random small constant $\varepsilon$, to obtain an optimal resilience.
+
+% Figure 1
+\subsubsection{Daily offchain consensus protocol}
+
+In DailyBFT, committee members run an offchain BFT instance to decide a daily log, whereas non-members count signatures from committee members.
+It extends security to committee non-members and late-spawning nodes. It carries with it, a termination agreement which requires that all honest
+nodes agree on the same final log upon termination. In DailyBFT, committee members output signed daily log hashes, which are then consumed by the
+Hybrid Consensus protocol. These signed daily log hashes satisfy completeness and unforgeability.
+
+On keygen, add public key to list of keys. On receiving a $\mathsf{comm}$ signal, a conditional election of the node as committee member happens.
+The environment opens up the committee selectively.
+
+Here is how the subprotocol works for when the \textbf{node is a BFT member}:-
+A BFT virtual node is then forked. BFT virtual node here, denoted by $BFT_pk$, then starts receiving the TXs (transactions).
+The log completion is checked and stopped iff the $\mathsf{stop}$ signal has been signed off by atleast a third of the initial
+$\mathsf{comm}$ distinct public keys. During this, a continuous "Until $\mathsf{done}$" check happens and once completion of gossip
+happens at each step, all the $\mathsf{stop}$ log entries are removed
+
+Here is how the subprotocol works for when the \textbf{node is not a BFT member}:-
+On receival of a transaction, the message is added to $\mathsf{history}$ and signed by a third of the initial
+$\mathsf{comm}$ distinct public keys
+
+The signing algorithm tags each message for the inner BFT instance
+with the prefix “0”, and each message for the outer DailyBFT with the prefix “1” to avoid namespace collision.
+
+% Figure 3
+\subsubsection{The mempool subprotocol}
+
+Initializes $\mathsf{TXs}$ with 0 and keeps a track of incoming transactions with a Union set. On receiving a $\mathsf{propose}$ call, it adds the
+transaction to log and communciates with gossip protocol. It also supports $\mathsf{query}$ method to return confirmed transactions. By keeping
+track of transactions in a set, it purges the ones already confirmed.
+
+% Figure 4
+\subsubsection{Main Hybrid Consensus protocol}
+
+A newly spawned node with an implicit message routing that carries with it $\mathsf{history}$ of the transcripts sent and received.
+This interacts with the following components - Mempools, Snailchain, Preprocess, Daily Offchain Consensus, and on chain validation.
+
+\subsection{Variant Day Length and Hybrid Committee Election}
+\label{sec:election}
+In \cite{pass2017hybrid}, $\mathsf{BFT}$ committee instances are switched after a fixed period of time (with the $\mathsf{snailchain}$ as a logical clock).
+And new committee is formed simply by the miners of the latest $csize$ number of blocks inside $\mathsf{snailchain}$. In our consensus design, we want to exploit
+the intuition that, if the committee behaves well, we don't have to force them to switch, and therefore the overhead of switching committee could be prevented in
+some situtations. On the other hand, this will raise difficulty for new nodes to get elected as a committee member if the previous committee keeps good records.
+Therefore we still keep the design of forcibly switching the committee every fixed amount of time, but with a much lower frequency, (for example, the committee
+will be switched every $K$ days). On the other hand, we incorporate the idea of authenticated complaints from Thunderella~\cite{pass2017thunderella} where the
+slowchain can be used as the evidence of misbehaviour by $\mathsf{BFT}$ committee members. That is, whenever a committee misbehavior is detected from the
+$\mathsf{snailchain}$, the next day starting point (not necessarily the $K$-th day) will trigger a forced switch.
+
+More over, we will replace the committee election criterion. In Hybrid Consensus, committee members are chosen from the miners of the most recent
+$\mathsf{snailchain}$ blocks. We decide to select committee members based on a hybrid criterion by stakes and randomness. To be more specific, we allow
+full nodes to propose special $stake_in$ and $stake_out$ transactions to temporarily freeze their token assets. And whenever a committee
+switch happens, we will elect $\theta \cdot \mathsf{csize}$ accounts based on their frozen stakes where $\theta \in [0,1]$ is a manual parameter.
+And following the design of~\cite{gilad2017algorand}, we choose the rest $(1-\theta)\cdot \mathsf{csize}$ nodes based on the result of
+VRF~\cite{micali1999verifiable} where the seed is determined by the seed used in previous committee selection, as well as the proposed randomness
+from recent $\mathsf{csize}$ blocks. Different from Algorand~\cite{gilad2017algorand}, here we don't count stake weights for this part of selection.
+
+Notice that the nodes that are chosen by random functions would have a high probability of not being online. For this reason, given the estimated online
+rate $r_{on}$, since we don't want the offline nodes to take the Byzantine quota, we need to make sure $r_{on}\cdot \theta < \frac{f}{\mathsf{csize}}$.
+Usually we take $\theta = \frac{f}{2 r_{on} \mathsf{csize}}$. Another potential design alternative is that we can allow offline nodes by design~\cite{pass2017sleepy}.
+
+Note that a party in charge of overwhelming computation resources will be likely to manipulate the input of VRF, but that already goes beyond our security assumption.
+
+\subsection{Application Specific Design}
+
+Our consensus design is aware of application specific requirements and tailors for them, under the conditions that the consistency, liveness
+and security properties are not compromised.
+
+\subsubsection{Physical Timing Restriction}
+
+Conventional consensus design by default allows miners / committee members / leaders to re-order transactions within a small timing window.
+This raises a problem for some decentralized applications such as commercial exchanges where the trading fairness requires the timing order between
+transactions to be carefully preserved, or otherwise malicious (or, even normal rational) participants will have the incentive to re-order transactions,
+or even insert its own transactions, to gain extra profits. And this incentive will be magnified under high throughputs.
+
+And what is even worse, is that such malicious re-ordering is impossible to distinguish because naturally network latency will cause re-ordering and such latencies
+can only be observed by the receiver itself and therefore it has the final evidence of numbers regarding network latency.
+
+To support decentralized advertisement exchanges, we try to reduce such problems by incoporating one more restriction called sticky timestamp.
+More specifically, with a heuristic parameter $T_\Delta$, when proposing transactions, we require the client to put a physical timestamp $T_p$ inside
+the metadata of the transaction, and this physical timestamp is signed together with the other parts of the transaction. Later when validators inside
+$\mathsf{BFT}$ verify the transaction, it will do the following extra checks as shown in Algorithm~\ref{alg:timestamp}.
+% before evaluating and verify the transaction (a.k.a., semantic checks).
+
+\begin{figure*}
+\begin{algorithm}[H]
+\KwData{Input Transaction $\mathsf{TX}$}
+\KwResult{A Boolean value that indicates whether the verification is passed}
+$\mathsf{current\_time} \gets \mathsf{Time.Now()}$\;
+\If{$|current\_time-\mathsf{TX.T_p}|>T_\Delta$}{
+	return $\mathsf{false}$\; \tcp{if the time skew is too large, reject $\mathsf TX$.}
+}
+var $\mathsf{txn\_history=}$ new static dictionary of lists\;
+\eIf{$\mathsf{txn\_history[TX.from]} == NULL$}{
+	$\mathsf{txn\_history[TX.from]} == [TX]$\;
+}{
+	\eIf{$\mathsf{txn\_history[TX.from][-1].T_p}-\mathsf{TX.T_p} > 0$}{
+		return $\mathsf{false}$\; \tcp{To make sure the transactions from the same node preserve timing order.}
+	}{
+		$\mathsf{txn\_history[TX.from].append(TX)}$\;
+		return $\mathsf{true}$\;
+	}
+}
+\caption{Extra Verification Regarding Physcal Timestamp}
+\label{alg:timestamp}
+\end{algorithm}
+\caption{Pseudo-Code for Extra Verification}
+\end{figure*}
+
+At the stage of materializing logs inside $\mathsf{BFT}$, the leader will sort the transaction batch according to its physical timestamps and break ties
+(though very unlikely) with the sequence number. Actually this step is not necessary because we can enforce the order later in the evaluation and verification.
+But for simplicity, we put it here.
+
+This set of modications give us several extra properties:
+
+\begin{enumerate}
+\item The order of transactions from any node $N_i$ is internally preserved according to their physical timestamps. Thus the sequence order of these transactions
+is strictly enforced. This will get rid of the possibility of some malicious re-ordering that involves two transcations from the same node.
+\item The order within a batch of transactions output by the $\mathsf{BFT}$ committee is strictly ordered by timestamps.
+\item Nodes cannot manipulate fake physical timestamps because of the timing window restriction.
+\end{enumerate}
+
+One obvious disadvantage of this modificaion will be the reduction in terms of throughput due to aborting transactions when the parameter $T_\Delta$ is inappropriate
+for the varying network latency. Another disadvantage is that, the $\mathsf{BFT}$ committee members are still allowed to lie about their local time and reject certain
+transactions. However, committee members can reject certain transactions anyway. But honest nodes could potentially reject ignorant transactions because of their
+unsynchronzied clocks. This issue can be reduced by adding restrictions on the eligibilities of the $\mathsf{BFT}$ committee. Later we will see that to get into
+the committee, the nodes should present evidence of synchronized clocks.
+
+\subsection{Computation and Data Sharding, and Speculative Transaction Execution}
+In this subsection we introduce our sharding scheme.
+
+%\subsubsection{High Level Idea}
+An important modification over the original Hybrid Consensus is that we add computation and data sharding support for it. And even more, first of its kind,
+we design a speculative transaction processing system over shards. The idea is clear. In Hybrid Consensus, the $\mathsf{DailyBFT}$ instances are indexed into
+a determininstic sequence $\mathsf{DailyBFT[1\dots R]}$. We allow multiple sequences of $\mathsf{DailyBFT}$ instances to exist at the same time. To be precise,
+we denote the $t$-th $\mathsf{DailyBFT}$ sequence by shard $S_t$. For simplicity, we fix the number of shards as $C$. Each $\mathsf{DailyBFT}$ is a normal shard.
+Besides $C$ normal shards, we have a primary shard $S_p$ composed of $\mathsf{csize}$ nodes. The job of the primary shard is to finalize the ordering of the
+output of normal shards as well as implementing the coordinator in distributed transaction processing systems. And the normal shards, instead of directly connecting
+with Hybrid Consensus component, submit logs to the primary shard, which in turn talks to Hybrid Consensus.
+
+We don't allow any two shards (either normal or primary) to share common nodes, which can be enforced in the committee selection procedure. The election of
+multiple shards is similar to the election procedure described in Section~\ref{sec:election}.
+
+We partition the state data (in terms of account range) uniformly into $C$ shards. This will make sure that every query to the corresponding shard will return
+a consistent state. Since we are going to include meta data for each data unit, we split data into units of data sectors and assign each data sector with an
+address. We have a mapping from data position to data sector address. For simplicity, from now on, we only discuss at the level of data sectors. Each
+data sector $\mathsf{DS[addr]}$ has metadata of $\mathsf{rts, wts, readers, writers}$.
+
+We assume the partition principle is public and given the address $\mathsf{addr}$ we can get its host shard by calling the function $\mathsf{host(addr)}$.
+
+Notice that if we treat every normal shard (when the number of adversaries is not large) as a distributed processing unit, we can incorporate the design of
+logical timestamps \cite{yu2016tictoc} in distributed transaction processing systems \cite{mahmoud2014maat}, which will empower the processing of transactions.
+Here we utilized a simplified version of MaaT where we don't do auto-adjustment of other transaction's timestamps.
+
+For normal shards, it acts exactly as described in $\mathsf{DailyBFT}$ except the following changes to make it compatible for parallel speculative execution.
+
+\begin{figure*}
+\begin{algorithm}[H]
+\textbf{On BecomeShard:}\\
+\myin Initialize all the state data sectors: $\mathsf{lastReaderTS = -1, lastWriterTS = -1, readers=[], writers=[]}$
+
+\textbf{With transaction $\mathsf{TX}$ on shard $S_i$:\\
+On Initialization:}\\
+\hspace{0.1in} $\mathsf{TX.lowerBound = 0}$\;
+\hspace{0.1in} $\mathsf{TX.upperBound = +\infty}$\;
+\hspace{0.1in} $\mathsf{TX.state = RUNNING}$\;
+\hspace{0.1in} $\mathsf{TX.before = []}$\;
+\hspace{0.1in} $\mathsf{TX.after = []}$\;
+\hspace{0.1in} $\mathsf{TX.ID = rand}$\;
+%\hspace{0.1in} $\mathsf{TX.id = a random}$\;
+
+\textbf{On Read Address($\mathsf{addr}$):}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	Send $\mathsf{readRemote(addr)}$ to itself\;
+}{
+	Broadcast $\mathsf{readRemote(addr, TX.id)}$ to $\mathsf{host(addr)}$\;
+	%Broadcast $\mathsf{readRemote(addr)}$ to $\mathsf{host(addr)}$\;
+	Async wait for $2f+1$ valid signed replies within timeout $T_o$\;
+	Abort $\mathsf{TX}$ when the timeout ticks\;
+}
+Let $\mathsf{val, wts, IDs}$ be the majority reply\;
+$\mathsf{TX.before.append(IDs)}$\;
+$\mathsf{TX.lowerBound= max(TX.lowerBound, wts)}$\;
+return $\mathsf{val}$\;
+
+\textbf{On Write Address($\mathsf{addr}$):}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	Send $\mathsf{writeRemote(addr)}$ to itself\;
+}{
+	Broadcast $\mathsf{writeRemote(addr, TX.id)}$ to $\mathsf{host(addr)}$\;
+	%Broadcast $\mathsf{writeRemote(addr)}$ to $\mathsf{host(addr)}$\;
+	Async wait for $2f+1$ valid signed replies within timeout $T_o$\;
+	Abort $\mathsf{TX}$ when the timeout ticks.
+}
+Let $\mathsf{rts, IDs}$ be the majority reply\;
+$\mathsf{TX.after.append(IDs)}$
+$\mathsf{TX.lowerBound= max(TX.lowerBound, rts)}$\;
+return\;
+
+\textbf{On Finish Execution:}
+\For{every $\mathsf{TX'} in TX.before$}{
+	TX.lowerBound = max(TX.lowerBound, TX'.upperBound)\;
+}
+\For{every $\mathsf{TX'} in TX.after$}{
+	TX.upperBound = min(TX.upperBound, TX'.lowerBound)\;
+}
+\If{TX.lowerBound > TX.upperBound}{
+	Abort TX\;
+}
+Broadcast $Precommit(TX.ID, \lfloor \frac{TX.lowerBound + TX.upperBound}{2}\rfloor)$ to all the previous remote shards  which $TX$ has accessed\;
+\tcp{If TX.upperBound = $\infty$, we can set an arbitrary number larger than $TX.lowerBound$.}
+
+\textbf{On receive $\mathsf{readRemote(addr, ID)}$:}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	$\mathsf{DS[addr].readers.append(ID)}$\;
+	return $\mathsf{DS[addr].value, DS[addr].wts, DS[addr].writers}$\;
+}{
+	Ignore
+}
+
+\textbf{On receive $\mathsf{writeRemote(addr, ID)}$:}\\
+\eIf{$\mathsf{host(addr)}==S_i$}{
+	$\mathsf{DS[addr].writers.append(ID)}$\;
+	Write to a local copy\;
+	return $\mathsf{DS[addr].rts, DS[addr].readers}$\;
+}{
+	Ignore
+}
+
+\caption{Sharding and Speculative Transaction Processing}
+\label{alg:shard}
+\end{algorithm}
+\caption{Pseudo-Code for Sharding and Speculative Transaction Processing}
+\end{figure*}
+
+\begin{figure*}
+\begin{algorithm}[H]
+\textbf{On receive $\mathsf{Precommit(ID, cts)}$:}\\
+Look up TX by ID\;
+\If{Found and $\mathsf{cts}$ not in $\mathsf{[TX.lowerBound, TX.upperBound]}$}{
+	Broadcast $Abort(ID)$ to the sender's shard.\;
+}
+TX.lowerBound = TX.upperBound = cts\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ reads, set $DS[addr].rts = max(DS[addr].rts, cts)$\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ writes, set $DS[addr].wts = max(DS[addr].wts, cts)$\;
+Broadcast $Commit(ID, batchCounter)$ to the sender's shard.\;
+\tcp{batchCounter is a number which increases by 1 whenever the shard submit a batch of log to the primary shard.}
+
+\textbf{On receive $2f+1$ $\mathsf{Commit(ID, batchCounter)}$ from each remote shards which $TX$ has accessed:}\\
+TX.lowerBound = TX.upperBound = cts\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ reads, set $DS[addr].rts = max(DS[addr].rts, cts)$\;
+For every data sector $DS[addr]$ $\mathsf{TX}$ writes, set $DS[addr].wts = max(DS[addr].wts, cts)$\;
+Mark $TX$ committed\;
+Let $TX.metadata = [ShardID, batchCounter]$\;
+%Let $TX.shards$ be the set of all the indices of remote shards it has accessed.
+
+\textbf{On output log}\\
+Sort $TX$'s based on their $cts$. Break ties by physical timestamp.
+
+\caption{Sharding and Speculative Transaction Processing (cont.)}
+\end{algorithm}
+\end{figure*}
+
+For the primary shard, it collects output from all the normal shards. Notice that, the data dependency of transactions can be easily inferred by their metadata.
+And a fact is that, if a transaction visits multiple remote shards, it will leave traces in all the shards involved. When a normal shard submit logs to the primary
+shard, it will also write to the snailchain.
+
+When the primary shard receives (or fetchs from the snailchain) a batch of txns from a shard, it will check if it has received from all the shards transactions
+within this batch. If after certain timeout it has not received transactions from a particular batch, it means that batch has failed. In this case, a whole committee
+switch will be triggered at the next day starting point. After receiving all the shards' logs, the primary shard sorts the transactions based on their commit
+timestamps (if some transaction has earlier batch number, it will be considered as the first key in the sorting, however, if its physical timestamp violates
+the timestamps from many shards, we decide that batch as invalid and all the transactions inside that batch are aborted). After sorting, the primary shard
+filters all the transactions and keeps a longest non-decreasing sequence in terms of physical timestamps. Out the log to the Hybrid Consensus component as that
+day's log.
+
+There are still many optimisation spaces. One certain con is that the confirmation time in this design is not instant.
+
+% \subsection{probabilistic replica creation for the shards}
+% \subsection{determining upper and lower bounds on shards based on actual network delay}
+
+
+\section{Smart Contracts in Virtual Machines}
+
+\subsection{Design Rationale}
+
+Of all the reasons to have an Ethereum Virtual Machine (EVM)~\cite{gavinethereum}, one of aims is to meter the usage with a transaction fee
+in a Proof of Work model. Since ours is a hybrid model, we'll take the liberty of exploring this design space a little bit further. Let us
+consider the possibility of a hybrid cloud ecosystem.
+
+A basic problem people have faced is the kind of crude mathematical notations followed in Ethereum's Yellow Paper~\cite{gavinethereum}.
+We therefore hope to follow something like KEVM jellopaper~\cite{kevmjello} to list out the EVM and TVM (described in~\ref{sec:tvm}) specifications.
+And in future, we hope to maintain our own specifications through Truechain's github account (https://github.com/truechain).
+
+\subsubsection{What about containers instead of VMs?}
+
+One of the blockchain frameworks out there that come as close to this idea as possible, is Hyperledger's Fabric framework~\cite{fabricpaper}.
+If one sets out to convert Fabric's permissioned nature into permissionless, one of the foremost challenges
+would be to solve the chaincode issue. What this means is while it's possible to keep a chaincode/smart contract in a single container,
+that is not a scalable model for a public chain. Having such a model for public chain means having to run several thousand containers,
+per se, several thousand smart contracts on a single node (because each node maintains a copy).
+% \linebreak
+
+\smallskip
+There have been attempts from the community on being able to run a certain maximum containers per node. The limit currently is 100 pods
+per node, per se, approximately 250 containers per node, as illustrated in Kubernetes container orchestration platform~\cite{kubelimit}
+and Red Hat's Openshift Container Platform 3.9's Cluster Limits~\cite{ocpclusterlimit}. Even with latest storage techniques like
+brick multiplexing~\cite{brickmul}, the max possible value (say $\mathsf{MAX\_CONTR}$) of containers could not possibly reach
+(at least right now) 1000. This issue could further be looked up in the discussions on kubernetes issues
+github page~\cite{k8scale} around workload-specific limits that usually determine the maximum pods per node.
+People who wish to scale containers usually prefer horizontal scaling rather than a vertical scaleup~\cite{cncfscaleout, kubecommgoals},
+as the latter significantly increases complexity of design decisions. And there's no one-size-fits-them-all rule for a cluster scale
+configuration as that entirely depends on the workload, which being more in our case due to its decentralized nature, isn't very
+convincing for taking a step towards scaling this. At this point, it becomes more of an innovation problem than a simple technical
+specification search. Ethereum currently has $\mathsf{ > 1000 }$ smart contracts deployed. Therefore this would be nothing but a crude
+attempt at optimizing the container ecosystem's design space.
+
+Now let us expand a bit on the container scenario. Given the above crisis, a possible solution is to use container in a
+serverless architecture. But consider a scenario where $\mathsf{> 2000}$ contracts are online and the concurrent requests,
+i.e., invocation calls to chaincode (a moving window) at a time exceed $\mathsf{MAX\_CONTR}$ value, we then face the same
+problem all over again. Therefore, it is only advisable to add a throttling rate limit on the max concurrent requests.
+This severly limits the Transactions Per Second from the consensus, by design. Engineering should not be a bottleneck to what could
+be achievable alternatively. Therefore, we choose to stick to EVM design, although a bit modified for our purpose.
+
+\subsection{Truechain Virtual Machine (TVM)}
+\label{sec:tvm}
+
+A typical example in this space would be that of the Ethereum Virtual Machine (EVM) ~\cite{gavinethereum}, which tries to follow
+total determinism, is completely optimized and is as simple as it gets, to make incentivization a simple step to calculate.
+It also supports various features like off-stack storage of memory, contract delegation and inter-invocation value storage.
+
+We would reuse the EVM specifications for the snailchain, but add a new specification for TVM in the next version of this Yellow Paper,
+after careful consideration of the design rationale similar to EVM, deriving the stack based architecture utilizing the Keccak-256
+hashing technique and the Elliptic-curve cryptography (ECC) approach.
+
+The Truechain infrastructure will utilize a combination of EVM and another EVM-like bytecode execution platform for launching smart contracts.
+We choose to use one VM for POW and another for PBFT, embedded within each full node, so they could manage invocation calls on per-need basis.
+
+The TVM backs the DailyBFT powered chains, which interact with the following components:
+\begin{itemize}
+  \item re-using some of the concepts from tendermint, like the ABCI (Application BlockChain Interface) which offers
+  an abstraction level as means to enable a consensus engine running in one process to manage an application state running in another.
+  \item A different consensus engine pertaining to dailyBFT chain,
+  \item A permissioned Ethereum Virtual Machine
+  \item An RPC gateway, which guarantees (in a partially asynchronous network) transaction finality
+\end{itemize}
+
+% The TVM deals with the following state sets:
+\#TODO - formally define transition states of TVM, smart contracts deployment strategy
+and a way to deploy permissioned VM onto a permissionless chain.
+
+\#TODO - define parameter to switch between the POW and the full node (POW and PBFT).
+
+\section{Blocks, State and Transactions}
+
+\# TODO - Talk about changes to blocks, world state flow, transactions and execution model
+
+% \subsection{The world state and snapshotting}
+% \subsection{Homestead}
+% \subsection{Transactions and execution}
+% \subsection{The Block}
+
+\section{Changes to the Ethereum Blockchain Paradigm}
+
+\subsection{Fruitchain as snailchain}
+
+The greatest challenge that POW based consensus faces today are efficiency and scalability. Slow execution and confirmation time make it unfit to develop complex applications, and excessive energy consumption make it environmentally unfriendly. The protocol we propose use a hybrid of PBFT and PoW as core consensus. Unlike Ethereum, where transactions and smart contracts are executed by every node on the network, a rotating BFT committee will handle the bulk of heavy lifting while PoW (the snailchain) will only be used to select the committee members. Observe that in the limiting case, where we take committee rotating frequency to one block and $\mathrm{csize} = 1$, we recover the traditional PoW consensus. 
+
+A functioning BFT committee require 2/3 of its members to be honest\cite{castro1999practical}. Hence, for some $\epsilon > 0$, we require the chain quality $Q > 2/3 + \epsilon$. A naive implementation using a Nakamoto chain as the snailchain will be vulnerable to obvious selfish mining attack strategies. If a selfish miner controlled more than 25\% of the blockchain's hash power, she could control more than 33\% of block production\cite{naya2015stub}\cite{eyal2013self}. The probability of being elected to the BFT committee, according to the procedure described in \cite{pass2017hybrid}, is equal to one's block production fraction. Hence, the selfish miner is likely to control over 1/3 of the BFT committee, and thus the BFT protocol is compromised. 
+
+The worst case scenario is possible through a strategy illustrated in \cite{ritz2018uncle}. If a selfish miner controls 40\% of the hash power in a Ethereum-type blockchain, she can control 70\% of block production through optimized selfish mining. According to the committee election procedure in \cite{pass2017hybrid}, she will have control over 70\% of the BFT committee. The BFT committee is not only compromised, the selfish miner will have the dictatorial dominance to declare any honest committee member as 'dishonest' at her will. 
+
+We choose the fruitchain\cite{pass2017fruit} as our underlying snailchain for hybrid consensus. The fruitchain is more resistant to selfish mining, as stated by the fairness theorem in \cite{pass2017fruit}. However, the BFT committee is still vulnerable should an attacker directly control over 33\% of the blockchain's hash power. Hence, we will take further deviations from \cite{pass2017hybrid} and \cite{pass2017fruit} to alleviate the issues. We also remark that given the current market share of mining pools, it's not at all inconceivable for a party to command significant proportion of hash power in a blockchain. 
+
+There are two undesirable extremes that we need to find a balance in, 
+\begin{itemize}
+	\item Randomly select BFT members via VRF\cite{micali1999verifiable}. This is vulnerable against a Sybil attack.
+	\newline
+	\item Any selection procedure where probability of being selected is proportional to hash power. The BFT committee is vulnerable against mining pools who are rich in hash power. 
+\end{itemize} 
+
+
+Our proposed solution are as follows. When an honest BFT node's chain reaches $\lambda$ in length, it will publish the unique miner IDs of every fruit in the chain as candidates (or, every miner ID who mined more than $\nu$ fruits). The new BFT committee is randomly selected from the candidates though application of VRF.  
+
+The obvious Sybil attack is not possible under this scheme, as you require a minimal level of PoW to become a candidate. Neither it will be easy for a large mining pool to achieve compromise the BFT committee. A fruit will be orders of magnitude easier to mine than a block. 
+
+
+\subsection{Mining process}
+
+Inheriting the variable definitions from \cite{pass2017fruit} (p.14 - 16), the fruitchain consist of a blockchain with each block containing its own set of fruits. Transactions executed by the BFT will be initially packaged as a record $\mathrm{m}$ to be mined as a fruit. Fruits more recent than a recency parameter $R$ will be packaged into a block when the next block is mined. 
+
+The miner will run only one mining algorithm that produces hash values $h$ from a random oracle. A fruit is mined when $[h]_{-\kappa} < D_{p_f}$, and a block is mined when $[h]_{\kappa} < D_{p}$, where $D_{p_f}$ and $D_p$ are the mining difficulty parameter of the fruit and block respectively. The tuple $(R, D_p, D_{p_f})$ determines mining process. 
+
+In order to discourage the deployment of ASICs, we will make the recency parameter $\kappa = \kappa (t)$ time-dependent. VRF will generate and broadcast a new $\kappa (t)$ (to fall within the valid range) using VRF once every 3 months. Details of this process will be included in a future version of the yellow paper. 
+
+
+More specifically, the mining algorithm goes as follows. A fruit is a tuple $f = (h_{-1}; h'; \eta ; \mathrm{digest}; m; h)$, while a block is a tuple $\mathrm{b} = ((h_{-1}; h'; \eta; \mathrm{digest}; \mathrm{m}; h), F)$ where each entry means
+
+\begin{itemize}
+	\item $h_{-1}$ points to the previous block's reference, only useful for fruit verification.
+	
+	\item $h'$ points to a block that contains the fruit, only useful for block verification. 
+	
+	\item $\eta$ is the random nonce. 
+	
+	\item $\mathrm{digest}$ is a collision resistant hash function, value used to check the fruit's validity. 
+	
+	\item $\mathrm{m}$ is the record contained in the fruit.
+	
+	\item $h = H(h_{-1}; h' ; \eta , d(F); \mathrm{m})$ is the hash value of the block / fruit.	
+	
+	\item $F$ is a valid fruitset as defined in \cite{pass2017fruit}.
+\end{itemize}
+
+
+The blockchain $chain = \{ chain[0] , chain[1] , ... , chain[l] \}$ is a collection of individual blocks ordered by index $i$, where $chain[i].h_{-1} = chain[i-1].h$, and $l$ is the length of $chain$. We call a fruit $f$ 'recent' w.r.t. $chain$ if $f \in \{ chain[l-R+1].F \cup ... \cup chain[l].F \}$. In our implementation, we choose $R = 17$. 
+ 
+\begin{figure*}
+	\begin{algorithm}[H]
+		\textbf{Initialize} \\
+		$chain = chain[0]$ \\
+		$chain[0] = (0;0;0;0;\perp ;H(0;0;0;0;\perp ),\emptyset )$\\
+		$F = \emptyset$ \\
+		
+		\If{heard fruit $f'$}{
+			\If{$f'$ is the unique fruit corresponding to message $\mathbf{m'}$} {$F = F \cup f' $} 
+			
+			\If{$f'.h_{-1} < f.h_{-1}$ for all other fruits $f$ such that $f.\mathbf{m} = \mathbf{m'}$.} {$F = F \cup f' $} 
+		}
+		
+		\If{heard blockchain $chain'$ and $|chain'.F| > |chain.F|$}{
+		$chain = chain'$ \\
+		where $|chain.F|$ is the total number of fruit contained in $chain$.  
+	}
+		
+		\ForEach{time step (1 sec) }{
+			Heard signed message \textbf{m}, broadcasted by PBFT. Let \\ 
+			$l = |chain|-1$, so $chain = (chain[0] ,..., chain[l])$. \\
+			$F' = \{ f \in F : f$ recent  w.r.t. $chain , f \not\in chain \} $ \\
+			$h' = chain[pos].h_{-1}$ where $pos = \max (1,l-\kappa )$. \\
+			$h_{-1} = chain[l-1].h$. \\
+			\While{mined = FALSE} {
+				Randomly pick $\eta \in \{ 0,1 \}^\kappa$ \\
+				Compute $h = H(h_{-1}; h'; \eta; \mathbf{d}(F');\mathbf{m})$\\
+				\If{$[h]_{-\kappa :} < D_{p_f}$ }{
+					$f = (h_{-1}; h'; \eta; \mathbf{d}(F');\mathbf{m},h)$ \\
+					$F = F \cup f$ \\
+					boardcast fruit $f$ \\
+					mined = FRUIT \\
+					\If{$[h]_{:\kappa} < D_p$}{
+						$chain[l] = ((h_{-1}; h'; \eta; \mathbf{d}(F');\mathbf{m},h),F') $\\
+						broadcast blockchain $chain$  \\	
+						mined = BLOCK \\
+				}
+			}
+		}
+	}
+		\caption{Blockchain growth process}
+	\end{algorithm}
+\end{figure*}
+
+We tentatively choose $D_p$ and $D_{p_f}$ such that expected time to mine a fruit and block are respectively 1 second and 10 minutes. 
+
+We make the following remark with our mining process, 
+\begin{itemize}
+	\item Fruits are easier to mine than blocks, and therefore miners are less incentivized to join or form mining pools. This make PoW a fairer process. 
+	
+	\item Since fruit mining difficulty is low, its quite likely that two fruits are mined simultaneously. One way of determining which is the valid fruit is by choosing the one with a lower hash value. 
+	
+	\item Fruits are not stable until they are written in a block. Therefore the mining reward will be paid to the block miner, who will then distribute her reward to miners of fruits that are included in the block. 
+	
+	\item One advantage of the fruitchain protocol is that fruits can be mined in any order, and this can make mining highly parallel. This will be particularly useful when combined with sharding. 
+\end{itemize}
+
+
+\subsection{Non-PoW mining}
+
+Truechain aim to seamlessly merge the processing power of TVM and the storage capability of an IPFS. This will allow sophisticated systems to be running decentralized on the Truechain architecture. Data storage on Truechain will be possible in three levels, 
+
+\begin{itemize}
+	\item Level 1: Stored on every PoW node like Ethereum. This is the most permanent way of storage, alas also the least efficient. It is not recommended to store anything other than short text, such as the hash value of critical information. Users will pay a gas fee to PoW miners. 
+	
+	\item Level 2: There will be an IPFS-like file system where a limited copy of the data is distributed to storage nodes throughout the chain. This is typically designed for storing an decentralized application to run on the True virtual machine. Users will pay miners a fee for both storage and retrieval.
+	
+	\item Level 3: Local storage. The file will be only stored your own local node. This is useful for peer to peer communication such a chat program, where it's in the interest of users to be certain that nobody is eavesdropping. This is free of charge. 
+\end{itemize}
+
+One advantage of the fruitchain protocol is that fruits have a relatively flexible structure. Two central pillars of an IPFS are the proof of spacetime (PoSt) and proof of replication (PoRep) consensus. The fruitchain protocol will allow us to introduce PoSt and PoRep as fruits. However, non-PoW miners will have their own compensation structure, independent to that of PoW fruit miners. 
+
+Both gas price and storage cost should reflect real market supply and demand. We aim to develop a highly scalable infrastructure, per-unit gas cost are expected to be low compared to current standards. A major drawbacks with the Ethereum gas pricing scheme is that it only allow for a spot market. Similar to the spot market for electricity, historical gas price follows a shot noise process, which is rather volatile. The gas pricing model in Truechain will be based on futures market, where a spike in future demand can be anticipated with sufficient supply via term structure modeling. 
+
+
+\subsection{Compensation Infrastructure}
+
+In this section we will present a concept of compensation infrastructure in order to balance the workload of $\mathsf{BFT}$
+committee members and non-member full nodes.
+
+Treating all shards as equivalent of each other in terms of network and CPU bandwidth could produce skewed results,
+with inconsistent TPS, or worse, sometimes cross timeout limits, while ordering of transaction takes place from the
+Primary shard. To tackle this, we propose a compensation infrastructure, that works along the lines of Berkeley Open
+Infrastructure for Network Computing. There has been a previous attempt in this area from Gridcoin~\cite{gridwhitepaper}
+and Golem network~\cite{golemwhitepaper}.
+
+Gridcoin's distributed processing model relies pre-approved frameworks to the like of Berkeley Open Infrastructure
+for Network Computing (BOINC)~\cite{boincproject}, an opensource distributed volunteer computing infrastructure,
+heavily utilized within cernVM\cite{cernvm} in turn, harnessed by the LHC@Home project~\cite{lhcathome}
+A framework like this has to tackle non-uniform wealth distribution over time. On the other hand, Golem is another great
+ongoing project with concrete incentivization scheme, which would be used as an inspiration for compensation infrastructure's
+incentivization methodology. However keeping in mind, a widely known problem is that a blockchain powered volunteer computing
+based rewarding model could easily fall prey to interest inflation if the design lacks a decent incentive distribution scheme over time.
+So to speak, an increasing gap between initial stake holders minting interest due to beginner's luck (algorithmic luck) and the contributors
+joining late, could thence be found fighting for rewards from smaller compensation pools that further condense.
+
+Depending on the kinds of transactions and whether we'd need decentralized storage for some of the smart contracts, we propose the use of
+a hybrid infrastructure that utilizes BOINC and IPFS/Swarm, along side of EVM and TVM. This would make use of Linux Containers to deal with
+isolation of resources and we hope to expand on this section in the next version of this yellowpaper.
+
+\section{Future Direction}
+
+Even after optimizations to the original Hybrid Consensus, we acknowledge various optimizations possible on top of what was
+proposed in this paper. There are following possibilities:
+
+\begin{itemize}
+  \item Improving timestamp synchronization for all nodes, with no dependency on centralized NTP servers.
+  \item Detailed incentivization techniques for compensation infrastructure, so heavy infrastructure investors don't suffer from 'left-out', 'at a loss' problem
+  \item Sharding techniques with replica creation to minimize the transaction set rejection from the BFT committee.
+  \item Addition of zero knowledge proof techniques for privacy.
+  \item Hybrid infrastructure of EVM, TVM and Linux container ecosystem.
+  \item Sections for Virtual Machine Specification, Binary Data Encoding Method, Signing Transactions, Fee schedule and Ethash alternative.
+\end{itemize}
+
+\section{Conclusions}
+
+We have formally defined Hybrid Consensus protocol and its implementation along with plausible speculations in the original
+proposal. In this draft, we have introduced various new concepts some of which we will detail in the next version very soon.
+We recommend people to choose ASIC resistant hardware for deployment of the POW only versus full nodes,
+although more details on hardware shall follow soon.
+
+\begin{itemize}
+  \item A permissioned BFT chain that runs on a few nodes in the permissionless POW based network.
+  \item The BFT committee is a rotating one, preventing corruption in a timely manner
+  \item The BFT committee is responsible for transaction validation, and the POW nodes are only responsible for choosing/electing the committee members according to some rules we've derived and re-defined.
+  \item The new permissioned VM, we've surmised, could be inspired from the EVM, but with different block states and transaction execution flows
+  \item The contemporary permissionless EVM in the POW chain co-exists with this new permissioned VM (which we call Truechain Virtual Machine - TVM)
+  \item The TVM would be the one to validate any transactions related to consensus, while the traditional EVM would need to be re-worked to not really mine for consensus, but for election of BFT using Variable Day length puzzle.
+  \item The incentivation model needs to be re-worked such that it is based off of TVM, and we still reward the miners in POW chain.
+  \item We would eventually support sharding for the BFT committee nodes, for scalability.
+  \item A compensation infrastructure, which accounts for node configuration non-uniformity (different CPU/memory/network bandwidth in the node pool), would eventually be a part of the consensus, thus speeding up transactions.
+  \item The smart contracts execution would thus only happen in TVM (BFT node).
+\end{itemize}
+
+
+\section{Acknowledgements}
+
+We owe a great deal of appreciation and are thankful, to the following folks for their untiring work towards pushing the protocols
+for a decentralized sovereignty, for their design rationale and implementations which served as a solid reference architecture
+in our proposal above. These folks and their legacies are as mentioned below:
+
+\begin{itemize}
+  \item Rafael Pass, Miguel Castro, Satoshi Nakamoto, Vitalik Buterin, Gavin Wood, Ethan Buchman, Andrew Miller et al
+  for their untiring work, contributions and continuous improvisations while spearheading the glamorous Improvement Proposals forums in
+  addition to the active participation through Reddit, Mailing lists, chat forums, white and Yellow Papers, and rest of the mediums alike.
+  \item CNCF and Kubernetes communities for their inspiring ventures into hybrid cloud computing.
+  % \item For their timely support from an engineering perspective:- Vipin Rathi, Akshay Arora, and a few Red Hat DNA mutants
+  % [Sathish VJ, Raghavendra Talur, Shekhar Berry, Sathish Mohan]
+  % \item All those involved with Ethereum, Tendermint, Quorum and Hyperledger projects.
+\end{itemize}
+
+% random number
+% data feeds / oracles
+
+
+\end{multicols}
+
+\bibliography{ref}
+\bibliographystyle{abbrv}
+
+\appendix
+
+\section{Terminology} \label{ch:Terminology}
+
+\begin{description}
+\item[TrueChain Virtual Machine (TVM)] In contrast to EVM which handles incentivization and rotating committee selection,
+  a TVM is based on similar design principles but carries out actual consensus and voting based off of PBFT based Hybrid Consensus.
+\end{description}
+
+% \section{Virtual Machine Specification} \label{ch:Virtual Machine Specification}
+% \section{Binary Data Encoding Method} \label{ch:Binary Data Encoding Method}
+% \section{Signing Transactions} \label{ch:Signing Transactions}
+% \section{Fee Schedule} \label{ch:Fee Schedule}
+% \section{Ethash Alternative} \label{ch:Ethash Alternative}
+
+\end{document}
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.

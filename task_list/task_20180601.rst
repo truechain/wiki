@@ -15,6 +15,7 @@
 
 * 文件格式：文件格式为markdown格式（文件后缀名为md）,或者文件格式为wiki格式（文件后缀名为rst）
 * pull request 文件到 https://github.com/truechain/wiki/tree/master/task_list/task_20180601/  文件夹下。
+* 任务截止时间：2018-06-18 00:00:00 前提交都有参加资格。（实际发放以审核通过后为准）
 
 
 ## 开发参考文档？

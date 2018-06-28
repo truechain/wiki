@@ -1,21 +1,6 @@
-.. Truechain-wiki documentation master file, created by
-   sphinx-quickstart on Mon May 28 03:03:22 2018.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+## doc
 
-Welcome to Truechain-wiki's documentation!
-==========================================
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   introduction
-
-
-Indices and tables
-==================
-
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
+* [whitePaper](https://github.com/truechain/wiki/blob/master/whitepaper/Truechain_en.pdf) 
+* [yellowPaperV1](https://github.com/truechain/wiki/blob/master/yellowpaper/paper_arxiv.pdf)
+* [yellowPaperV0](https://github.com/truechain/wiki/blob/master/yellowpaper/paper.pdf)
+* [hybridConsensus](https://github.com/truechain/wiki/blob/master/paper/pdf/Hybrid_Consensus_Effcient_Consensus_in_the_Permissionless_Model.pdf)
