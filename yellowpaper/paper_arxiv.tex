@@ -122,12 +122,12 @@
 %  }
 
  \author{%
- Archit Sharma\textsuperscript{1}, Jasper L\textsuperscript{2}, Eric Zhang\textsuperscript{3}, Han Zhang\textsuperscript{4}\\[1ex]
+ Archit Sharma\textsuperscript{1}, Jasper L\textsuperscript{2}, Han Zhang\textsuperscript{3}, Eric Zhang\textsuperscript{3}, \\[1ex]
  \newline
  1 archit@pm.me\\
  2 jasper@truechain.pro\\
- 3 eric@truechain.pro\\
- 4 han.zhang2@gmail.com\\
+ 3 han.zhang2@gmail.com\\
+ 4 eric@truechain.pro\\
  }
 
 % \author{
@@ -616,11 +616,18 @@ and a way to deploy permissioned VM onto a permissionless chain.
 % \subsection{Transactions and execution}
 % \subsection{The Block}
 
-\section{Changes to the Ethereum Blockchain Paradigm}
+\section{Incentive Design}
+The Proof of work protocol have a proven track record of attracting computational resources at an unprecedented rate. While existing PoW networks such as bitcoin and ethereum have been successful in their own right, the computational resources they attracted have been nothing more than very powerful hash calculators. They cost a lot of electricity to run, and produce nothing useful. 
+
+In this section we will present a concept of compensation infrastructure in order to balance the workload of $\mathsf{BFT}$ committee members and non-member full nodes. We invented a new incentive design for PoW, where participating resources can be redirected to do useful things, such as scaling transactions per second (referred to as ``TPS" from hereon), and providing on-chain data storage. 
+
+Ethereum gas price is determined by a spot market with no possibility of arbitrage, similar to that of electricity spot market studied in \cite{schmidt08}. We consider this market to be incomplete, and therefore fundamental theorem of asset pricing does not apply\cite{delbaen94}. Thus, the underlying gas price will follow a shot-noise process, that is known for its high volatility. We introduce a ``gas market place" where gas will be traded as futures, and this market is complete in the infinitesimal limit. This is expected to significantly reduce gas price volatility compared to Ethereum.
+
+The following subsections will talking about each component of the incentive design in detail. 
 
 \subsection{Fruitchain as snailchain}
 
-The greatest challenge that POW based consensus faces today are efficiency and scalability. Slow execution and confirmation time make it unfit to develop complex applications, and excessive energy consumption make it environmentally unfriendly. The protocol we propose use a hybrid of PBFT and PoW as core consensus. Unlike Ethereum, where transactions and smart contracts are executed by every node on the network, a rotating BFT committee will handle the bulk of heavy lifting while PoW (the snailchain) will only be used to select the committee members. Observe that in the limiting case, where we take committee rotating frequency to one block and $\mathrm{csize} = 1$, we recover the traditional PoW consensus. 
+The greatest challenge that PoW based consensus faces today are efficiency and scalability. Slow execution and confirmation time make it unfit to develop complex applications, and excessive energy consumption make it environmentally unfriendly. The protocol we propose use a hybrid of PBFT and PoW as core consensus. Unlike Ethereum, where transactions and smart contracts are executed by every node on the network, a rotating BFT committee will handle the bulk of heavy lifting while PoW (the snailchain) will only be used to select the committee members. Observe that in the limiting case, where we take committee rotating frequency to one block and $\mathrm{csize} = 1$, we recover the traditional PoW consensus. 
 
 A functioning BFT committee require 2/3 of its members to be honest\cite{castro1999practical}. Hence, for some $\epsilon > 0$, we require the chain quality $Q > 2/3 + \epsilon$. A naive implementation using a Nakamoto chain as the snailchain will be vulnerable to obvious selfish mining attack strategies. If a selfish miner controlled more than 25\% of the blockchain's hash power, she could control more than 33\% of block production\cite{naya2015stub}\cite{eyal2013self}. The probability of being elected to the BFT committee, according to the procedure described in \cite{pass2017hybrid}, is equal to one's block production fraction. Hence, the selfish miner is likely to control over 1/3 of the BFT committee, and thus the BFT protocol is compromised. 
 
@@ -703,14 +710,15 @@ The blockchain $chain = \{ chain[0] , chain[1] , ... , chain[l] \}$ is a collect
 					$F = F \cup f$ \\
 					boardcast fruit $f$ \\
 					mined = FRUIT \\
-					\If{$[h]_{:\kappa} < D_p$}{
-						$chain[l] = ((h_{-1}; h'; \eta; \mathbf{d}(F');\mathbf{m},h),F') $\\
-						broadcast blockchain $chain$  \\	
-						mined = BLOCK \\
+				}
+				\If{$[h]_{:\kappa} < D_p$}{
+					$chain[l] = ((h_{-1}; h'; \eta; \mathbf{d}(F');\mathbf{m},h),F') $\\
+					broadcast blockchain $chain$  \\	
+					mined = BLOCK \\
 				}
 			}
 		}
-	}
+	
 		\caption{Blockchain growth process}
 	\end{algorithm}
 \end{figure*}
@@ -729,7 +737,7 @@ We make the following remark with our mining process,
 \end{itemize}
 
 
-\subsection{Non-PoW mining}
+\subsection{Storage mining}
 
 Truechain aim to seamlessly merge the processing power of TVM and the storage capability of an IPFS. This will allow sophisticated systems to be running decentralized on the Truechain architecture. Data storage on Truechain will be possible in three levels, 
 
@@ -743,13 +751,27 @@ Truechain aim to seamlessly merge the processing power of TVM and the storage ca
 
 One advantage of the fruitchain protocol is that fruits have a relatively flexible structure. Two central pillars of an IPFS are the proof of spacetime (PoSt) and proof of replication (PoRep) consensus. The fruitchain protocol will allow us to introduce PoSt and PoRep as fruits. However, non-PoW miners will have their own compensation structure, independent to that of PoW fruit miners. 
 
-Both gas price and storage cost should reflect real market supply and demand. We aim to develop a highly scalable infrastructure, per-unit gas cost are expected to be low compared to current standards. A major drawbacks with the Ethereum gas pricing scheme is that it only allow for a spot market. Similar to the spot market for electricity, historical gas price follows a shot noise process, which is rather volatile. The gas pricing model in Truechain will be based on futures market, where a spike in future demand can be anticipated with sufficient supply via term structure modeling. 
 
+\subsection{Gas fee and sharding}
 
-\subsection{Compensation Infrastructure}
+Gas price is traded in a futures market, where the futures contract is manifested by a smart contract. Specifically, the contract will be executed as follows. 
 
-In this section we will present a concept of compensation infrastructure in order to balance the workload of $\mathsf{BFT}$
-committee members and non-member full nodes.
+\begin{itemize}
+	\item Party A agree to pay party B \$$xxx$, while party B promises to execute party A's smart contract, between time $T_0$ and $T_1$, that cost exactly 1 gas to run.
+	
+	\item Party B will contribute \$$xxx$ a pool corresponding to the committee C that executed party A's smart contract. This is called the gas pool. 
+	
+	\item Members of C will receive an equal share of the pool, and return an average cost per gas $\mu$ for the pool.
+	
+	\item If B contributed less than $\mu$, she must make up for the difference by paying another party who contributed more than $\mu$. If B contributed more than $\mu$, she will receive the difference from another party. 
+	
+\end{itemize}     
+
+Under this scheme, liquidity providers are rewarded when they correctly anticipate network stress, and hence creating a completely market in the infinitesimal limit. Price volatility are absorbed by the averaging mechanism in the gas pool making the price itself a good indicator of network stress. 
+
+Our intention to ensure gas price is traded roughly within a predetermined interval. Hence, if the moving average price sustain above a certain threshold, a new PBFT committee is spawned through a quantum appearance process. On the other hand, if the moving average price sustain below a certain threshold, an existing PBFT committee will not be given a successor after it finished serving its term.
+
+The proportion of mining reward will be distributed as follows. Let $n$ be the number of PBFT committee running at a certain instance, and $\alpha > 1$. Proportion of mining reward going to PBFT nodes is equal to $\frac{n}{\alpha + n}$, and PoW nodes $\frac{\alpha}{\alpha+n}$. This is to reflect that in later stages of the chain, new nodes are incentivized to contribute to the blockchain's overall TPS, hence ensuring continued scalability of the chain. The parameter $\alpha$ represent the number of PBFT committees when mining reward is divided 50-50.  
 
 Treating all shards as equivalent of each other in terms of network and CPU bandwidth could produce skewed results,
 with inconsistent TPS, or worse, sometimes cross timeout limits, while ordering of transaction takes place from the
