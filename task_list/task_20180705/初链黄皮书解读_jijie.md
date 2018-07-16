@@ -1,8 +1,9 @@
 # 初链黄皮书解读
 
-## 术语：
-## 慢链：snailchain
-## fPoW： fruit chain PoW
+### 术语：
+
+*慢链：snailchain
+*fPoW： fruit chain PoW
 
 ## 概述：
 
