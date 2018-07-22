@@ -10,3 +10,4 @@
 * [黄皮书V1](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaperV1.md)
 * [黄皮书V0](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
 * [混合共识](https://github.com/truechain/wiki/blob/master/paper/Hybrid_Consensus_Effcient_Consensus_in_the_Permissionless_Model.md)
+* [水果链](https://github.com/truechain/wiki/blob/master/paper/FruitChains_A_Fair_Blockchain.md)
