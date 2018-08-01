@@ -61,7 +61,7 @@ ___
 
 cd $GOPATH\src\github.com\ethereum  
 
-git clone https://github.com/truechain/truechain-engineering-code.git
+git clone https://github.com/truechain/truechain-fpow.git
 
 ren  truechain-fpow go-ethereum
 
