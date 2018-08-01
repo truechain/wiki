@@ -61,7 +61,7 @@ ___
 
 cd $GOPATH\src\github.com\ethereum  
 
-git clone https://github.com/truechain/truechain-fpow
+git clone https://github.com/truechain/truechain-engineering-code.git
 
 ren  truechain-fpow go-ethereum
 
@@ -69,8 +69,7 @@ ren  truechain-fpow go-ethereum
 
 现在，true精妙的代码都展示在你面前了。
 
-这时可能会有部分依赖需要下载，那我们分别执行
-go get github.com/ethereum/go-ethereum/consensus/truepow
+这时可能会有部分依赖需要下载，那我们分别执行go get 即可。
 
 ___
 
@@ -150,7 +149,7 @@ ___
 
 
 ## 5 挖矿
-### 5.1 修改launch.json，
+### 5.1 修改launch.json，--nodiscover 用于保证私链。
 ```js
 {
     "version": "0.2.0",
