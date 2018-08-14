@@ -1,0 +1,24 @@
+# Blockchain Tour #
+Blockchain is an emerging hot technology. As a programmer, I will explore and explore it. As an important concept of Bitcoin, it implements a decentralized payment system. My understanding of the blockchain comes from this.
+It’s about 15 years. It’s the first time I found out that I can make money through computer calculations. It’s so cool. By checking the information of the ancestors, the wallet, the mining pool, etc. are registered step by step, and the computer is set to the best state. Everyone should see me laughing here, yes, I want to laugh at myself now. Staying in the dormitory, running for a day, getting the reward, I feel sorry for the electricity bill I paid. Later, when I was in a good position, there would be a lot of practical lessons in my major. Every time I went to the computer room of the school, I occupied the computer. . . . . The gains are still minimal. But from there, I started my blockchain journey!
+## 一、 Blockchain knowledge learning ##
+I first read Nakamoto's white paper. After all, as the origin of the blockchain, it is necessary to see through. Then there is learning the GO language, reading blockchain development guides, modern cryptography, and more. Mainly to understand the basic concepts, common terms. At the same time, some technical attempts are made.
+## 二、 Understanding of blockchain ##
+The blockchain is like a book for all people, and everyone can book it. Since everyone has a backup, even if you lose it, it will not be affected. And it is safe, because a small number of computers are unable to control the central ledger and other people's books.
+## 三、 Blockchain's early chain ##
+1. In recent years, many companies have begun to develop blockchains. I have paid attention to one of them - the initial chain. As a pioneer of a fast, secure, unrestricted, and scalable hybrid consensus chain, the initial chain combines PBFT and POW consensus to ensure the performance requirements required in value circulation and commercial application environments. Centralized security and freedom can be said to be a perfect mixed-consensus public chain with great development potential and potential.
+2. The initial chain involves four layers: the underlying service, the core layer, the API interface layer, and the smart contract. Here is a brief introduction, such as smart contracts. It runs on TVM, and the initial chain virtual machine draws on the design of Ethereum's virtual machine (EVM), implanting each of the decision-making backbone nodes so that they can make requests based on individual requirements. Also for example, the data is evenly distributed among the sub-slices, ensuring that each time the corresponding slice is called, a consistent value is returned. Each data unit contains metadata.
+3. application areas: the initial chain has a real and reliable application in many aspects.
+	- Insurance
+	- medical
+	- Games
+	- Public welfare
+	- Asset Securitization
+	- Digital advertising industry
+	- Small payment
+	- Value transfer
+	- Digital copyright
+	- And many more
+
+四、 the view of the blockchain
+Blockchain has broad prospects for development, and more and more technology Internet companies are investing in research. I believe that in the future, the blockchain will change the world, change the future, and play an important role in various fields!
