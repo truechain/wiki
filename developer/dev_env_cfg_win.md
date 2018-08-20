@@ -18,17 +18,22 @@ Windows 64位系统 百度下载链接： [https://pan.baidu.com/s/1mKeVZ9mWVcWU
 
 **1.2.2 配置Go环境变量**
 
-(1). 新建 变量名：GOBIN 变量值 ：**E:\go\bin**
+一 如果是msi安装文件，Go语言的环境变量会自动设置好。**【亲测 win10通过msi安装后，无需配置环境变量】**
 
-(2). 新建 变量名：GOARCH 变量值：**386**
+二 如果是手动安装，请检查一下环境变量的配置， 具体参考如下：
 
-(3). 新建 变量名：GOOS 变量值：**windows**
+(1). 变量名：GOPATH 变量值 ：**E:\go**
 
-(4). 新建 变量名： GOROOT 变量值：**E:\go**
+(2). 变量名：GOBIN 变量值 ：**E:\go\bin**
 
-(5). 编辑 Path 在Path的变量值的最后加上 **%GOBIN%**
+(3). 变量名：GOARCH 变量值：**386**
 
-如果是msi安装文件，Go语言的环境变量会自动设置好。**【亲测 win10通过msi安装后，无需配置环境变量】**
+(4). 变量名：GOOS 变量值：**windows**
+
+(5). 变量名： GOROOT 变量值：**E:\go**
+
+(6). 编辑 Path 在Path的变量值的最后加上 **%GOBIN%**
+
 
 **1.2.3 验证Go安装环境是否成功**
 
@@ -51,7 +56,9 @@ git-bash.exe文件，双击打开，会弹出一个MinGW64的命令行窗口，�
 
 ### 1.4 安装编译器GCC ###
 
-由于要在windows上编译True链代码，我们需要安装一个编译器MinGW， MinGW全称Minimalist GNU For Windows,是个精简的Windows平台C/C++、ADA及Fortran编译器。
+由于要在windows上编译True链代码，我们需要安装一个编译器MinGW， MinGW全称Minimalist GNU For Windows,是个精简的Windows平台C/C++、
+
+ADA及Fortran编译器。
 
 MinGW-w64-for32 and 64 bit Window 下载地址：[https://sourceforge.net/projects/mingw-w64/files/latest/download](https://sourceforge.net/projects/mingw-w64/files/latest/download)
 
@@ -93,15 +100,13 @@ MinGW-w64-for32 and 64 bit Window 下载地址：[https://sourceforge.net/projec
 
 看到中文界面，是不是倍感情切，尤其是小白们。
 
-接下来是安装VS Code Go插件， 主要涉及到VS Code的自动安装， 但是可能存在部分Go的插件安装失败的，情况，这个时候就需要手动下载插件的源代
+接下来是安装VS Code Go插件， 主要涉及到VS Code的自动安装， 但是可能存在部分Go的插件安装失败的  情况，这个时候就需要手动下载插件
 
-码，通过go get 命令安装。
-
-**一. VS Code 自动安装**
+的源代码，通过go get 命令安装。
 
 启动VS Code IDE， 编写一个hello.go的sample， 写完之后， IDE会推荐需要安装Go的相关插件，选择**Install all**即可。
 
- 在左侧边栏处位置， 有个”扩展“菜单， 选中， 在”扩展“搜索中， 输入 ”Go“，如下图所示，显示正在安装Go插件。
+在左侧边栏处位置， 有个”扩展“菜单， 选中， 在”扩展“搜索中， 输入 ”Go“，如下图所示，显示正在安装Go插件。
 
 查看插件安装详细信息， 选中“输出”选项，如下图所示：
 
@@ -113,9 +118,12 @@ MinGW-w64-for32 and 64 bit Window 下载地址：[https://sourceforge.net/projec
 
 等待所有安装完成后， 可能会出现安装失败的情况，如下图所示：
 
-这些失败的库，不是没有下载下来，而是以来的文件在go官网上，导致失败。以下为解决办法：
-
 ![](http://file.knowle.cn/truechain/1.6.6.png)
+
+
+由于安装失败，所以需要手动下载然后安装了。（如果没有梯子的小伙伴，我这边已经全部下载好了，具体下载地址参考如下）
+
+链接地址：[https://pan.baidu.com/s/1ucGJQF3ha3P0u1gl6BmciQ](https://pan.baidu.com/s/1ucGJQF3ha3P0u1gl6BmciQ) 密码：zfz5
 
 1、在%GOPATH%\src\ 目录下，建立golang.org 文件夹，并再新建x文件夹。  目录为 "%GOPATH\src\golang.org\x\"
 
@@ -126,7 +134,9 @@ git clone https://github.com/golang/tools.git tools
 
 因为主要是gopkgs有goint 2个插件没有安装成功。
 
-我通过cmd控制台， 找到之前环境变量配置的GoPath的安装目录， 我的目录是 **C:\Users\Administrator\go**，手动下载源文件，放到相应的目录，具体操作如下：
+我通过cmd控制台， 找到之前环境变量配置的GoPath的安装目录， 我的目录是 **C:\Users\Administrator\go**，手动下载源文件，放到相应的目录，
+
+具体操作如下：
 
 git clone https://github.com/uudashr/gopkgs.git
 
@@ -154,9 +164,9 @@ F5运行跑一下刚才的Hello.go程序，因为自动安装成功安装调试�
 
 ### 1.6.1 True链开发代码下载 ###
 
-首先打开windows命令行窗口， 进入$GOPATH\src\目录下面，比如，我当前的$GOPATH是 **C:\Users\Administrator\go**,在进
+首先打开windows命令行窗口， 进入$GOPATH\src\目录下面，比如，我当前的$GOPATH是 **C:\Users\Administrator\go**,在通过命令
 
-入**cd C:\Users\Administrator\go\src\github.com** 目录下， 新建一个**truechain** 目录， 然后通过命令行下载最新的true链工程代码，
+**cd C:\Users\Administrator\go\src\github.com** 目录下， 新建一个**truechain** 目录， 然后通过命令行下载最新的true链工程代码，
 
 具体命令如下： **git clone https://github.com/truechain/truechain-engineering-code.git**，100%进度显示即表示下载完成。
 
@@ -166,9 +176,11 @@ F5运行跑一下刚才的Hello.go程序，因为自动安装成功安装调试�
 
 **C:\Users\Administrator\go\src\github.com\truechain**。
 
-第一步， True链工程编初始化参数修改
+第一步， True链工程编初始化参数修改：
 
-首先找到True链工程代码程序的入口， 具体位置在 “..\cmd\getrue\main.go", 通过”F5“编译， 第一次会提示是否打开”launch.json", 选择打开即可，如下图所示：
+首先找到True链工程代码程序的入口， 具体位置在 “..\cmd\getrue\main.go", 通过”F5“编译， 第一次会提示是否打开”launch.json", 
+
+选择打开即可，如下图所示：
 
 ![](http://file.knowle.cn/truechain/Compile_true.png)
 
@@ -178,8 +190,25 @@ F5运行跑一下刚才的Hello.go程序，因为自动安装成功安装调试�
 
 补充一下“showLog”参数值改为true。
 
+配置好参数后，打开工程路径下的../cmd/getrue/main.go文件， 运行F5， 没什么问题会显示初始化成功。
 
-第二步， 编译与手动下载部分依赖库文件。
+第二步，挖矿参数配置：
+
+同样是修改launch.json，--nodiscover 用于保证私链。
+
+【lanuch.json】
+
+    ...
+    
+    ...
+    
+    "args":["--nodiscover", "--mine", "--etherbase", "8a45d70f096d3581866ed27a5017a4eeec0db2a1"],
+    
+    ...
+
+
+
+第三步， 编译与手动下载部分依赖库文件：
 
 执行”F5“操作，这个时候有可能报错， 打开”调试控制台“ 界面，查看一下错误情况，我这边遇到就是”gosigar“这个依赖库下载失败。
 
@@ -187,21 +216,13 @@ F5运行跑一下刚才的Hello.go程序，因为自动安装成功安装调试�
 
 git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys
 
+由于gosigar默认安装的路径是在 ..src/golang.org/x/sys， 所以clone下载的文件要指定到该目录下面
+
 go get -u  github.com/elastic/gosigar
 
 如果按照上述操作没有出现其他错误，就正常Run起来了，在控制台界面看到当前的运行状态，最后，愉快的开始True Chain的开发之旅吧！！！
 
 ------------------------------------------------------------------------------------------------
-补充（考虑到大家翻墙的不方便，我把$GoPATH所有文件，包含Truechian的vscode代码一起放到了云盘，希望大家自行下载）
+补充（考虑到大家翻墙的不方便，我把$GoPATH所有文件包含Truechian的vscode代码，依赖库文件一起放到了云盘，希望大家自行下载）
 
 链接地址：[https://pan.baidu.com/s/1ucGJQF3ha3P0u1gl6BmciQ](https://pan.baidu.com/s/1ucGJQF3ha3P0u1gl6BmciQ) 密码：zfz5
-
-
-
-
-
-
-
-
-
-
