@@ -136,7 +136,8 @@ go get -u github.com/lint/golint
 
 ### 1.6.1 True链开发代码下载
 
-首先打开windows命令行窗口， 进入$GOPATH\src\目录下面，比如，我当前的$GOPATH是 **C:\Users\Administrator\go**,在通过命令**cd C:\Users\Administrator\go\src\github.com** 目录下， 新建一个**truechain** 目录， 然后通过命令行下载最新的true链工程代码，具体命令如下： **git clone https://github.com/truechain/truechain-engineering-code.git**，100%进度显示即表示下载完成。
+首先打开windows命令行窗口， 进入$GOPATH\src\目录下面，比如，我当前的$GOPATH是 **C:\Users\Administrator\go**,在通过命令**cd C:\Users\Administrator\go\src\github.com** 目录下， 新建一个**truechain** 目录， 然后通过命令行下载最新的true链工程代码，具体命令如下：
+**git clone https://github.com/truechain/truechain-engineering-code.git**, 100%进度显示即表示下载完成。
 
 ### 1.6.2 代码编译
 
