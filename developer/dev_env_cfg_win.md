@@ -213,13 +213,7 @@ Goland的官方下载地址 ： [https://www.jetbrains.com/go/download/#section=
 
 ### 1.7.4 代码编译
 
-第一步， True链工程编初始化参数修改：首先找到True链工程代码位置在 “..\cmd\getrue\", 选中右键执行Run整个目录。
-
-修改lanuch.json 代码如下：
-
-![](http://file.knowle.cn/truechain/config_update.png)
-
-配置好参数后，打开工程路径下的../cmd/getrue/main.go文件， 执行该文件，可能会出现以下错误：
+首先找到True链工程代码位置在 “..\cmd\getrue\", 选中右键执行Run整个目录。
 
      # command-line-arguments
     cmd\getrue\main.go:109:3: undefined: configFileFlag
