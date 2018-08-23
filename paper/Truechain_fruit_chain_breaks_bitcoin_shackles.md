@@ -4,7 +4,7 @@
 >
 >发表于：https://zhuanlan.zhihu.com/p/41896293
 
-![æ°´æé¾æç ´æ¯ç¹å¸æ¡æ¢ï¼TrueChainç¯](https://pic4.zhimg.com/v2-8354401c8cbca07082eee8f17bdea957_1200x500.jpg) 
+![初链，水果链打破比特币桎梏](https://pic4.zhimg.com/v2-8354401c8cbca07082eee8f17bdea957_1200x500.jpg)
 
 **我们对区块链的理解，很多都是“盲人摸象”**
 
