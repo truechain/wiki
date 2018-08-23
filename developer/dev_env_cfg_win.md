@@ -57,7 +57,7 @@ MinGW-w64-for32 and 64 bit Window 下载地址：[https://sourceforge.net/projec
 
 选择自定义安装路径， 这边我安装在E:\mingw-w64\目录下面，下一步，安装可能需要几分钟，耐心等待安装完成。安装成功后设置环境gcc编译的环境变量,比如安装在E:\mingw-w64，将E:\mingw-w64\mingw64\bin添加到path的最后面，完成后在cmd中执行gcc -v ,如果显示版本即成功。
 
-### 1.5 安装IDE ###
+### 1.5 安装IDE Visual Studio Code篇 ###
 
 关于选择IDE，推荐使用Visual Studio Code， 具体下载地址如下：[https://code.visualstudio.com/Download](https://code.visualstudio.com/Download) （根据自己的系统自行选择是32bit还是64bit）这里我选择64位的下载，具体安装步骤如下图所示：
 
@@ -136,8 +136,7 @@ go get -u github.com/lint/golint
 
 ### 1.6.1 True链开发代码下载
 
-首先打开windows命令行窗口， 进入$GOPATH\src\目录下面，比如，我当前的$GOPATH是 **C:\Users\Administrator\go**,在通过命令**cd C:\Users\Administrator\go\src\github.com** 目录下， 新建一个**truechain** 目录， 然后通过命令行下载最新的true链工程代码，具体命令如下：
-**git clone https://github.com/truechain/truechain-engineering-code.git**, 100%进度显示即表示下载完成。
+首先打开windows命令行窗口， 进入$GOPATH\src\目录下面，比如，我当前的$GOPATH是 **C:\Users\Administrator\go**,在通过命令**cd C:\Users\Administrator\go\src\github.com** 目录下， 新建一个**truechain** 目录， 然后通过命令行下载最新的true链工程代码，具体命令如下： **git clone https://github.com/truechain/truechain-engineering-code.git**，100%进度显示即表示下载完成。
 
 ### 1.6.2 代码编译
 
@@ -178,6 +177,74 @@ git clone https://github.com/golang/sys.git $GOPATH/src/github.com/golang/sys
 go get -u  github.com/elastic/gosigar
 
 如果按照上述操作没有出现其他错误，就正常Run起来了，在控制台界面看到当前的运行状态，最后，愉快的开始True Chain的开发之旅吧！！！
+
+### 1.7 安装IDE Goland篇
+
+同样，在下载Goland安装之前，需要确定Go，Go的环境变量的配置，Gcc都已经安装配置完成，如果未完成，清参考前面的篇章内容。
+
+### 1.7.1 IDE Goland下载与安装
+
+Goland的官方下载地址 ： [https://www.jetbrains.com/go/download/#section=windows](https://www.jetbrains.com/go/download/#section=windows)
+
+选择windows下载，双击**goland-2018.2.1.exe**进行安装，傻瓜式安装，一路next，如果需要创建桌面快捷方式可以勾选，直到安装完成。参考如下图：
+
+![](http://file.knowle.cn/truechain/Gloand_install_V1.7.1.png)
+
+![](http://file.knowle.cn/truechain/goland_install_finished.png)
+
+### 1.7.2 IDE Goland的配置
+
+双击启动Goland，第一次启动，无需配置Setting， 默认选择**Do not import setting**， 选择OK，然后协议，滚动到底部，点击Accept完成就可以了。
+
+![](http://file.knowle.cn/truechain/Goland_License.png)
+
+然后会有一个Data Sharing界面，选择 Not Send 接下来进入下一步界面， 因为Goloand我们选择是30天使用版，需要购买license激活，这里先不管，选择如下：
+
+![](http://file.knowle.cn/truechain/Goland_free.png)
+
+即将进入Goland的主界面。
+
+安装好之后，首先需要设置一些配置。其中最重要的是“GOROOT”和“GOPATH”两个参数。“GOROOT”表示GO在你电脑上的安装位置，这个一般在安装时，程序会直接将其写入到环境变量中，而“GOPATH”则是你的工作路径，它可以包含多个 Go 语言源码文件、包文件和可执行文件的路径，而这些路径下又必须分别包含三个规定的目录：src、pkg 和bin，这三个目录分别用于存放源码文件、包文件和可执行文件。
+
+### 1.7.3 Truechain代码工程的导入
+
+如果没有下Truechain的开发工程代码，通过命令行**git clone https://github.com/truechain/truechain-engineering-code.git**，将代码放到$GOPATH\src\github.com\truechain\下面即可。
+这里我有下载过Truechain工程代码，直接通过Open Project打开，选择truechain-engineering-code，然后点击OK。因为第一次导入工程，需要耐心等待一会儿。
+
+### 1.7.4 代码编译
+
+第一步， True链工程编初始化参数修改：首先找到True链工程代码位置在 “..\cmd\getrue\", 选中右键执行Run整个目录。
+
+修改lanuch.json 代码如下：
+
+![](http://file.knowle.cn/truechain/config_update.png)
+
+配置好参数后，打开工程路径下的../cmd/getrue/main.go文件， 执行该文件，可能会出现以下错误：
+
+     # command-line-arguments
+    cmd\getrue\main.go:109:3: undefined: configFileFlag
+    cmd\getrue\main.go:149:3: undefined: initCommand
+    cmd\getrue\main.go:150:3: undefined: importCommand
+    cmd\getrue\main.go:151:3: undefined: exportCommand
+    cmd\getrue\main.go:152:3: undefined: importPreimagesCommand
+    cmd\getrue\main.go:153:3: undefined: exportPreimagesCommand
+    cmd\getrue\main.go:154:3: undefined: copydbCommand
+    cmd\getrue\main.go:155:3: undefined: removedbCommand
+    cmd\getrue\main.go:156:3: undefined: dumpCommand
+    cmd\getrue\main.go:158:3: undefined: monitorCommand
+    cmd\getrue\main.go:158:3: too many errors
+    
+    Compilation finished with exit code 2
+
+解决办法如下： 打开Run--Edit Configuration， 在Program arguments中添加如下参数：--datadir ./data init ./truechain-engineering-code/cmd/getrue/genesis.json
+如下图所示：
+ 
+![](http://file.knowle.cn/truechain/Gloand_init_config.png)
+
+配置好参数后，再次Run “..\cmd\getrue\”目录， 当出现下面提示，即表示初始化生成创世区块成功。
+
+![](http://file.knowle.cn/truechain/goland_init_ok.png)
+
 
 ------------------------------------------------------------------------------------------------
 补充（考虑到大家翻墙的不方便，我把$GoPATH所有文件包含Truechian的vscode代码，依赖库文件一起放到了云盘，希望大家自行下载）
