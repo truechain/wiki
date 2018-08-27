@@ -57,6 +57,11 @@ MinGW-w64-for32 and 64 bit Window 下载地址：[https://sourceforge.net/projec
 
 选择自定义安装路径， 这边我安装在E:\mingw-w64\目录下面，下一步，安装可能需要几分钟，耐心等待安装完成。安装成功后设置环境gcc编译的环境变量,比如安装在E:\mingw-w64，将E:\mingw-w64\mingw64\bin添加到path的最后面，完成后在cmd中执行gcc -v ,如果显示版本即成功。
 
+可能遇到的问题：如果当下载mingw-w64-install.exe，在线安装出现如下问题： Cannot download repository.txt[0]。
+
+解决办法：访问 http://sourceforge.net/p/mingw-w64/mailman/message/32967954/ 链接，直接下载合适配置的、已编译的MinGW64文件库，放到C:\MinGW目录下即可。
+
+
 ### 1.5 安装IDE Visual Studio Code篇 ###
 
 关于选择IDE，推荐使用Visual Studio Code， 具体下载地址如下：[https://code.visualstudio.com/Download](https://code.visualstudio.com/Download) （根据自己的系统自行选择是32bit还是64bit）这里我选择64位的下载，具体安装步骤如下图所示：
