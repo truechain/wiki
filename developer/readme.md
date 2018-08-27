@@ -1,0 +1,11 @@
+一、环境构建
+- [x] 苹果开发环境搭建(https://github.com/truechain/wiki/blob/master/developer/1.mac_env_build.md) 
+- [x] Window环境搭建(https://github.com/truechain/wiki/blob/master/developer/2.window_env_build.md) 
+- [ ] 测试网络搭建
+- [ ] 主网网络搭建
+- [ ] IDE(goland和VisualStudioCode)断点调试
+   - [ ] 1、单机模式（本地单节点调试）
+   - [ ] 2、集群模式（测试网络多节点，本地调试）
+- [ ] IDE远程调试（测试网络多节点，远程节点调试）
+- [ ] 调通测试代码，执行单元测试
+- [ ] 编译打包，构建持续集成CI

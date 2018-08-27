@@ -15,8 +15,8 @@
 ## discussion 
 * 20180529 [py-trueconsensus](https://github.com/truechain/wiki/blob/master/discussion/20180529.md)
 
-## QuickStart
-* ……
+## Developer
+* [开发者中心](https://github.com/truechain/wiki/blob/master/developer)
 
 ## Paper and Research  
 参与者 唐斌奇，程世浩，刘乐元，金燕琪，邓格琳
