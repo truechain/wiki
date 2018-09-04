@@ -1,0 +1,87 @@
+https://card.weibo.com/article/v3/editor#/history/318342
+
+
+                                    truechain的一些畅想
+    公有链技术以太坊、EOS发展一路而来，已经到了区块链3.0技术。但现在的区块链3.0的通过这几个月的证实，
+技术并不完美。比如闪电网络并不能达到所设想的状态，超级节点时常被攻击的风险。因此现有的公有链技术，
+如何实现生态链数据快速处理，并能够在保证各完整节点提供大的数据处理能力的前提下，又能保证其安全性，
+是现有区块链3.0技术值得改进的地方。
+    自从比特币的创始和快速发展，尤其是作为金融资本的炒作的工具，使得比特币为底层技术区块链快速进入
+广大人民的视野。现在区块链技术代表着财富的暴增，现在的许多区块链被资本的俘虏来成为炒作的工具。因此
+作为公有链的truechain,应该为更多的技术落地而服务，技术的长足发展才能保证效益的长期稳定。
+关于区块链的一些看法
+一、区块链技术认识现有局限
+    现在区块链技术主要存在于技术圈子内，技术圈子外只能认识是一种虚拟的币，并能做为炒作的工具。区块
+链技术将来如果想得到长足发展，必须让每个人都熟知他。就像以前的计算机，逐渐走进我们现在生活和工作中。
+因此让区块链技术的可视化，让每个人都能快速认识和理解他，而不是现在一堆的技术黑箱。例如：区块链技术
+的分布记账。现在的各种分布记账公开的信息都是每个终端都储存有，普通用户只能通过浏览器查看信息，但这
+个信息量非常有限。实际上私有链上所有数据都保存于我们每个客户终端，但客户终端并不能查看到具体的数据。
+每个人想看具体的交易数据和智能合约根本不能实现。这样何为的信息公开，何为让每个人都见证信息的发生。
+因此后期如何建立在数据安全和保证信息隐私安全的前提下，并能让每个客户终端都能可视化具体的数据，是区
+块链技术为大众所接受的关键之一。
+二、分布记账功能区分
+    现在区块链分布记账都是简单的拷贝功能，各私有链的客户终端都是记录一样的数据，这样造成功能浪费，
+并加重网络的负担，因此我觉得如何让区块链技术如何实现账本和合约的功能区分。通过各功能模块组合实现整
+个网络模块。并且各功能模块能有效的技术衔接，并能保证各区块数据安全性。现在云储存技术已经得到长足发
+展，因此如何利用云技术与区块链技术有效的结合起来，既能保证数据的安全性，又能减少资源的浪费。
+   初链（truechain）迎合了区块链技术开发的初衷之一：低成本。前期比特币的推动者都是打破国家之间金融
+壁垒，使国家之间的制裁不会影响货币的流通，并能高效低成本的进行资金流通。不过这个初衷通过这几年的大
+量的资本介入。使得小额转账成本非常高，而对于普通大众来说，小额转账是非常频繁的，现有的区块链技术越
+来越成为富人的工具，更多的普通大众越来越用不起了。如果没有一个低成本的工具，最终是会被大众所抛弃的。
+因此初链如果能提供一个低成本的公有链生态链。那么将来必然在区块链领域长期立足发展。并利用PBFT（拜占
+庭容错算法），这种算法能使多种优化性能提高很多,并才有合约抽象，这样对走进大众更好，因为普通大众更多
+的来自非计算机技术行业，要求他们编制复杂的合约计算机语言比较难，因此像计算机操作系统一样，更简单方
+便的为大众所有工具，是区块链共同追求的目标。希望初链社区成员能共同推动其发展。
+                            Some thoughts about truechain
+    Public chain technology has been developed long time like Ethereum\EOS, developing 3.0 technologies
+of block chain. But now that the block chain 3.0 passed, these months proved that technology is not 
+perfect. For example, the lightning network does not achieve the desired state, and the risk of super
+nodes being attacked frequently. Therefore, the existing public chain technology, how to achieve the
+rapid processing of ecological chain data, and can ensure the integrity of the nodes to provide large
+data processing capacity, but also to ensure its security, is the existing block chain 3.0 technology
+is worth improving.
+    Since the creation and rapid development of Bitcoin, especially as a means of financial capital
+speculation, Bitcoin as the underlying technology block chain quickly entered the vision of the broad
+masses of people. Now block chain technology represents a surge in wealth, many of which are captured
+by capital as a means of hype. Therefore, truechain, as a public chain, should serve for more technology
+landing. The rapid development of technology can ensure the long-term stability of benefits.
+Some views on block chain
+   First, block chain technology to understand existing limitations.
+   Now block chain technology mainly exists in the technology circle, outside the technology circle can
+only be recognized as a virtual coin, and can be used as a tool for speculation. In the future, if we
+want to develop rapidly, we must let everyone know it. Just like the computers, they gradually come into
+our lives and work. So let the visualization of block chain technology, so that everyone can understand
+it, rather than the current pile of technology black box. For example: block chaining technology 
+distribution bookkeeping. Now all kinds of distributed accounting information are stored in each terminal,
+ordinary users can only view information through the browser, but the amount of information is very limited. 
+In fact, all the data on the private chain is stored in each of our client terminals, but the client terminal
+can not see the specific data. Everyone wants to see specific transaction data and intelligent contracts can
+not be realized at all. So what is the information disclosure, so that everyone can witness the occurrence of
+information. Therefore, how to establish the premise of data security and information privacy security, and 
+enable each client terminal to visualize specific data, block chain technology is one of the keys accepted 
+by the public.
+   Two, distribution accounting function distinction
+   Now block chain distributed bookkeeping is a simple copy function, the private chain of the client 
+terminals are recording the same data, which causes a waste of function, and increase the burden of the
+network, so I think how to let the block chain technology to achieve the functional distinction between
+books and contracts. The whole network module is realized through the combination of various functional
+modules. Moreover, the functional modules can effectively connect the technology and ensure the data 
+security of each block. Now cloud technology has been greatly developed, so how to effectively combine
+cloud technology with block chain technology can not only ensure the security of data, but also reduce
+the waste of resources.
+   The TrueChain caters for the original intention of the block chain technology development: low cost.
+The prophase of Bitcoin was to break financial barriers between countries, so that sanctions between 
+countries would not affect the currency flow, and efficient and low-cost capital flow. However, this 
+intention has been intervened through a large number of capital in recent years. Make the cost of small
+transfer is very high, and for the general public, small transfer is very frequent, the existing block
+chain technology is increasingly becoming a tool for the rich, more and more ordinary people can not
+use it. Without a low-cost tool, it will eventually be abandoned by the public people. Therefore, if
+the initial chain can provide a low-cost public chain ecological chain. So in the future, we must 
+develop in the field of block chain for a long time. And use PBFT this algorithm can make a lot of 
+optimization performance improvements, and only contract abstraction, which is better for the public,
+because the general public more from non-computer technology industries, require them to compile 
+complex contract computer language is more difficult, so like computer operating systems. Similarly,
+simpler and more convenient tools for all the public are the common goal of block chain. It is hoped
+that community members in the truechain can jointly promote their development.
+
+https://card.weibo.com/article/v3/editor#/history/318342
