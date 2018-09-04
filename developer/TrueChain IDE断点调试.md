@@ -1,3 +1,5 @@
+作者：Austin. 审阅：rectinajh
+
 # TrueChain IDE断点调试
 
 ## 实验环境
