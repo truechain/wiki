@@ -1,4 +1,6 @@
-# TrueChain IDE断点调试
+# True链开发实战篇-IDE断点调试
+
+作者：    审阅：  
 
 ## 实验环境
 - macOS 10.13.6 
