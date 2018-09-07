@@ -1,5 +1,6 @@
- # 安装系统环境
+### 安装系统环境
 作者：大野   审阅:rectinajh
+
 注：本文操作在MAC环境下。
 ##### 1.安装go环境（go需要1.7及以上版本） 
  1. mac 执行命令 brew install go 即可。
@@ -16,10 +17,10 @@ sers/edz/go
 
    
    
-#2.配置C编译器
+#### 2.配置C编译器
 1. mac 端执行 brew  install  gcc
  
-###编译源文件
+### 编译源文件
   1. 下载项目源码 https://github.com/truechain/truechain-engineering-code
   2. 进入项目目录。进行编译。执行命令： make getrue 
   3. 编译完成后。getrue命令所在路径为 项目目录/build/bin/。如图
@@ -29,7 +30,7 @@ sers/edz/go
 
 
  
-###getrue命令
+### getrue命令
 
    getrue --help 查看命令帮助,如图
     
@@ -38,7 +39,7 @@ sers/edz/go
 
     
 
-###genesis.json
+### genesis.json
 创建自己的测试网络。首先需要创建网络的创世状态，让所有节点知道并同意这个状态。
     创世状态（或创世区块）是一个小型的JSON文件。如下图
 
@@ -58,7 +59,7 @@ sers/edz/go
     parentHash 上一个区块的哈希
     timestamp  区块生成的时间
     
-###搭建测试网络
+### 搭建测试网络
   step1. 建立测试目录。例如Test
     
   step2. 引用源码中cmd/getrue中的genesis.json文件，文件的内容如下。
@@ -117,7 +118,7 @@ step3. 创建创世区块。执行如下命令
  getrue --datadir Test --nodiscover console 启动成功后，如下图
 ![6.jpg](https://upload-images.jianshu.io/upload_images/13652489-75e16c76e4e70212.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-###使用测试网络
+### 使用测试网络
 step1. 创建一个新的账户
 ```
 > personal.newAccount()
@@ -153,7 +154,7 @@ null
 ```
 miner.stop
 ```
-###在该测试网络中添加其他节点
+### 在该测试网络中添加其他节点
 step1. 在其他主机上使用相同NetWorkID的genesis.json 初始化节点
 step2. 在其他主机本地控制台，使用admin.nodeInfo.enode获取enode信息。
 ```
