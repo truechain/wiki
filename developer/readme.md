@@ -5,7 +5,7 @@
 - [x] 苹果开发环境搭建(https://github.com/truechain/wiki/blob/master/developer/1.mac_env_build.md)
 - [x] Window环境搭建(https://github.com/truechain/wiki/blob/master/developer/2.window_env_build.md)
 - [ ] Ubuntu环境搭建(https://github.com/truechain/wiki/blob/master/developer/3-1.Ubuntu_env_build.md)
-- [ ] Ubuntu环境搭建-IDE配置(https://github.com/truechain/wiki/blob/master/developer/3-2.Ubuntu_env_build_IDE.md)
+- [ ] Ubuntu环境搭建-IDE配置([https://github.com/truechain/wiki/blob/master/developer/3-2.Ubuntu_env_build_IDE.md](https://github.com/truechain/wiki/blob/master/developer/3-2.Ubuntu_env_build_IDE.md))
 - [ ] CentOS环境搭建（https://github.com/truechain/wiki/blob/master/developer/3-3.CentOS_env_build.md）
 - [ ] 测试网络搭建(https://github.com/truechain/wiki/blob/master/developer/4.TrueChain_testing_network_setup.md)
 - [ ] 主网网络搭建
@@ -14,4 +14,4 @@
    - [ ] 2、集群模式（测试网络多节点，本地调试）
 - [ ] IDE远程调试（测试网络多节点，远程节点调试）
 - [ ] 调通测试代码，执行单元测试(https://github.com/truechain/wiki/blob/master/developer/8.execute_tests.md)
-- [ ] 编译打包，构建持续集成CI（https://github.com/truechain/wiki/blob/master/developer/10.TrueChain_continuous_integration_TravisCI.md）
+- [ ] 编译打包，构建持续集成CI（[https://github.com/truechain/wiki/blob/master/developer/10.TrueChain_continuous_integration_TravisCI.md](https://github.com/truechain/wiki/blob/master/developer/10.TrueChain_continuous_integration_TravisCI.md)）
