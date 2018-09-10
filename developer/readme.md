@@ -6,7 +6,7 @@
 - [x] Window环境搭建(https://github.com/truechain/wiki/blob/master/developer/2.window_env_build.md)
 - [ ] Ubuntu环境搭建(https://github.com/truechain/wiki/blob/master/developer/3-1.Ubuntu_env_build.md)
 - [ ] Ubuntu环境搭建-IDE配置([https://github.com/truechain/wiki/blob/master/developer/3-2.Ubuntu_env_build_IDE.md](https://github.com/truechain/wiki/blob/master/developer/3-2.Ubuntu_env_build_IDE.md))
-- [ ] CentOS环境搭建（https://github.com/truechain/wiki/blob/master/developer/3-3.CentOS_env_build.md）
+- [ ] CentOS环境搭建（[https://github.com/truechain/wiki/blob/master/developer/3-3.CentOS_env_build.md](https://github.com/truechain/wiki/blob/master/developer/3-3.CentOS_env_build.md)）
 - [ ] 测试网络搭建(https://github.com/truechain/wiki/blob/master/developer/4.TrueChain_testing_network_setup.md)
 - [ ] 主网网络搭建
 - [ ] IDE(goland和VisualStudioCode)断点调试
