@@ -12,7 +12,6 @@
 - [x] 1.5 主网网络搭建(https://github.com/truechain/wiki/blob/master/developer/1.5.truechain_main_network_setup.md)
 - [ ] 1.6 IDE(goland和VisualStudioCode)断点调试
    - [x] 1.6.1 单机模式（本地单节点调试）(https://github.com/truechain/wiki/blob/master/developer/1.6.truechain_ide_breakpoint_debug.md)
-   - [ ] 1.6.2 集群模式（测试网络多节点，本地调试）
 - [x] 1.7 IDE远程调试（测试网络多节点，远程节点调试）(https://github.com/truechain/wiki/blob/master/developer/1.7.truechain_ide_remote_breakpoint_debug.md)
 - [x] 1.8 调通测试代码，执行单元测试(https://github.com/truechain/wiki/blob/master/developer/1.8.truechain_execute_tests.md)
 - [x] 1.9 编译打包，构建持续集成CI(https://github.com/truechain/wiki/blob/master/developer/1.9.truechain_continuous_integration_travisci.md)
