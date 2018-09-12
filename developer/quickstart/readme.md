@@ -59,15 +59,15 @@ ___
 
 依次在cmd中执行以下命令,其中$GOPATH为之前配置的工作路径，如果文件夹不存在请执行创建
 
-cd $GOPATH\src\github.com\ethereum  
+cd $GOPATH\src\github.com\truechain  
 
-git clone https://github.com/truechain/truechain-fpow.git
+git clone https://github.com/truechain/truechain-engineering-code.git
 
-ren  truechain-fpow go-ethereum
+git checkout fpow
 
-打开vscode，文件--打开文件夹--选择$GOPATH\src\github.com\ethereum\go-ethereum--确定
+打开vscode，文件--打开文件夹--选择$GOPATH\src\github.com\truechain\truechain-engineering-code--确定
 
-现在，true精妙的代码都展示在你面前了。
+现在，truechain精妙的代码都展示在你面前了。
 
 这时可能会有部分依赖需要下载，那我们分别执行go get 即可。
 
