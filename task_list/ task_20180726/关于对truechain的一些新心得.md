@@ -1,3 +1,5 @@
+ # 关于对truechain的一些新心得
+ [原文链接 https://www.jianshu.com/p/d1403b8dc6fb](https://www.jianshu.com/p/d1403b8dc6fb)
  ## 目前主流区块链模型
  
  现在的主流区块链共识算法POW，POS，DPOS，其中最为人所熟知的是BTC的UTXO模型POW共识机制，和ETH的account模型POW共识机制（后期可能转为POS机制），而在经历了第一代区块链模型（BTC为代表），
