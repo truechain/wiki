@@ -1,4 +1,4 @@
- # 关于对truechain的一些新心得
+ # 关于对truechain的一些心得
  [原文链接 https://www.jianshu.com/p/d1403b8dc6fb](https://www.jianshu.com/p/d1403b8dc6fb)
  ## 目前主流区块链模型
  
