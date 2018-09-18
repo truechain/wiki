@@ -14,7 +14,7 @@ If you’re just getting started developing a brand new DApp on TrueChain, check
   - ToDo (any other nodes in TrueChain)
 - TrueChain hybrid consesus mechanism
 - TrueChain special features
-- TODO: Any othe topic here
+- TrueChain roadmap
 
 ## 2 Use TrueChain - a step by step guide
 Now that you have equipped yourself with basic TrueChain knowledge, and you cannot wait to start to use TrueChain. Find below step by step guidance to make your journey stress-free.
