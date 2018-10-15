@@ -71,9 +71,9 @@ run mining command, select below stpes depend on your command.
 ```
 docker run -v $PWD:/truechain-engineering-code -it -p 30311:30311 -p 30310:30310 -p 30303:30303 -p 9215:9215 getrue --datadir /truechain-engineering-code/data --config /truechain-engineering-code/config --testnet --mine  --minefruit --election console
 ```
-![](img/TrueChain_mining_procedure_02.jpg)
+![](https://github.com/truechain/wiki/blob/master/developer/img/TrueChain_mining_procedure_02.jpg)
 
-![](img/TrueChain_mining_procedure_01.jpg)
+![](https://github.com/truechain/wiki/blob/master/developer/img/TrueChain_mining_procedure_01.jpg)
 
 
 2）mine fruit and block
@@ -98,9 +98,9 @@ docker run -v $PWD:/truechain-engineering-code -it -p 30311:30311 -p 30310:30310
 ```
 docker run -v $PWD:/truechain-engineering-code -it -p 30311:30311 -p 30310:30310 -p 30303:30303 -p 9215:9215 getrue --datadir /truechain-engineering-code/data --config /truechain-engineering-code/config --testnet --mine --minefruit console
 ```
-![](img/TrueChain_mining_procedure_03.jpg)
+![](https://github.com/truechain/wiki/blob/master/developer/img/TrueChain_mining_procedure_03.jpg)
 
-![](img/TrueChain_mining_procedure_01.jpg)
+![](https://github.com/truechain/wiki/blob/master/developer/img/TrueChain_mining_procedure_01.jpg)
 
 
 2）mine fruit and block
