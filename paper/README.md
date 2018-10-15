@@ -11,7 +11,7 @@
 
 # 论文资料
 
-* [白皮书](https://github.com/truechain/wiki/blob/master/whitepaper/Truechain.pdf)
+* [白皮书](https://www.truechain.pro/whitepaper-en.pdf)
 * [黄皮书V1](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaperV1.md)
 * [黄皮书V0](https://github.com/truechain/wiki/blob/master/docs-cn/yellowpaper.md)
 * [混合共识](https://github.com/truechain/wiki/blob/master/paper/Hybrid_Consensus_Effcient_Consensus_in_the_Permissionless_Model.md)
