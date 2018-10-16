@@ -2,8 +2,10 @@
 
 ## install docker
 
-ubuntu reference https://docs.docker.com/install/linux/docker-ce/ubuntu/.  
+ubuntu reference https://docs.docker.com/install/linux/docker-ce/ubuntu/.
+
 Mac reference https://docs.docker.com/docker-for-mac/install/.
+
 Windows reference https://docs.docker.com/docker-for-windows/install/.
 
 ## start docker
@@ -84,8 +86,11 @@ docker run -v $PWD:/truechain-engineering-code -it -p 30311:30311 -p 30310:30310
 2.command analysis
 
 -p : mapping the container's port to the host
+
 --datadir : data storage folder
+
 --minefruit : specify only mine fruit
+
 --election : this node participate in committee election
 
 
@@ -112,8 +117,11 @@ docker run -v $PWD:/truechain-engineering-code -it -p 30311:30311 -p 30310:30310
 2.command analysis
 
 -p : mapping the container's port to the host
+
 --datadir : data storage folder
+
 --minefruit : specify only mine fruit
+
 --election : this node participate in committee election
 
 
