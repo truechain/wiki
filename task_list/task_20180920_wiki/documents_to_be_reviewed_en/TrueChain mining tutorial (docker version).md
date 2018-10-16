@@ -2,9 +2,9 @@
 
 ## install docker
 
-ubuntu reference https://blog.csdn.net/bingzhongdehuoyan/article/details/79411479.   
-Mac reference https://blog.csdn.net/jiang_xinxing/article/details/58025417.    
-Windows reference http://www.runoob.com/docker/windows-docker-install.html. 
+ubuntu reference https://docs.docker.com/install/linux/docker-ce/ubuntu/.
+Mac reference https://docs.docker.com/docker-for-mac/install/.    
+Windows reference https://docs.docker.com/docker-for-windows/install/. 
 
 ## start docker
 `
