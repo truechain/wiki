@@ -1,20 +1,20 @@
-#TrueChain Tutorials - Testing Network Setup
+# TrueChain Tutorials - Testing Network Setup
 
-this tutorials provides an introduction to Testing Network Setup . it demonstrates how to build,run, and connect to  network. 
+This tutorial provides an introduction to TrueChain testing network setup. It demonstrates how to build, run, and connect to the network. 
 
-##System requirements
+## System requirements
 **Note: this article use OSX system**
 
 1. golang
 2. gcc
 
-###step 1
+### Step 1
 install gcc & golang
 
 ```
 brew install gcc golang
 ```
-###step 2
+### Step 2
 set golang environment
 
 * GOPATH
@@ -25,16 +25,17 @@ echo "GOPATH=your_working_dir" >> .bash_profile
 echo "GOROOT=go_install_dir>" >> .bash_profile
 ```
 
-now, we will have a test  to get the environments
+now, let's check whether we can correctly set the environments:
 
 ```
 go env
 ```
-you can check `GOPATH` value if it's correct
+you can check `GOPATH` value if it's correct:
+
 ![go env](https://camo.githubusercontent.com/b3c2a1dc31fd67960fa117288561bb89f12977ae/68747470733a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f31333635323438392d663465386433643232616439363761662e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430)
 
 
-##Build TrueChain Project
+## Build TrueChain Project
 
 1. get the TrueChain source code
 
@@ -52,10 +53,10 @@ go get https://github.com/truechain/truechain-engineering-code
 make getrue
 ```
 
-after compiled, the path of the Getrue command is `YOUR_TRUECHAIN_PROJECT_DIR`/build/bin/. Like diagram
+after compilation, the path of the Getrue command is `YOUR_TRUECHAIN_PROJECT_DIR`/build/bin/. Refer to the diagram below:
 ![buil](https://camo.githubusercontent.com/f8d19266c49aecfdd694ae278031dbb2c0ae9128/68747470733a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f31333635323438392d623536626666323163316531386538642e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430)
 
-###The getrue command
+### The getrue command
 run geture --help to get the manual.
 
 ```
@@ -65,10 +66,10 @@ geture --help
 ![getrue](https://camo.githubusercontent.com/7bbab2adbd9036dfd073aa8d757403ce32f37636/68747470733a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f31333635323438392d376364383736386336343437656432352e6a70673f696d6167654d6f6772322f6175746f2d6f7269656e742f7374726970253743696d61676556696577322f322f772f31323430)
 
 
-##Deploy TrueChain Test Network
-step1. Create an Test Directory like `Test`
+## Deploy TrueChain Test Network
+Step 1. Create an Test Directory like `Test`
 
-step2. copy genesis.json file from cmd/getrue , the contents of the file as follows.
+Step 2. Copy genesis.json file from cmd/getrue , the content of the file as follows.
 
 ```
 {
@@ -92,7 +93,7 @@ step2. copy genesis.json file from cmd/getrue , the contents of the file as foll
   "timestamp"  : "0x00"
 }
 ```
-Step3. Create genesis blocks. Execute the following command
+Step 3. Create genesis blocks. Execute the following command
 
 ```
 getrue --datadir Test init path/to/cmd/getrue/genesis.json
@@ -100,7 +101,7 @@ getrue --datadir Test init path/to/cmd/getrue/genesis.json
 
 parameter --datadir,Used to specify a directory.After the above command is executed, will generate two folders, **getrue** and **keystore**, The **getrue** folder is used to store the relevant data of the chain, and the user information of the chain is stored in the **keystore** folder as shown in the figure.
 
-step4. Start the test chain start node. Execute the following command: 
+Step 4. Start the test chain start node. Execute the following command: 
 
 ```
 getrue --datadir Test --nodiscover console
@@ -113,7 +114,7 @@ After starting successfully, as shown in the following figure
 
 ##Useage
 
-###step1. Create a new account
+### Step 1. Create a new account
 
 ```
 > personal.newAccount()
@@ -131,7 +132,7 @@ Enter the password twice and create a new account. Next, you can view the accoun
 > 
 ```
 
-###step2. Query account balance
+### Step2. Query account balance
 
 ```
 > etrue.getBalance(etrue.accounts[0])
@@ -139,7 +140,7 @@ Enter the password twice and create a new account. Next, you can view the accoun
 > 
 ```
 
-###step3. Start mining
+### Step3. Start mining
 ```
 miner.start(1)
 INFO [09-02|23:42:27.187] Updated mining threads                   threads=1
@@ -149,14 +150,14 @@ INFO [09-02|23:42:27.188] Starting mining operation
 null
 ```
  
-###Stop mining
+### Stop mining
 
 ```
 miner.stop
 ```
-##Add additional nodes to the test network
+## Add additional nodes to the test network
 
-###step1. start separately 
+### Step1. start separately 
 
 1.Committee node startup parameter
 
@@ -176,21 +177,21 @@ miner.stop
 ./build/bin/getrue --datadir ./data --networkid 1004 --testnet --nodiscover --etherbase 0x8a45d70f096d3581866ed27a5017a4eeec0db2a1 console --mine --minefruit
 ```
 
-###step2. In other machines, use admin.nodeInfo.enode to get enode information.
+### Step2. In other machines, use admin.nodeInfo.enode to get enode information.
 
 ```
 admin.nodeInfo.enode "enode://35184ea5262987880b3a97a38a0678e32d279a9438770940293f181f4790738011f93401f91ba6f6a51804fd1a76a47f45c991a88661c7207513e5d7a8a73318@[::]:30303?discport=0"
 ```
 
-###step3. The ip address and enode information of other host nodes must be filled  when you call admin.addPeer () in own node console so that the nodes of other hosts can be connected.
+### Step3. The ip address and enode information of other host nodes must be filled  when you call admin.addPeer () in own node console so that the nodes of other hosts can be connected.
 
 ```
 admin.addPeer("enode://35184ea5262987880b3a97a38a0678e32d279a9438770940293f181f4790738011f93401f91ba6f6a51804fd1a76a47f45c991a88661c7207513e5d7a8a73318@[47.92.224.44]:30303?discport=0")
 ```
 
-###step4. Test whether the two nodes are connected successfully as shown in figure
+### Step4. Test whether the two nodes are connected successfully as shown in figure
 
-###step5. After a successful connection between two nodes, the next two nodes will automatically synchronize the transaction as shown in the figure
+### Step5. After a successful connection between two nodes, the next two nodes will automatically synchronize the transaction as shown in the figure
 
 ![7.jpg](https://github.com/truechain/wiki/blob/master/developer/img/151539223849_.pic_hd.jpg)
 
