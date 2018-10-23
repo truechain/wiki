@@ -17,6 +17,6 @@
 - [x] 1.9 编译打包，构建持续集成CI(https://github.com/truechain/wiki/blob/master/developer/1.9.truechain_continuous_integration_travisci.md)
 
 二、初链开发
-- [x] 2.1 初链主网上线技术解读之——PBFT委员会选举 （https://blog.csdn.net/Fei20090305/article/details/83247058）
-- [x] 2.2 初链主网上线技术解读之——混合共识（https://blog.csdn.net/tianjueshao/article/details/83154451）
-- [x] 2.3 初链主网上线技术解读之——交易流程解析（https://blog.csdn.net/qq_22269733/article/details/83025225）
+- [x] 2.1 初链主网上线技术解读之——PBFT委员会选举 （https://blog.csdn.net/Fei20090305/article/details/83247058)
+- [x] 2.2 初链主网上线技术解读之——混合共识（https://blog.csdn.net/tianjueshao/article/details/83154451)
+- [x] 2.3 初链主网上线技术解读之——交易流程解析（https://blog.csdn.net/qq_22269733/article/details/83025225)
