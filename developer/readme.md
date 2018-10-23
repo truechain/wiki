@@ -15,3 +15,7 @@
 - [x] 1.7 IDE远程调试（测试网络多节点，远程节点调试）(https://github.com/truechain/wiki/blob/master/developer/1.7.truechain_ide_remote_breakpoint_debug.md)
 - [x] 1.8 调通测试代码，执行单元测试(https://github.com/truechain/wiki/blob/master/developer/1.8.truechain_execute_tests.md)
 - [x] 1.9 编译打包，构建持续集成CI(https://github.com/truechain/wiki/blob/master/developer/1.9.truechain_continuous_integration_travisci.md)
+
+二、初链开发
+- [x] 2.1 初链主网上线技术解读之——PBFT委员会选举 （https://blog.csdn.net/Fei20090305/article/details/83247058）
+- [x] 2.2 初链主网上线技术解读之——混合共识（https://blog.csdn.net/tianjueshao/article/details/83154451）
