@@ -21,4 +21,5 @@
 - [x] 2.2 初链主网上线技术解读之——混合共识（https://blog.csdn.net/tianjueshao/article/details/83154451)
 - [x] 2.3 初链主网上线技术解读之——交易流程解析（https://blog.csdn.net/qq_22269733/article/details/83025225)
 - [x] 2.4 初链主网上线技术解读之——抗ASIC挖矿算法（https://blog.csdn.net/weixin_39029194/article/details/83281012)
+- [x] 2.5 初链主网上线技术解读之——p2p节点发现机制（https://blog.csdn.net/qq_43522663/article/details/83410870)
 - [ ] ……
