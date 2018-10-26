@@ -23,3 +23,7 @@
 - [x] 2.4 初链主网上线技术解读之——抗ASIC挖矿算法（https://blog.csdn.net/weixin_39029194/article/details/83281012)
 - [x] 2.5 初链主网上线技术解读之——p2p节点发现机制（https://blog.csdn.net/qq_43522663/article/details/83410870)
 - [ ] ……
+
+三、基于初链的开发
+- [x] 3.1 初链智能合约 (https://github.com/truechain/wiki/blob/master/developer/3.1_truechain_smart_contract.md)
+- [x] 3.2 初链API (https://github.com/truechain/wiki/blob/master/developer/3.2_truechain_API.md)
