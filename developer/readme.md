@@ -31,3 +31,5 @@
 - [x] 3.1 初链智能合约 (https://github.com/truechain/wiki/blob/master/developer/3.1_truechain_smart_contract.md)
 - [x] 3.2 初链API (https://github.com/truechain/wiki/blob/master/developer/3.2_truechain_API.md)
 - [x] 3.3 初链DApp开发指南 (https://github.com/truechain/wiki/blob/master/developer/3.3_truechain_DApp_Tutorial.md)
+
+- [x] 3.5 初链DApp最佳实践 (https://github.com/truechain/wiki/blob/master/developer/3.5_truechain_DApp_Best_Practices.md)
